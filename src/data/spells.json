@@ -1,0 +1,464 @@
+{
+  "0": {
+    "name": "Fire Bolt",
+    "class": "mage",
+    "cost": 5,
+    "level": 1,
+    "frames": [
+      2112,
+      2113
+    ],
+    "target": "enemy"
+  },
+  "1": {
+    "name": "Fireball",
+    "class": "mage",
+    "cost": 30,
+    "level": 8,
+    "frames": [
+      2126,
+      2127
+    ],
+    "target": "enemy"
+  },
+  "10": {
+    "name": "Third Summon",
+    "class": "mage",
+    "cost": 60,
+    "level": 8,
+    "frames": [
+      2106,
+      2107
+    ],
+    "target": "none"
+  },
+  "11": {
+    "name": "Fourth Summon",
+    "class": "mage",
+    "cost": 100,
+    "level": 12,
+    "frames": [
+      2108,
+      2109
+    ],
+    "target": "none"
+  },
+  "12": {
+    "name": "Fifth Summon",
+    "class": "mage",
+    "cost": 140,
+    "level": 16,
+    "frames": [
+      2110,
+      2111
+    ],
+    "target": "none"
+  },
+  "13": {
+    "name": "Invisibility",
+    "class": "mage",
+    "cost": 20,
+    "level": 8,
+    "frames": [
+      2136,
+      2137
+    ],
+    "target": "friend"
+  },
+  "14": {
+    "name": "Life Drain",
+    "class": "mage",
+    "cost": 6,
+    "level": 1,
+    "frames": [
+      2130,
+      2131
+    ],
+    "target": "enemy"
+  },
+  "15": {
+    "name": "Damage Shield I",
+    "class": "mage",
+    "cost": 5,
+    "level": 1,
+    "frames": [
+      2132,
+      2133
+    ],
+    "target": "friend"
+  },
+  "16": {
+    "name": "Damage Shield II",
+    "class": "mage",
+    "cost": 20,
+    "level": 8,
+    "frames": [
+      2132,
+      2133
+    ],
+    "target": "friend"
+  },
+  "17": {
+    "name": "Damage Shield III",
+    "class": "mage",
+    "cost": 40,
+    "level": 16,
+    "frames": [
+      2132,
+      2133
+    ],
+    "target": "friend"
+  },
+  "2": {
+    "name": "Meteor",
+    "class": "mage",
+    "cost": 80,
+    "level": 16,
+    "frames": [
+      2126,
+      2127
+    ],
+    "target": "enemy"
+  },
+  "3": {
+    "name": "Ice Bolt",
+    "class": "mage",
+    "cost": 8,
+    "level": 4,
+    "frames": [
+      2142,
+      2143
+    ],
+    "target": "enemy"
+  },
+  "30": {
+    "name": "Minor Heal",
+    "class": "priest",
+    "cost": 5,
+    "level": 1,
+    "frames": [
+      2114,
+      2115
+    ],
+    "target": "friend"
+  },
+  "31": {
+    "name": "Normal Heal",
+    "class": "priest",
+    "cost": 10,
+    "level": 4,
+    "frames": [
+      2114,
+      2115
+    ],
+    "target": "friend"
+  },
+  "32": {
+    "name": "Major Heal",
+    "class": "priest",
+    "cost": 15,
+    "level": 8,
+    "frames": [
+      2114,
+      2115
+    ],
+    "target": "friend"
+  },
+  "33": {
+    "name": "Greater Heal",
+    "class": "priest",
+    "cost": 30,
+    "level": 12,
+    "frames": [
+      2114,
+      2115
+    ],
+    "target": "friend"
+  },
+  "34": {
+    "name": "Divine Heal",
+    "class": "priest",
+    "cost": 50,
+    "level": 16,
+    "frames": [
+      2114,
+      2115
+    ],
+    "target": "friend"
+  },
+  "35": {
+    "name": "Holy Armor",
+    "class": "priest",
+    "cost": 5,
+    "level": 1,
+    "frames": [
+      2132,
+      2133
+    ],
+    "target": "friend"
+  },
+  "36": {
+    "name": "Spirit Armor",
+    "class": "priest",
+    "cost": 10,
+    "level": 8,
+    "frames": [
+      2132,
+      2133
+    ],
+    "target": "friend"
+  },
+  "37": {
+    "name": "Divine Armor",
+    "class": "priest",
+    "cost": 20,
+    "level": 16,
+    "frames": [
+      2132,
+      2133
+    ],
+    "target": "friend"
+  },
+  "38": {
+    "name": "Strength",
+    "class": "priest",
+    "cost": 12,
+    "level": 8,
+    "frames": [
+      2138,
+      2139
+    ],
+    "target": "friend"
+  },
+  "39": {
+    "name": "Weaken",
+    "class": "priest",
+    "cost": 12,
+    "level": 8,
+    "frames": [
+      2140,
+      2141
+    ],
+    "target": "enemy"
+  },
+  "4": {
+    "name": "Ice Spear",
+    "class": "mage",
+    "cost": 30,
+    "level": 8,
+    "frames": [
+      2142,
+      2143
+    ],
+    "target": "enemy"
+  },
+  "40": {
+    "name": "Dexterity",
+    "class": "priest",
+    "cost": 10,
+    "level": 4,
+    "frames": [
+      2123,
+      2123
+    ],
+    "target": "friend"
+  },
+  "41": {
+    "name": "Clumsy",
+    "class": "priest",
+    "cost": 10,
+    "level": 4,
+    "frames": [
+      2150,
+      2151
+    ],
+    "target": "enemy"
+  },
+  "42": {
+    "name": "Bless",
+    "class": "priest",
+    "cost": 5,
+    "level": 1,
+    "frames": [
+      2120,
+      2121
+    ],
+    "target": "friend"
+  },
+  "43": {
+    "name": "Curse",
+    "class": "priest",
+    "cost": 5,
+    "level": 1,
+    "frames": [
+      2124,
+      2125
+    ],
+    "target": "enemy"
+  },
+  "44": {
+    "name": "Animate Dead",
+    "class": "priest",
+    "cost": 8,
+    "level": 1,
+    "frames": [
+      2128,
+      2129
+    ],
+    "target": "corpse"
+  },
+  "45": {
+    "name": "Slow",
+    "class": "priest",
+    "cost": 10,
+    "level": 8,
+    "frames": [
+      2148,
+      2149
+    ],
+    "target": "enemy"
+  },
+  "46": {
+    "name": "Cure Poison",
+    "class": "priest",
+    "cost": 10,
+    "level": 4,
+    "frames": [
+      2146,
+      2147
+    ],
+    "target": "friend"
+  },
+  "47": {
+    "name": "Purify",
+    "class": "priest",
+    "cost": 20,
+    "level": 12,
+    "frames": [
+      2146,
+      2147
+    ],
+    "target": "friend"
+  },
+  "48": {
+    "name": "Detonate Corpse",
+    "class": "priest",
+    "cost": 10,
+    "level": 8,
+    "frames": [
+      2156,
+      2157
+    ],
+    "target": "corpse"
+  },
+  "49": {
+    "name": "Corpse Bomb",
+    "class": "priest",
+    "cost": 20,
+    "level": 16,
+    "frames": [
+      2156,
+      2157
+    ],
+    "target": "corpse"
+  },
+  "5": {
+    "name": "Ice Storm",
+    "class": "mage",
+    "cost": 70,
+    "level": 12,
+    "frames": [
+      2144,
+      2145
+    ],
+    "target": "enemy"
+  },
+  "50": {
+    "name": "Regeneration",
+    "class": "priest",
+    "cost": 30,
+    "level": 12,
+    "frames": [
+      2158,
+      2159
+    ],
+    "target": "friend"
+  },
+  "51": {
+    "name": "Holy Smite",
+    "class": "priest",
+    "cost": 20,
+    "level": 8,
+    "frames": [
+      2152,
+      2153
+    ],
+    "target": "enemy"
+  },
+  "52": {
+    "name": "Stupify",
+    "class": "priest",
+    "cost": 15,
+    "level": 8,
+    "frames": [
+      2154,
+      2155
+    ],
+    "target": "enemy"
+  },
+  "6": {
+    "name": "Lupo's Poison Dart",
+    "class": "mage",
+    "cost": 10,
+    "level": 4,
+    "frames": [
+      2134,
+      2135
+    ],
+    "target": "enemy"
+  },
+  "7": {
+    "name": "Lupo's Poison Strike",
+    "class": "mage",
+    "cost": 40,
+    "level": 12,
+    "frames": [
+      2134,
+      2135
+    ],
+    "target": "enemy"
+  },
+  "72": {
+    "name": "Mana Regen",
+    "class": "priest",
+    "cost": 40,
+    "level": 12,
+    "frames": [
+      2124,
+      2125
+    ],
+    "target": "friend"
+  },
+  "8": {
+    "name": "First Summon",
+    "class": "mage",
+    "cost": 10,
+    "level": 1,
+    "frames": [
+      2102,
+      2103
+    ],
+    "target": "none"
+  },
+  "9": {
+    "name": "Second Summon",
+    "class": "mage",
+    "cost": 30,
+    "level": 4,
+    "frames": [
+      2104,
+      2105
+    ],
+    "target": "none"
+  }
+}

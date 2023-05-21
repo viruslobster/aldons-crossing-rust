@@ -1,0 +1,261 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Aldon's Crossing</title>
+    <script type="module" src="main.js"></script>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="assets/aldon-152.png" />
+    <meta
+      name="viewport"
+      content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <meta name="theme-color" content="black" />
+    <meta name="apple-mobile-web-app-cabable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="Aldon" />
+    <meta name="msapplication-TileImage" content="assets/aldon-144.png" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <style>
+      /* TODO: once old style dialogs are rewritten a lot of the css can be deleted */
+      html,
+      body {
+        height: 100vh;
+        height: 100dvh;
+        overscroll-behavior: none;
+        font-family: PalmOS;
+        font-smooth: never;
+        -webkit-font-smoothing: none;
+        touch-action: none;
+      }
+
+      * {
+        -webkit-user-select: none; /* Safari and iOS */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* IE/Edge */
+        user-select: none; /* Standard */
+      }
+
+      @media all and (display-mode: standalone) {
+        height: 100lvh;
+      }
+
+      canvas {
+        display: block;
+        z-index: 1;
+        font-smooth: never;
+        -webkit-font-smoothing: none;
+      }
+
+      @font-face {
+        font-family: PalmOS;
+        src: url(assets/palmos.ttf);
+      }
+
+      @font-face {
+        font-family: PalmOSBold;
+        src: url(assets/palmos_bold.ttf);
+      }
+
+      input {
+        font-family: PalmOS;
+        font-smooth: never;
+        font-size: inherit;
+      }
+
+      .window {
+        transform: scale(1, 1);
+        transform-origin: top left;
+        font-family: PalmOS;
+        font-smooth: never;
+        font-size: 80px;
+        border-radius: 8px;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        border: 3px solid #2c008b;
+        vertical-align: top;
+        z-index: 2;
+        background-color: white;
+        overflow: hidden;
+      }
+
+      .window .title {
+        font-family: PalmOSBold;
+        font-size: 80px;
+        background-color: #2c008b;
+        text-align: center;
+        color: white;
+        border: 5px solid #2c008b;
+        height: 10%;
+      }
+
+      .responses {
+        font-size: 100px;
+      }
+
+      .window button {
+        font-family: inherit;
+        background-color: white;
+        border-radius: 15px;
+        border: 4px solid black;
+        padding: 0 20px 0 20px;
+        margin: 10px 10px 0 0;
+        font-size: 100px;
+        color: black;
+      }
+
+      .window .body {
+        font-smooth: never;
+        padding: 5px;
+        /* height: 90%; */
+      }
+
+      .actor .picture {
+        position: relative;
+        right: 2px;
+        top: 2px;
+        float: right;
+      }
+
+      .window button:active {
+        background-color: #2c008b;
+        color: white;
+      }
+
+      .stats .responses {
+        bottom: 2px;
+        right: 2px;
+        position: absolute;
+      }
+
+      .actor .responses {
+        bottom: 2px;
+        left: 10px;
+        position: absolute;
+      }
+
+      #canvas {
+        position: absolute;
+      }
+
+      .transaction .item-pic {
+        display: inline-block;
+      }
+
+      .transaction .item-info {
+        margin-left: 5px;
+        display: inline-block;
+      }
+
+      .button-container {
+        position: absolute;
+        bottom: 10px;
+        font-size: 100px;
+      }
+
+      .transaction .hidden {
+        display: none;
+      }
+
+      .character-creation .stat-row-label {
+        display: inline-block;
+      }
+
+      .character-creation button {
+        margin: 0px;
+      }
+
+      .character-creation .stat-row {
+        white-space: nowrap;
+      }
+
+      .character-creation .race-container div {
+        display: inline-block;
+      }
+
+      .character-creation .done-button {
+        position: fixed;
+        right: 10px;
+        bottom: 10px;
+      }
+
+      .character-creation .body {
+        position: relative;
+      }
+
+      .character-creation input {
+        width: 45%;
+      }
+
+      .character-stats .body {
+        position: relative;
+      }
+
+      .character-creation .picture {
+        position: absolute;
+        right: 2px;
+        top: 2px;
+      }
+
+      button {
+        font-family: inherit;
+        background-color: white;
+        border-radius: 15px;
+        border: 4px solid black;
+        padding: 0 10px 0 10px;
+        margin: 0 10px 0 0;
+        font-size: inherit;
+        color: black;
+      }
+
+      button:active {
+        background-color: #2c008b;
+        color: white;
+      }
+
+      #start-btn {
+        font-size: 80px;
+        text-align: center;
+      }
+
+      #start-btn img {
+        width: 200px;
+        height: auto;
+        image-rendering: pixelated;
+      }
+
+      #game-container {
+        background: black;
+        position: relative;
+      }
+
+      #game-error {
+        color: red;
+        visibility: hidden;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body style="margin: 0; padding: 0">
+    <figure id="start-btn">
+      <img src="assets/icon-128.png" />
+      <figcaption>
+        <div>Tap to play</div>
+        <div>Aldon's Crossing</div>
+      </figcaption>
+    </figure>
+    <div id="game-container" style="display: none">
+      <!-- On safari the height of a custom element can't always be measured, so wrap aldon-menu in another div -->
+      <div id="aldon-menu-container">
+        <aldon-menu></aldon-menu>
+      </div>
+      <div id="game">
+        <canvas id="canvas"></canvas>
+        <div id="game-error"></div>
+      </div>
+    </div>
+    <img id="spritesheet" src="assets/spritesheet.png" style="display: none" />
+    <div id="fps" style="display: none">FPS: 0</div>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+# https://taskfile.dev
+
+version: "3"
+
+tasks:
+  default:
+    cmds:
+      - task fmt
+      - task build
+      - task bundle
+
+  build:
+    cmds:
+      - thrift --strict -o ./src/thrift --gen rs ./src/thrift/*.thrift
+      - wasm-pack build --target web --release
+
+  fmt:
+    cmds:
+      - cargo fmt
+      - prettier --write .
+
+  bundle:
+    cmds:
+      - rm -rf ./dist
+      - mkdir ./dist
+      - mkdir ./dist/pkg
+      - cp ./pkg/*.{wasm,json,js} ./dist/pkg
+      - cp -r ./web/* ./dist
+
+  push:
+    cmds:
+      - task build
+      - task bundle
+      - cd ./dist && rsync -rv . pgs.sh:/aldons-crossing
+
+  push-rc:
+    cmds:
+      - task build
+      - task bundle
+      - cd ./dist && rsync -rv . pgs.sh:/aldons-crossing-rc

@@ -1,0 +1,7436 @@
+{
+  "1": {
+    "str_id": "l_swrd",
+    "name": "long sword",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 300,
+      "damage_min": 2,
+      "damage_max": 8,
+      "delay": 23,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 150,
+      "sell_cost": 150,
+      "equip_to": "melee"
+    }
+  },
+  "10": {
+    "str_id": "l_gloves",
+    "name": "leather gloves",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1003,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": false,
+      "journeyman": true,
+      "buy_cost": 30,
+      "sell_cost": 30,
+      "equip_to": "hand",
+      "armor_value": 1
+    }
+  },
+  "100": {
+    "str_id": "g_swrd",
+    "name": "greatsword",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 300,
+      "damage_min": 4,
+      "damage_max": 14,
+      "delay": 28,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 500,
+      "sell_cost": 500,
+      "equip_to": "melee"
+    }
+  },
+  "101": {
+    "str_id": "trap_1",
+    "name": "Trap, Spark I",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Usable": {
+      "frame": 1460,
+      "buy_cost": 30,
+      "sell_cost": 30,
+      "level": 1,
+      "fighter": false,
+      "thief": true,
+      "priest": false,
+      "mage": false,
+      "journeyman": false
+    }
+  },
+  "102": {
+    "str_id": "l_bow_1",
+    "name": "long bow, magic",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 401,
+      "damage_min": 2,
+      "damage_max": 11,
+      "delay": 29,
+      "level": 5,
+      "fighter": true,
+      "thief": true,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 2000,
+      "sell_cost": 90,
+      "equip_to": "range"
+    }
+  },
+  "103": {
+    "str_id": "g_swrd_1",
+    "name": "greatsword, magic",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 302,
+      "damage_min": 5,
+      "damage_max": 15,
+      "delay": 27,
+      "level": 5,
+      "fighter": true,
+      "thief": false,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 3000,
+      "sell_cost": 3000,
+      "equip_to": "melee"
+    }
+  },
+  "104": {
+    "str_id": "mace_1",
+    "name": "mace, magic",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 371,
+      "damage_min": 2,
+      "damage_max": 7,
+      "delay": 23,
+      "level": 5,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": false,
+      "journeyman": true,
+      "buy_cost": 2200,
+      "sell_cost": 2200,
+      "equip_to": "melee"
+    }
+  },
+  "105": {
+    "str_id": "flail_1",
+    "name": "flail, magic",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 361,
+      "damage_min": 3,
+      "damage_max": 8,
+      "delay": 24,
+      "level": 5,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 2500,
+      "sell_cost": 2500,
+      "equip_to": "melee"
+    }
+  },
+  "106": {
+    "str_id": "s_bow",
+    "name": "short bow",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 400,
+      "damage_min": 1,
+      "damage_max": 6,
+      "delay": 28,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 170,
+      "sell_cost": 50,
+      "equip_to": "range"
+    }
+  },
+  "107": {
+    "str_id": "s_bow_1",
+    "name": "short bow, magic",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 401,
+      "damage_min": 2,
+      "damage_max": 7,
+      "delay": 27,
+      "level": 5,
+      "fighter": true,
+      "thief": true,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 1800,
+      "sell_cost": 80,
+      "equip_to": "range"
+    }
+  },
+  "108": {
+    "str_id": "hmmr",
+    "name": "warhammer",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 350,
+      "damage_min": 4,
+      "damage_max": 12,
+      "delay": 30,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 350,
+      "sell_cost": 350,
+      "equip_to": "melee"
+    }
+  },
+  "109": {
+    "str_id": "hmmr_1",
+    "name": "warhammer, magic",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 351,
+      "damage_min": 5,
+      "damage_max": 13,
+      "delay": 29,
+      "level": 5,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 3000,
+      "sell_cost": 3000,
+      "equip_to": "melee"
+    }
+  },
+  "11": {
+    "str_id": "r_shield",
+    "name": "round shield, wood",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1301,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": true,
+      "buy_cost": 30,
+      "sell_cost": 30,
+      "equip_to": "shield",
+      "armor_value": 2
+    }
+  },
+  "110": {
+    "str_id": "goblin_2",
+    "name": "goblin lobber",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        5400,
+        5401,
+        5402,
+        5403,
+        5404,
+        5405,
+        5410,
+        5411,
+        5408,
+        5409
+      ],
+      "portrait": 712,
+      "weapon": 20,
+      "armor": 333,
+      "strength": 7,
+      "inteligence": 4,
+      "dexterity": 15,
+      "wisdom": 4,
+      "vitality": 8,
+      "luck": 8
+    }
+  },
+  "111": {
+    "str_id": "claw",
+    "name": "Claw",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 0,
+      "damage_min": 1,
+      "damage_max": 5,
+      "delay": 19,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 0,
+      "sell_cost": 40,
+      "equip_to": "melee"
+    }
+  },
+  "112": {
+    "str_id": "troll",
+    "name": "troll",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "Creature": {
+      "frames": [
+        6200,
+        6201,
+        6202,
+        6203,
+        6204,
+        6205,
+        6206,
+        6207,
+        6208,
+        6209
+      ],
+      "portrait": 700,
+      "weapon": 111,
+      "armor": 60,
+      "strength": 18,
+      "inteligence": 4,
+      "dexterity": 10,
+      "wisdom": 4,
+      "vitality": 20,
+      "luck": 8
+    }
+  },
+  "113": {
+    "str_id": "orc_2",
+    "name": "orc warlord",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        6000,
+        6001,
+        6002,
+        6003,
+        6004,
+        6005,
+        6006,
+        6007,
+        6008,
+        6009
+      ],
+      "portrait": 700,
+      "weapon": 100,
+      "armor": 334,
+      "strength": 15,
+      "inteligence": 8,
+      "dexterity": 12,
+      "wisdom": 8,
+      "vitality": 15,
+      "luck": 8
+    }
+  },
+  "114": {
+    "str_id": "bandit_1",
+    "name": "bandit",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        3600,
+        3601,
+        3602,
+        3603,
+        3604,
+        3605,
+        3606,
+        3607,
+        3608,
+        3609
+      ],
+      "portrait": 600,
+      "weapon": 7,
+      "armor": 333,
+      "strength": 12,
+      "inteligence": 8,
+      "dexterity": 14,
+      "wisdom": 8,
+      "vitality": 10,
+      "luck": 8
+    }
+  },
+  "115": {
+    "str_id": "goblin_3",
+    "name": "goblin chieftan",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        5400,
+        5401,
+        5402,
+        5403,
+        5404,
+        5405,
+        5406,
+        5407,
+        5408,
+        5409
+      ],
+      "portrait": 712,
+      "weapon": 99,
+      "armor": 334,
+      "strength": 12,
+      "inteligence": 7,
+      "dexterity": 14,
+      "wisdom": 7,
+      "vitality": 10,
+      "luck": 8
+    }
+  },
+  "116": {
+    "str_id": "boulder",
+    "name": "Boulder",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 152,
+      "damage_min": 4,
+      "damage_max": 15,
+      "delay": 40,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 0,
+      "sell_cost": 60,
+      "equip_to": "range"
+    }
+  },
+  "117": {
+    "str_id": "club_1",
+    "name": "club, magic",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 381,
+      "damage_min": 2,
+      "damage_max": 5,
+      "delay": 21,
+      "level": 5,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": false,
+      "journeyman": true,
+      "buy_cost": 1000,
+      "sell_cost": 1000,
+      "equip_to": "melee"
+    }
+  },
+  "118": {
+    "str_id": "ogre_1",
+    "name": "ogre",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        6300,
+        6301,
+        6302,
+        6303,
+        6304,
+        6305,
+        6306,
+        6307,
+        6308,
+        6309
+      ],
+      "portrait": 714,
+      "weapon": 117,
+      "armor": 60,
+      "strength": 18,
+      "inteligence": 5,
+      "dexterity": 12,
+      "wisdom": 5,
+      "vitality": 14,
+      "luck": 8
+    }
+  },
+  "119": {
+    "str_id": "ogre_2",
+    "name": "ogre lobber",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        6300,
+        6301,
+        6302,
+        6303,
+        6304,
+        6305,
+        6310,
+        6311,
+        6308,
+        6309
+      ],
+      "portrait": 714,
+      "weapon": 116,
+      "armor": 60,
+      "strength": 14,
+      "inteligence": 5,
+      "dexterity": 15,
+      "wisdom": 5,
+      "vitality": 14,
+      "luck": 8
+    }
+  },
+  "12": {
+    "str_id": "rat_tail",
+    "name": "tail, rat",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Item": {
+      "frame": 1502
+    }
+  },
+  "120": {
+    "str_id": "spd_boot",
+    "name": "boots, speed",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1303,
+      "level": 6,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 0,
+      "sell_cost": 40,
+      "equip_to": "foot",
+      "armor_value": 1
+    }
+  },
+  "121": {
+    "str_id": "dagger_p",
+    "name": "Assasins' Dagger",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 321,
+      "damage_min": 1,
+      "damage_max": 4,
+      "delay": 16,
+      "level": 8,
+      "fighter": false,
+      "thief": true,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 0,
+      "sell_cost": 750,
+      "equip_to": "melee"
+    }
+  },
+  "122": {
+    "str_id": "altar",
+    "name": "altar, holy",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 119
+    }
+  },
+  "123": {
+    "str_id": "bed",
+    "name": "bed, empty",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 110
+    }
+  },
+  "124": {
+    "str_id": "chest",
+    "name": "chest",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 111
+    }
+  },
+  "125": {
+    "str_id": "city1",
+    "name": "city square - houses A",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 123
+    }
+  },
+  "126": {
+    "str_id": "city2",
+    "name": "city square - houses B",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 124
+    }
+  },
+  "127": {
+    "str_id": "city3",
+    "name": "city square - arena",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 125
+    }
+  },
+  "128": {
+    "str_id": "city4",
+    "name": "city square - graveyard",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 126
+    }
+  },
+  "129": {
+    "str_id": "city5",
+    "name": "city square - farm house",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 127
+    }
+  },
+  "13": {
+    "str_id": "lvl",
+    "name": "Train if ready.",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "Item": {
+      "frame": 2208
+    }
+  },
+  "130": {
+    "str_id": "city6",
+    "name": "city square - lighthouse",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 128
+    }
+  },
+  "131": {
+    "str_id": "city7",
+    "name": "city square - single house",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 129
+    }
+  },
+  "132": {
+    "str_id": "city8",
+    "name": "city square - dark tower",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 130
+    }
+  },
+  "133": {
+    "str_id": "city9",
+    "name": "city square - castle",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 131
+    }
+  },
+  "134": {
+    "str_id": "crates",
+    "name": "crates",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 114
+    }
+  },
+  "135": {
+    "str_id": "crops",
+    "name": "crops",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 141
+    }
+  },
+  "136": {
+    "str_id": "deadtree",
+    "name": "tree, dead",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 102
+    }
+  },
+  "137": {
+    "str_id": "dungeon",
+    "name": "entrance, dungeon",
+    "blocker": false,
+    "sight_blocker": true,
+    "draw_depth": 1,
+    "Animprop": {
+      "frames": [
+        100,
+        101,
+        100
+      ]
+    }
+  },
+  "138": {
+    "str_id": "e_altar",
+    "name": "altar, evil",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Animprop": {
+      "frames": [
+        136,
+        137,
+        138
+      ]
+    }
+  },
+  "139": {
+    "str_id": "fire",
+    "name": "fire",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Animprop": {
+      "frames": [
+        1640,
+        1641,
+        1642
+      ]
+    }
+  },
+  "14": {
+    "str_id": "gldf",
+    "name": "Join the Fighters' Guild.",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "Item": {
+      "frame": 3000
+    }
+  },
+  "140": {
+    "str_id": "flag",
+    "name": "flagpole",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Animprop": {
+      "frames": [
+        117,
+        118,
+        117
+      ]
+    }
+  },
+  "141": {
+    "str_id": "flowers",
+    "name": "flower plot",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 121
+    }
+  },
+  "142": {
+    "str_id": "grave",
+    "name": "gravestone",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 113
+    }
+  },
+  "143": {
+    "str_id": "h_celldr",
+    "name": "horizontal stone cell",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 139
+    }
+  },
+  "144": {
+    "str_id": "h_door",
+    "name": "horizontal brick door",
+    "blocker": false,
+    "sight_blocker": true,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 104
+    }
+  },
+  "145": {
+    "str_id": "h_sbdoor",
+    "name": "horizontal secret brick door",
+    "blocker": false,
+    "sight_blocker": true,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 21
+    }
+  },
+  "146": {
+    "str_id": "h_sddoor",
+    "name": "horizontal secret dungeon door",
+    "blocker": false,
+    "sight_blocker": true,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 29
+    }
+  },
+  "147": {
+    "str_id": "h_stnwin",
+    "name": "horizontal stone window",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 143
+    }
+  },
+  "148": {
+    "str_id": "h_window",
+    "name": "horizontal brick window",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 133
+    }
+  },
+  "149": {
+    "str_id": "l_chair",
+    "name": "chair, facing left",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 109
+    }
+  },
+  "15": {
+    "str_id": "gldt",
+    "name": "Join the Thieves' Guild.",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "Item": {
+      "frame": 3700
+    }
+  },
+  "150": {
+    "str_id": "lamp",
+    "name": "lamp, fire",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Animprop": {
+      "frames": [
+        115,
+        116,
+        115
+      ]
+    }
+  },
+  "151": {
+    "str_id": "pillar",
+    "name": "pillar, stone",
+    "blocker": true,
+    "sight_blocker": true,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 144
+    }
+  },
+  "152": {
+    "str_id": "pool",
+    "name": "pool of water",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 120
+    }
+  },
+  "153": {
+    "str_id": "r_chair",
+    "name": "chair, facing right",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 108
+    }
+  },
+  "154": {
+    "str_id": "refuse",
+    "name": "refuse pile",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 122
+    }
+  },
+  "155": {
+    "str_id": "rubble",
+    "name": "rubble pile",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 103
+    }
+  },
+  "156": {
+    "str_id": "shelf",
+    "name": "bookshelf",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 135
+    }
+  },
+  "157": {
+    "str_id": "sign",
+    "name": "sign, wooden",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 112
+    }
+  },
+  "158": {
+    "str_id": "strs_dwn",
+    "name": "stairway down",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 106
+    }
+  },
+  "159": {
+    "str_id": "strs_up",
+    "name": "stairway up",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 105
+    }
+  },
+  "16": {
+    "str_id": "gldp",
+    "name": "Join the Priesthood.",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "Item": {
+      "frame": 4200
+    }
+  },
+  "160": {
+    "str_id": "table",
+    "name": "table",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 107
+    }
+  },
+  "161": {
+    "str_id": "v_celldr",
+    "name": "vertical stone cell",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 140
+    }
+  },
+  "162": {
+    "str_id": "v_door",
+    "name": "vertical brick door",
+    "blocker": false,
+    "sight_blocker": true,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 134
+    }
+  },
+  "163": {
+    "str_id": "v_sbdoor",
+    "name": "vertical secret brick door",
+    "blocker": false,
+    "sight_blocker": true,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 20
+    }
+  },
+  "164": {
+    "str_id": "v_sddoor",
+    "name": "vertical secret dungeon door",
+    "blocker": false,
+    "sight_blocker": true,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 28
+    }
+  },
+  "165": {
+    "str_id": "v_stnwin",
+    "name": "vertical stone window",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 142
+    }
+  },
+  "166": {
+    "str_id": "v_window",
+    "name": "vertical brick window",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 132
+    }
+  },
+  "167": {
+    "str_id": "ring_1",
+    "name": "ring, brass",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1420,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 20,
+      "sell_cost": 20,
+      "equip_to": "ring",
+      "armor_value": 0
+    }
+  },
+  "168": {
+    "str_id": "neck_1",
+    "name": "necklace, silver",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1430,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 40,
+      "sell_cost": 40,
+      "equip_to": "neck",
+      "armor_value": 0
+    }
+  },
+  "169": {
+    "str_id": "ring_2",
+    "name": "ring, gold",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1420,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 50,
+      "sell_cost": 50,
+      "equip_to": "ring",
+      "armor_value": 0
+    }
+  },
+  "17": {
+    "str_id": "gldm",
+    "name": "Join the Mages' Guild.",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "Item": {
+      "frame": 4700
+    }
+  },
+  "170": {
+    "str_id": "ring_3",
+    "name": "ring of wood",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1420,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 30,
+      "sell_cost": 30,
+      "equip_to": "ring",
+      "armor_value": 2
+    }
+  },
+  "171": {
+    "str_id": "ring_4",
+    "name": "ring of stone",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1420,
+      "level": 6,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 40,
+      "sell_cost": 40,
+      "equip_to": "ring",
+      "armor_value": 4
+    }
+  },
+  "172": {
+    "str_id": "ring_5",
+    "name": "ring of iron",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1420,
+      "level": 8,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 50,
+      "sell_cost": 50,
+      "equip_to": "ring",
+      "armor_value": 6
+    }
+  },
+  "173": {
+    "str_id": "ring_6",
+    "name": "ring of force",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1420,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 80,
+      "sell_cost": 80,
+      "equip_to": "ring",
+      "armor_value": 0
+    }
+  },
+  "174": {
+    "str_id": "ring_7",
+    "name": "ring of alacrity",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1420,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 70,
+      "sell_cost": 70,
+      "equip_to": "ring",
+      "armor_value": 0
+    }
+  },
+  "175": {
+    "str_id": "ring_8",
+    "name": "ring of intellect",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1420,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 60,
+      "sell_cost": 60,
+      "equip_to": "ring",
+      "armor_value": 0
+    }
+  },
+  "176": {
+    "str_id": "ring_9",
+    "name": "Blessed Ring",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1420,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 0,
+      "sell_cost": 1250,
+      "equip_to": "ring",
+      "armor_value": 0
+    }
+  },
+  "177": {
+    "str_id": "ring_10",
+    "name": "Ring of Thieves",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1420,
+      "level": 8,
+      "fighter": false,
+      "thief": true,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 90,
+      "sell_cost": 0,
+      "equip_to": "ring",
+      "armor_value": 0
+    }
+  },
+  "178": {
+    "str_id": "ring_11",
+    "name": "Ring of Battle",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1420,
+      "level": 8,
+      "fighter": true,
+      "thief": false,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 80,
+      "sell_cost": 0,
+      "equip_to": "ring",
+      "armor_value": 0
+    }
+  },
+  "179": {
+    "str_id": "StartLoc",
+    "name": "Start Location - Player",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 0
+    }
+  },
+  "18": {
+    "str_id": "gldr",
+    "name": "Quit current guild.",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "Item": {
+      "frame": 2400
+    }
+  },
+  "180": {
+    "str_id": "trap_2",
+    "name": "Trap, Slowness I",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Usable": {
+      "frame": 1460,
+      "buy_cost": 30,
+      "sell_cost": 30,
+      "level": 5,
+      "fighter": false,
+      "thief": true,
+      "priest": false,
+      "mage": false,
+      "journeyman": false
+    }
+  },
+  "181": {
+    "str_id": "opn_chst",
+    "name": "chest, open",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 145
+    }
+  },
+  "182": {
+    "str_id": "opn_crts",
+    "name": "crates, open",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 146
+    }
+  },
+  "183": {
+    "str_id": "rack1",
+    "name": "rack, weapon",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 147
+    }
+  },
+  "184": {
+    "str_id": "rack2",
+    "name": "rack, armor",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 148
+    }
+  },
+  "185": {
+    "str_id": "key_4",
+    "name": "key, Iron",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Item": {
+      "frame": 1440
+    }
+  },
+  "186": {
+    "str_id": "key_5",
+    "name": "key, Cross",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Item": {
+      "frame": 1441
+    }
+  },
+  "187": {
+    "str_id": "key_6",
+    "name": "key, Square",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Item": {
+      "frame": 1442
+    }
+  },
+  "188": {
+    "str_id": "ring_12",
+    "name": "Mystic Ring",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1420,
+      "level": 8,
+      "fighter": false,
+      "thief": false,
+      "priest": false,
+      "mage": true,
+      "journeyman": false,
+      "buy_cost": 120,
+      "sell_cost": 120,
+      "equip_to": "ring",
+      "armor_value": 0
+    }
+  },
+  "189": {
+    "str_id": "ring_13",
+    "name": "Holy Ring",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1420,
+      "level": 8,
+      "fighter": false,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 0,
+      "sell_cost": 0,
+      "equip_to": "ring",
+      "armor_value": 5
+    }
+  },
+  "19": {
+    "str_id": "h_pot_1",
+    "name": "potion, minor heal",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Usable": {
+      "frame": 1400,
+      "buy_cost": 15,
+      "sell_cost": 3,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true
+    }
+  },
+  "190": {
+    "str_id": "rapier",
+    "name": "rapier",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 330,
+      "damage_min": 1,
+      "damage_max": 6,
+      "delay": 18,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 60,
+      "sell_cost": 60,
+      "equip_to": "melee"
+    }
+  },
+  "191": {
+    "str_id": "rapier_1",
+    "name": "rapier, magic",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 331,
+      "damage_min": 2,
+      "damage_max": 7,
+      "delay": 17,
+      "level": 5,
+      "fighter": true,
+      "thief": true,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 90,
+      "sell_cost": 90,
+      "equip_to": "melee"
+    }
+  },
+  "192": {
+    "str_id": "anvil",
+    "name": "anvil",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 149
+    }
+  },
+  "193": {
+    "str_id": "v_ssdoor",
+    "name": "vertical secret stone door",
+    "blocker": false,
+    "sight_blocker": true,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 36
+    }
+  },
+  "194": {
+    "str_id": "h_ssdoor",
+    "name": "horizontal secret stone door",
+    "blocker": false,
+    "sight_blocker": true,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 37
+    }
+  },
+  "195": {
+    "str_id": "neck_2",
+    "name": "necklace, gold",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1430,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 60,
+      "sell_cost": 60,
+      "equip_to": "neck",
+      "armor_value": 0
+    }
+  },
+  "196": {
+    "str_id": "mt_rack1",
+    "name": "rack, weapon empty",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 150
+    }
+  },
+  "197": {
+    "str_id": "mt_rack2",
+    "name": "rack, armor empty",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 151
+    }
+  },
+  "198": {
+    "str_id": "bite_p",
+    "name": "Bite, Poison",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 0,
+      "damage_min": 1,
+      "damage_max": 3,
+      "delay": 24,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 0,
+      "sell_cost": 40,
+      "equip_to": "melee"
+    }
+  },
+  "199": {
+    "str_id": "tuf_shel",
+    "name": "tough shell",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 0,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 0,
+      "sell_cost": 60,
+      "equip_to": "suit",
+      "armor_value": 35
+    }
+  },
+  "2": {
+    "str_id": "axe",
+    "name": "battle axe",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 310,
+      "damage_min": 3,
+      "damage_max": 8,
+      "delay": 25,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 180,
+      "sell_cost": 180,
+      "equip_to": "melee"
+    }
+  },
+  "20": {
+    "str_id": "sling",
+    "name": "sling",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 390,
+      "damage_min": 1,
+      "damage_max": 3,
+      "delay": 22,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 80,
+      "sell_cost": 10,
+      "equip_to": "range"
+    }
+  },
+  "200": {
+    "str_id": "spider",
+    "name": "large spider",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "Creature": {
+      "frames": [
+        6400,
+        6401,
+        6402,
+        6403,
+        6404,
+        6405,
+        6406,
+        6407,
+        6408,
+        6409
+      ],
+      "portrait": 713,
+      "weapon": 198,
+      "armor": 199,
+      "strength": 8,
+      "inteligence": 2,
+      "dexterity": 10,
+      "wisdom": 2,
+      "vitality": 4,
+      "luck": 8
+    }
+  },
+  "201": {
+    "str_id": "corpse1",
+    "name": "corpse, male human",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 2409
+    }
+  },
+  "202": {
+    "str_id": "corpse2",
+    "name": "corpse, male dwarf",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 2809
+    }
+  },
+  "203": {
+    "str_id": "corpse3",
+    "name": "corpse, male elf",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 2609
+    }
+  },
+  "204": {
+    "str_id": "corpse4",
+    "name": "corpse, female human",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 2509
+    }
+  },
+  "205": {
+    "str_id": "corpse5",
+    "name": "corpse, female dwarf",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 2909
+    }
+  },
+  "206": {
+    "str_id": "corpse6",
+    "name": "corpse, female elf",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 2709
+    }
+  },
+  "207": {
+    "str_id": "corpse7",
+    "name": "corpse, old person",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 5209
+    }
+  },
+  "208": {
+    "str_id": "corpse8",
+    "name": "corpse, skeleton",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 5909
+    }
+  },
+  "209": {
+    "str_id": "club",
+    "name": "club",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 380,
+      "damage_min": 1,
+      "damage_max": 4,
+      "delay": 22,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": false,
+      "journeyman": true,
+      "buy_cost": 50,
+      "sell_cost": 50,
+      "equip_to": "melee"
+    }
+  },
+  "21": {
+    "str_id": "s_swrd_r",
+    "name": "short sword, rusty",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 301,
+      "damage_min": 1,
+      "damage_max": 5,
+      "delay": 23,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 40,
+      "sell_cost": 40,
+      "equip_to": "melee"
+    }
+  },
+  "210": {
+    "str_id": "cp_pot_6",
+    "name": "potion, cure poison",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Usable": {
+      "frame": 1403,
+      "buy_cost": 20,
+      "sell_cost": 20,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true
+    }
+  },
+  "211": {
+    "str_id": "cp_pot_7",
+    "name": "potion, purify",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Usable": {
+      "frame": 1403,
+      "buy_cost": 250,
+      "sell_cost": 250,
+      "level": 5,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true
+    }
+  },
+  "212": {
+    "str_id": "rubble_2",
+    "name": "boulder, impassable",
+    "blocker": true,
+    "sight_blocker": true,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 152
+    }
+  },
+  "213": {
+    "str_id": "trap_3",
+    "name": "Trap, Weakness I",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Usable": {
+      "frame": 1460,
+      "buy_cost": 30,
+      "sell_cost": 30,
+      "level": 5,
+      "fighter": false,
+      "thief": true,
+      "priest": false,
+      "mage": false,
+      "journeyman": false
+    }
+  },
+  "214": {
+    "str_id": "trap_4",
+    "name": "Trap, Poison",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Usable": {
+      "frame": 1460,
+      "buy_cost": 40,
+      "sell_cost": 40,
+      "level": 5,
+      "fighter": false,
+      "thief": true,
+      "priest": false,
+      "mage": false,
+      "journeyman": false
+    }
+  },
+  "215": {
+    "str_id": "key_7",
+    "name": "key, Aldon's Tomb",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Item": {
+      "frame": 1442
+    }
+  },
+  "216": {
+    "str_id": "key_8",
+    "name": "key, Council",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Item": {
+      "frame": 1441
+    }
+  },
+  "217": {
+    "str_id": "tooth",
+    "name": "tooth",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Item": {
+      "frame": 1501
+    }
+  },
+  "218": {
+    "str_id": "coffin",
+    "name": "coffin",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 153
+    }
+  },
+  "219": {
+    "str_id": "opn_coff",
+    "name": "coffin, open",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 154
+    }
+  },
+  "22": {
+    "str_id": "dagger",
+    "name": "dagger",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 320,
+      "damage_min": 1,
+      "damage_max": 3,
+      "delay": 16,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": false,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 30,
+      "sell_cost": 30,
+      "equip_to": "melee"
+    }
+  },
+  "220": {
+    "str_id": "treedoor",
+    "name": "walkthrough tree",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 6
+    }
+  },
+  "221": {
+    "str_id": "mnt_door",
+    "name": "walkthrough mountain",
+    "blocker": false,
+    "sight_blocker": true,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 5
+    }
+  },
+  "222": {
+    "str_id": "bed_2",
+    "name": "bed, occupied",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 155
+    }
+  },
+  "223": {
+    "str_id": "bag_1",
+    "name": "bag, medicine",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Usable": {
+      "frame": 1450,
+      "buy_cost": 100,
+      "sell_cost": 100,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true
+    }
+  },
+  "224": {
+    "str_id": "ele_ice",
+    "name": "greater ice elem.",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "Creature": {
+      "frames": [
+        6500,
+        6501,
+        6502,
+        6503,
+        6504,
+        6505,
+        6506,
+        6507,
+        6508,
+        6509
+      ],
+      "portrait": 713,
+      "weapon": 226,
+      "armor": 227,
+      "strength": 18,
+      "inteligence": 6,
+      "dexterity": 12,
+      "wisdom": 6,
+      "vitality": 15,
+      "luck": 8
+    }
+  },
+  "225": {
+    "str_id": "ele_ear",
+    "name": "greater earth elem.",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "Creature": {
+      "frames": [
+        6700,
+        6701,
+        6702,
+        6703,
+        6704,
+        6705,
+        6706,
+        6707,
+        6708,
+        6709
+      ],
+      "portrait": 713,
+      "weapon": 3,
+      "armor": 227,
+      "strength": 18,
+      "inteligence": 6,
+      "dexterity": 10,
+      "wisdom": 6,
+      "vitality": 16,
+      "luck": 8
+    }
+  },
+  "226": {
+    "str_id": "fist_ice",
+    "name": "Ice Fist",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 0,
+      "damage_min": 3,
+      "damage_max": 8,
+      "delay": 22,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 0,
+      "sell_cost": 60,
+      "equip_to": "melee"
+    }
+  },
+  "227": {
+    "str_id": "hrd_skin",
+    "name": "hard skin",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 0,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 0,
+      "sell_cost": 70,
+      "equip_to": "suit",
+      "armor_value": 45
+    }
+  },
+  "228": {
+    "str_id": "less_ice",
+    "name": "lesser ice elem.",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "Creature": {
+      "frames": [
+        6600,
+        6601,
+        6602,
+        6603,
+        6604,
+        6605,
+        6606,
+        6607,
+        6608,
+        6609
+      ],
+      "portrait": 713,
+      "weapon": 226,
+      "armor": 227,
+      "strength": 14,
+      "inteligence": 6,
+      "dexterity": 8,
+      "wisdom": 6,
+      "vitality": 12,
+      "luck": 8
+    }
+  },
+  "229": {
+    "str_id": "less_ear",
+    "name": "lesser earth elem.",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "Creature": {
+      "frames": [
+        6800,
+        6801,
+        6802,
+        6803,
+        6804,
+        6805,
+        6806,
+        6807,
+        6808,
+        6809
+      ],
+      "portrait": 713,
+      "weapon": 3,
+      "armor": 227,
+      "strength": 14,
+      "inteligence": 6,
+      "dexterity": 8,
+      "wisdom": 6,
+      "vitality": 14,
+      "luck": 8
+    }
+  },
+  "23": {
+    "str_id": "kiteshld",
+    "name": "kite shield, iron",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1300,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 70,
+      "sell_cost": 70,
+      "equip_to": "shield",
+      "armor_value": 5
+    }
+  },
+  "230": {
+    "str_id": "barrel",
+    "name": "barrel",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 156
+    }
+  },
+  "231": {
+    "str_id": "opn_barl",
+    "name": "barrel, open",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 157
+    }
+  },
+  "232": {
+    "str_id": "hole",
+    "name": "hole in the ground",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 158
+    }
+  },
+  "233": {
+    "str_id": "fist_fir",
+    "name": "Fire Fist",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 0,
+      "damage_min": 3,
+      "damage_max": 8,
+      "delay": 22,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 0,
+      "sell_cost": 60,
+      "equip_to": "melee"
+    }
+  },
+  "234": {
+    "str_id": "fireskin",
+    "name": "fire skin",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 0,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 0,
+      "sell_cost": 80,
+      "equip_to": "suit",
+      "armor_value": 15
+    }
+  },
+  "235": {
+    "str_id": "ele_fir",
+    "name": "greater fire elem.",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "Creature": {
+      "frames": [
+        6900,
+        6901,
+        6902,
+        6903,
+        6904,
+        6905,
+        6906,
+        6907,
+        6908,
+        6909
+      ],
+      "portrait": 713,
+      "weapon": 233,
+      "armor": 234,
+      "strength": 17,
+      "inteligence": 6,
+      "dexterity": 14,
+      "wisdom": 6,
+      "vitality": 14,
+      "luck": 8
+    }
+  },
+  "236": {
+    "str_id": "less_fir",
+    "name": "lesser fire elem.",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "Creature": {
+      "frames": [
+        7000,
+        7001,
+        7002,
+        7003,
+        7004,
+        7005,
+        7006,
+        7007,
+        7008,
+        7009
+      ],
+      "portrait": 713,
+      "weapon": 233,
+      "armor": 234,
+      "strength": 8,
+      "inteligence": 6,
+      "dexterity": 8,
+      "wisdom": 6,
+      "vitality": 6,
+      "luck": 8
+    }
+  },
+  "237": {
+    "str_id": "shot_fir",
+    "name": "Fire Strike",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 0,
+      "damage_min": 0,
+      "damage_max": 0,
+      "delay": 50,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 0,
+      "sell_cost": 80,
+      "equip_to": "range"
+    }
+  },
+  "238": {
+    "str_id": "ele_air",
+    "name": "greater air elem.",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "Creature": {
+      "frames": [
+        7600,
+        7601,
+        7602,
+        7603,
+        7604,
+        7605,
+        7606,
+        7607,
+        7608,
+        7609
+      ],
+      "portrait": 713,
+      "weapon": 397,
+      "armor": 0,
+      "strength": 8,
+      "inteligence": 6,
+      "dexterity": 20,
+      "wisdom": 6,
+      "vitality": 14,
+      "luck": 10
+    }
+  },
+  "239": {
+    "str_id": "less_air",
+    "name": "lesser air elem.",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "Creature": {
+      "frames": [
+        7600,
+        7601,
+        7602,
+        7603,
+        7604,
+        7605,
+        7606,
+        7607,
+        7608,
+        7609
+      ],
+      "portrait": 713,
+      "weapon": 397,
+      "armor": 0,
+      "strength": 8,
+      "inteligence": 6,
+      "dexterity": 16,
+      "wisdom": 6,
+      "vitality": 6,
+      "luck": 9
+    }
+  },
+  "24": {
+    "str_id": "p_helm",
+    "name": "plate helm",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1200,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 600,
+      "sell_cost": 600,
+      "equip_to": "head",
+      "armor_value": 5
+    }
+  },
+  "240": {
+    "str_id": "key_9",
+    "name": "key, Ateb Retset",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Item": {
+      "frame": 1440
+    }
+  },
+  "241": {
+    "str_id": "key_10",
+    "name": "key, Sir Kenison",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Item": {
+      "frame": 1442
+    }
+  },
+  "242": {
+    "str_id": "bag_2",
+    "name": "Fretreline Root",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Item": {
+      "frame": 1450
+    }
+  },
+  "243": {
+    "str_id": "bag_3",
+    "name": "Flansand Root",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Item": {
+      "frame": 1450
+    }
+  },
+  "244": {
+    "str_id": "shot_mag",
+    "name": "Life Strike",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 0,
+      "damage_min": 0,
+      "damage_max": 0,
+      "delay": 50,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 0,
+      "sell_cost": 80,
+      "equip_to": "range"
+    }
+  },
+  "245": {
+    "str_id": "s_bow_f",
+    "name": "short bow, Fire",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 401,
+      "damage_min": 3,
+      "damage_max": 8,
+      "delay": 26,
+      "level": 7,
+      "fighter": true,
+      "thief": true,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 70,
+      "sell_cost": 70,
+      "equip_to": "range"
+    }
+  },
+  "246": {
+    "str_id": "s_bow_i",
+    "name": "short bow, Ice",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 401,
+      "damage_min": 3,
+      "damage_max": 8,
+      "delay": 26,
+      "level": 7,
+      "fighter": true,
+      "thief": true,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 70,
+      "sell_cost": 70,
+      "equip_to": "range"
+    }
+  },
+  "247": {
+    "str_id": "l_bow_2",
+    "name": "Storm Bow",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 401,
+      "damage_min": 3,
+      "damage_max": 15,
+      "delay": 27,
+      "level": 12,
+      "fighter": false,
+      "thief": true,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 120,
+      "sell_cost": 25,
+      "equip_to": "range"
+    }
+  },
+  "248": {
+    "str_id": "dagger_v",
+    "name": "Blood Blade",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 321,
+      "damage_min": 3,
+      "damage_max": 6,
+      "delay": 16,
+      "level": 8,
+      "fighter": true,
+      "thief": true,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 0,
+      "sell_cost": 1500,
+      "equip_to": "melee"
+    }
+  },
+  "249": {
+    "str_id": "hmmr_2",
+    "name": "Storm Hammer",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 351,
+      "damage_min": 3,
+      "damage_max": 10,
+      "delay": 24,
+      "level": 12,
+      "fighter": false,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 110,
+      "sell_cost": 110,
+      "equip_to": "melee"
+    }
+  },
+  "25": {
+    "str_id": "c_chest",
+    "name": "chain tunic",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1101,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 1000,
+      "sell_cost": 1000,
+      "equip_to": "chest",
+      "armor_value": 15
+    }
+  },
+  "250": {
+    "str_id": "r_shld_2",
+    "name": "round shield, iron",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1301,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": true,
+      "buy_cost": 60,
+      "sell_cost": 60,
+      "equip_to": "shield",
+      "armor_value": 4
+    }
+  },
+  "251": {
+    "str_id": "k_shld_2",
+    "name": "kite shield, steel",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1300,
+      "level": 5,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 100,
+      "sell_cost": 100,
+      "equip_to": "shield",
+      "armor_value": 8
+    }
+  },
+  "252": {
+    "str_id": "r_shld_3",
+    "name": "round shield, spiked",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1301,
+      "level": 6,
+      "fighter": true,
+      "thief": false,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 80,
+      "sell_cost": 80,
+      "equip_to": "shield",
+      "armor_value": 4
+    }
+  },
+  "253": {
+    "str_id": "p_chst_2",
+    "name": "Holy Breastplate",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1206,
+      "level": 10,
+      "fighter": false,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 1250,
+      "sell_cost": 1250,
+      "equip_to": "chest",
+      "armor_value": 30
+    }
+  },
+  "254": {
+    "str_id": "l_chst_2",
+    "name": "leather tunic, hard",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1007,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": false,
+      "journeyman": true,
+      "buy_cost": 100,
+      "sell_cost": 30,
+      "equip_to": "chest",
+      "armor_value": 10
+    }
+  },
+  "255": {
+    "str_id": "l_arms_2",
+    "name": "Bracers of Defense",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1002,
+      "level": 7,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 0,
+      "sell_cost": 50,
+      "equip_to": "arm",
+      "armor_value": 7
+    }
+  },
+  "256": {
+    "str_id": "l_arms_3",
+    "name": "Silvery Bracers",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1002,
+      "level": 8,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 80,
+      "sell_cost": 625,
+      "equip_to": "arm",
+      "armor_value": 4
+    }
+  },
+  "257": {
+    "str_id": "l_arms_4",
+    "name": "Mage Bracers",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1002,
+      "level": 8,
+      "fighter": false,
+      "thief": false,
+      "priest": false,
+      "mage": true,
+      "journeyman": false,
+      "buy_cost": 60,
+      "sell_cost": 60,
+      "equip_to": "arm",
+      "armor_value": 12
+    }
+  },
+  "258": {
+    "str_id": "l_glvs_2",
+    "name": "Thin Leather Gloves",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1003,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 25,
+      "sell_cost": 25,
+      "equip_to": "hand",
+      "armor_value": 0
+    }
+  },
+  "259": {
+    "str_id": "glvs_1",
+    "name": "Gauntlets of Power",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1203,
+      "level": 8,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 0,
+      "sell_cost": 70,
+      "equip_to": "hand",
+      "armor_value": 2
+    }
+  },
+  "26": {
+    "str_id": "c_helm",
+    "name": "chain coif",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1100,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 200,
+      "sell_cost": 50,
+      "equip_to": "head",
+      "armor_value": 3
+    }
+  },
+  "260": {
+    "str_id": "neck_3",
+    "name": "plate neckguard",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1430,
+      "level": 5,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 70,
+      "sell_cost": 70,
+      "equip_to": "neck",
+      "armor_value": 3
+    }
+  },
+  "261": {
+    "str_id": "neck_4",
+    "name": "Shield Necklace",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1430,
+      "level": 6,
+      "fighter": false,
+      "thief": false,
+      "priest": false,
+      "mage": true,
+      "journeyman": false,
+      "buy_cost": 50,
+      "sell_cost": 50,
+      "equip_to": "neck",
+      "armor_value": 8
+    }
+  },
+  "262": {
+    "str_id": "neck_5",
+    "name": "Lucky Charm",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1430,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 30,
+      "sell_cost": 500,
+      "equip_to": "neck",
+      "armor_value": 0
+    }
+  },
+  "263": {
+    "str_id": "neck_6",
+    "name": "necklace, jeweled",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1430,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 80,
+      "sell_cost": 80,
+      "equip_to": "neck",
+      "armor_value": 0
+    }
+  },
+  "264": {
+    "str_id": "aldon_1",
+    "name": "Loriana's Locket",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Item": {
+      "frame": 1430
+    }
+  },
+  "265": {
+    "str_id": "mach_on",
+    "name": "machine *ON*",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Animprop": {
+      "frames": [
+        160,
+        161,
+        162
+      ]
+    }
+  },
+  "266": {
+    "str_id": "mach_off",
+    "name": "machine *OFF*",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 159
+    }
+  },
+  "267": {
+    "str_id": "mach_brk",
+    "name": "machine BROKEN",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 163
+    }
+  },
+  "268": {
+    "str_id": "gem_1",
+    "name": "gem, pearl",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Usable": {
+      "frame": 1410,
+      "buy_cost": 125,
+      "sell_cost": 125,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true
+    }
+  },
+  "269": {
+    "str_id": "gem_2",
+    "name": "gem, emerald",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Usable": {
+      "frame": 1411,
+      "buy_cost": 200,
+      "sell_cost": 200,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true
+    }
+  },
+  "27": {
+    "str_id": "p_chest",
+    "name": "plate chest",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1201,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 3000,
+      "sell_cost": 3000,
+      "equip_to": "chest",
+      "armor_value": 26
+    }
+  },
+  "270": {
+    "str_id": "gem_3",
+    "name": "gem, sapphire",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Usable": {
+      "frame": 1412,
+      "buy_cost": 200,
+      "sell_cost": 200,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true
+    }
+  },
+  "271": {
+    "str_id": "gem_4",
+    "name": "gem, ruby",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Usable": {
+      "frame": 1413,
+      "buy_cost": 250,
+      "sell_cost": 250,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true
+    }
+  },
+  "272": {
+    "str_id": "l_pants2",
+    "name": "leather pants, worn",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1004,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": false,
+      "journeyman": true,
+      "buy_cost": 25,
+      "sell_cost": 25,
+      "equip_to": "leg",
+      "armor_value": 2
+    }
+  },
+  "273": {
+    "str_id": "l_pants3",
+    "name": "leather pants, hard",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1004,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": false,
+      "journeyman": true,
+      "buy_cost": 100,
+      "sell_cost": 30,
+      "equip_to": "leg",
+      "armor_value": 5
+    }
+  },
+  "274": {
+    "str_id": "l_pants4",
+    "name": "leather pants, magic",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1004,
+      "level": 5,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": false,
+      "journeyman": true,
+      "buy_cost": 1000,
+      "sell_cost": 60,
+      "equip_to": "leg",
+      "armor_value": 7
+    }
+  },
+  "275": {
+    "str_id": "l_arms_5",
+    "name": "leather bracers, old",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1002,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 20,
+      "sell_cost": 20,
+      "equip_to": "arm",
+      "armor_value": 1
+    }
+  },
+  "276": {
+    "str_id": "l_arms_6",
+    "name": "leather bracers, hard",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1002,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 200,
+      "sell_cost": 30,
+      "equip_to": "arm",
+      "armor_value": 3
+    }
+  },
+  "277": {
+    "str_id": "l_glvs_3",
+    "name": "leather gloves, hard",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1003,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": false,
+      "journeyman": true,
+      "buy_cost": 100,
+      "sell_cost": 35,
+      "equip_to": "hand",
+      "armor_value": 2
+    }
+  },
+  "278": {
+    "str_id": "l_glvs_4",
+    "name": "leather gloves, magic",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1003,
+      "level": 5,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": false,
+      "journeyman": true,
+      "buy_cost": 500,
+      "sell_cost": 60,
+      "equip_to": "hand",
+      "armor_value": 3
+    }
+  },
+  "279": {
+    "str_id": "l_glvs_5",
+    "name": "leather gloves, old",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1003,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": false,
+      "journeyman": true,
+      "buy_cost": 20,
+      "sell_cost": 20,
+      "equip_to": "hand",
+      "armor_value": 0
+    }
+  },
+  "28": {
+    "str_id": "l_helm",
+    "name": "leather helm",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1000,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": false,
+      "journeyman": true,
+      "buy_cost": 25,
+      "sell_cost": 25,
+      "equip_to": "head",
+      "armor_value": 1
+    }
+  },
+  "280": {
+    "str_id": "l_chst_3",
+    "name": "leather tunic, magic",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1007,
+      "level": 5,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": false,
+      "journeyman": true,
+      "buy_cost": 2000,
+      "sell_cost": 60,
+      "equip_to": "chest",
+      "armor_value": 14
+    }
+  },
+  "281": {
+    "str_id": "l_chst_4",
+    "name": "leather tunic, old",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1001,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": false,
+      "journeyman": true,
+      "buy_cost": 20,
+      "sell_cost": 20,
+      "equip_to": "chest",
+      "armor_value": 6
+    }
+  },
+  "282": {
+    "str_id": "l_helm_2",
+    "name": "leather helm, old",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1000,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": false,
+      "journeyman": true,
+      "buy_cost": 20,
+      "sell_cost": 20,
+      "equip_to": "head",
+      "armor_value": 0
+    }
+  },
+  "283": {
+    "str_id": "l_helm_3",
+    "name": "leather helm, hard",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1000,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": false,
+      "journeyman": true,
+      "buy_cost": 100,
+      "sell_cost": 30,
+      "equip_to": "head",
+      "armor_value": 2
+    }
+  },
+  "284": {
+    "str_id": "l_helm_4",
+    "name": "leather helm, magic",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1000,
+      "level": 5,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": false,
+      "journeyman": true,
+      "buy_cost": 1000,
+      "sell_cost": 60,
+      "equip_to": "head",
+      "armor_value": 3
+    }
+  },
+  "285": {
+    "str_id": "l_boots2",
+    "name": "leather boots, old",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1005,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 20,
+      "sell_cost": 20,
+      "equip_to": "foot",
+      "armor_value": 1
+    }
+  },
+  "286": {
+    "str_id": "l_boots3",
+    "name": "leather boots, hard",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1005,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 200,
+      "sell_cost": 30,
+      "equip_to": "foot",
+      "armor_value": 2
+    }
+  },
+  "287": {
+    "str_id": "l_boots4",
+    "name": "leather boots, magic",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1005,
+      "level": 5,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 1000,
+      "sell_cost": 60,
+      "equip_to": "foot",
+      "armor_value": 3
+    }
+  },
+  "288": {
+    "str_id": "c_helm_2",
+    "name": "chain coif, rusty",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1100,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 50,
+      "sell_cost": 50,
+      "equip_to": "head",
+      "armor_value": 2
+    }
+  },
+  "289": {
+    "str_id": "c_chest2",
+    "name": "chain tunic, rusty",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1101,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 400,
+      "sell_cost": 400,
+      "equip_to": "chest",
+      "armor_value": 12
+    }
+  },
+  "29": {
+    "str_id": "goblin_1",
+    "name": "goblin",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        5400,
+        5401,
+        5402,
+        5403,
+        5404,
+        5405,
+        5406,
+        5407,
+        5408,
+        5409
+      ],
+      "portrait": 712,
+      "weapon": 6,
+      "armor": 333,
+      "strength": 8,
+      "inteligence": 5,
+      "dexterity": 12,
+      "wisdom": 5,
+      "vitality": 8,
+      "luck": 8
+    }
+  },
+  "290": {
+    "str_id": "c_boots2",
+    "name": "chain boots, rusty",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1105,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 35,
+      "sell_cost": 18,
+      "equip_to": "foot",
+      "armor_value": 1
+    }
+  },
+  "291": {
+    "str_id": "c_glvs_2",
+    "name": "chain gloves, rusty",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1103,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 50,
+      "sell_cost": 12,
+      "equip_to": "hand",
+      "armor_value": 1
+    }
+  },
+  "292": {
+    "str_id": "c_arms_2",
+    "name": "chain sleeves, rusty",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1102,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 80,
+      "sell_cost": 80,
+      "equip_to": "arm",
+      "armor_value": 3
+    }
+  },
+  "293": {
+    "str_id": "c_pants2",
+    "name": "chain pants, rusty",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1104,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 150,
+      "sell_cost": 37,
+      "equip_to": "leg",
+      "armor_value": 5
+    }
+  },
+  "294": {
+    "str_id": "r_shld_4",
+    "name": "Thieves' Buckler",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1301,
+      "level": 10,
+      "fighter": false,
+      "thief": true,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 50,
+      "sell_cost": 50,
+      "equip_to": "shield",
+      "armor_value": 10
+    }
+  },
+  "295": {
+    "str_id": "c_chest3",
+    "name": "chain tunic, Elven",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1106,
+      "level": 8,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": false,
+      "journeyman": true,
+      "buy_cost": 0,
+      "sell_cost": 0,
+      "equip_to": "chest",
+      "armor_value": 22
+    }
+  },
+  "296": {
+    "str_id": "k_shld_3",
+    "name": "kite shield, magic",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1300,
+      "level": 6,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 1500,
+      "sell_cost": 150,
+      "equip_to": "shield",
+      "armor_value": 10
+    }
+  },
+  "297": {
+    "str_id": "p_helm_2",
+    "name": "plate helm, rusty",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1200,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 45,
+      "sell_cost": 45,
+      "equip_to": "head",
+      "armor_value": 4
+    }
+  },
+  "298": {
+    "str_id": "p_chest3",
+    "name": "plate chest, rusty",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1201,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 1000,
+      "sell_cost": 1000,
+      "equip_to": "chest",
+      "armor_value": 21
+    }
+  },
+  "299": {
+    "str_id": "p_boots2",
+    "name": "plate boots, rusty",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1205,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 45,
+      "sell_cost": 45,
+      "equip_to": "foot",
+      "armor_value": 3
+    }
+  },
+  "3": {
+    "str_id": "fist",
+    "name": "Fist",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 0,
+      "damage_min": 1,
+      "damage_max": 6,
+      "delay": 22,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 0,
+      "sell_cost": 30,
+      "equip_to": "melee"
+    }
+  },
+  "30": {
+    "str_id": "gnt_rat",
+    "name": "large rat",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "Creature": {
+      "frames": [
+        5600,
+        5601,
+        5602,
+        5603,
+        5604,
+        5605,
+        5606,
+        5607,
+        5608,
+        5609
+      ],
+      "portrait": 707,
+      "weapon": 5,
+      "armor": 0,
+      "strength": 6,
+      "inteligence": 1,
+      "dexterity": 12,
+      "wisdom": 1,
+      "vitality": 2,
+      "luck": 7
+    }
+  },
+  "300": {
+    "str_id": "p_glvs_2",
+    "name": "plate gauntlets, rusty",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1203,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 45,
+      "sell_cost": 45,
+      "equip_to": "hand",
+      "armor_value": 2
+    }
+  },
+  "301": {
+    "str_id": "p_arms_2",
+    "name": "plate bracers, rusty",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1202,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 400,
+      "sell_cost": 400,
+      "equip_to": "arm",
+      "armor_value": 4
+    }
+  },
+  "302": {
+    "str_id": "p_pants2",
+    "name": "plate greaves, rusty",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1204,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 500,
+      "sell_cost": 500,
+      "equip_to": "leg",
+      "armor_value": 6
+    }
+  },
+  "303": {
+    "str_id": "p_helm_3",
+    "name": "plate helm, magic",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1200,
+      "level": 6,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 120,
+      "sell_cost": 120,
+      "equip_to": "head",
+      "armor_value": 6
+    }
+  },
+  "304": {
+    "str_id": "p_chest4",
+    "name": "plate chest, magic",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1206,
+      "level": 5,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 30000,
+      "sell_cost": 30000,
+      "equip_to": "chest",
+      "armor_value": 34
+    }
+  },
+  "305": {
+    "str_id": "p_boots3",
+    "name": "plate boots, magic",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1205,
+      "level": 5,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 100,
+      "sell_cost": 100,
+      "equip_to": "foot",
+      "armor_value": 6
+    }
+  },
+  "306": {
+    "str_id": "p_glvs_3",
+    "name": "plate gauntlets, magic",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1203,
+      "level": 5,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 6000,
+      "sell_cost": 6000,
+      "equip_to": "hand",
+      "armor_value": 4
+    }
+  },
+  "307": {
+    "str_id": "p_arms_3",
+    "name": "plate bracers, magic",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1202,
+      "level": 6,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 100,
+      "sell_cost": 100,
+      "equip_to": "arm",
+      "armor_value": 8
+    }
+  },
+  "308": {
+    "str_id": "p_pants3",
+    "name": "plate greaves, magic",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1204,
+      "level": 5,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 5000,
+      "sell_cost": 5000,
+      "equip_to": "leg",
+      "armor_value": 10
+    }
+  },
+  "309": {
+    "str_id": "i_wall",
+    "name": "wall, invisible",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 0
+    }
+  },
+  "31": {
+    "str_id": "fcaster",
+    "name": "female human mage",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        4700,
+        4701,
+        4702,
+        4703,
+        4704,
+        4705,
+        4706,
+        4707,
+        4708,
+        4709
+      ],
+      "portrait": 650,
+      "weapon": 237,
+      "armor": 396,
+      "strength": 6,
+      "inteligence": 14,
+      "dexterity": 12,
+      "wisdom": 10,
+      "vitality": 9,
+      "luck": 8
+    }
+  },
+  "310": {
+    "str_id": "l_swrd_r",
+    "name": "long sword, rusty",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 301,
+      "damage_min": 1,
+      "damage_max": 7,
+      "delay": 24,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 80,
+      "sell_cost": 80,
+      "equip_to": "melee"
+    }
+  },
+  "311": {
+    "str_id": "g_swrd_r",
+    "name": "greatsword, rusty",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 301,
+      "damage_min": 3,
+      "damage_max": 12,
+      "delay": 29,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 300,
+      "sell_cost": 300,
+      "equip_to": "melee"
+    }
+  },
+  "312": {
+    "str_id": "staff_2",
+    "name": "staff, ironwood",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 340,
+      "damage_min": 2,
+      "damage_max": 8,
+      "delay": 29,
+      "level": 5,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 80,
+      "sell_cost": 80,
+      "equip_to": "melee"
+    }
+  },
+  "313": {
+    "str_id": "staff_3",
+    "name": "staff, magic",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 341,
+      "damage_min": 3,
+      "damage_max": 9,
+      "delay": 28,
+      "level": 6,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 120,
+      "sell_cost": 120,
+      "equip_to": "melee"
+    }
+  },
+  "314": {
+    "str_id": "shot_ice",
+    "name": "Ice Strike",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 0,
+      "damage_min": 0,
+      "damage_max": 0,
+      "delay": 50,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 0,
+      "sell_cost": 80,
+      "equip_to": "range"
+    }
+  },
+  "315": {
+    "str_id": "s_pot_8",
+    "name": "potion, quicksilver",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Usable": {
+      "frame": 1402,
+      "buy_cost": 100,
+      "sell_cost": 100,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true
+    }
+  },
+  "316": {
+    "str_id": "a_pot_9",
+    "name": "potion, stone skin",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Usable": {
+      "frame": 1401,
+      "buy_cost": 200,
+      "sell_cost": 200,
+      "level": 3,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true
+    }
+  },
+  "317": {
+    "str_id": "a_pot_10",
+    "name": "potion, iron skin",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Usable": {
+      "frame": 1401,
+      "buy_cost": 200,
+      "sell_cost": 200,
+      "level": 5,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true
+    }
+  },
+  "318": {
+    "str_id": "neck_7",
+    "name": "Prefect Badge",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1430,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 90,
+      "sell_cost": 90,
+      "equip_to": "neck",
+      "armor_value": 1
+    }
+  },
+  "319": {
+    "str_id": "goblin_4",
+    "name": "goblin shaman",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        5400,
+        5401,
+        5402,
+        5403,
+        5404,
+        5405,
+        5412,
+        5413,
+        5408,
+        5409
+      ],
+      "portrait": 712,
+      "weapon": 237,
+      "armor": 333,
+      "strength": 6,
+      "inteligence": 13,
+      "dexterity": 14,
+      "wisdom": 10,
+      "vitality": 8,
+      "luck": 8
+    }
+  },
+  "32": {
+    "str_id": "fdfighter",
+    "name": "female dwarf fighter",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        3500,
+        3501,
+        3502,
+        3503,
+        3504,
+        3505,
+        3506,
+        3507,
+        3508,
+        3509
+      ],
+      "portrait": 652,
+      "weapon": 2,
+      "armor": 334,
+      "strength": 15,
+      "inteligence": 6,
+      "dexterity": 10,
+      "wisdom": 7,
+      "vitality": 15,
+      "luck": 8
+    }
+  },
+  "320": {
+    "str_id": "aldon_2",
+    "name": "Decessus Tome",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Item": {
+      "frame": 2100
+    }
+  },
+  "321": {
+    "str_id": "h_pot_4",
+    "name": "potion, troll's blood",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Usable": {
+      "frame": 1400,
+      "buy_cost": 75,
+      "sell_cost": 18,
+      "level": 5,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true
+    }
+  },
+  "322": {
+    "str_id": "ring_14",
+    "name": "Ring of Regeneration",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1420,
+      "level": 8,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 150,
+      "sell_cost": 150,
+      "equip_to": "ring",
+      "armor_value": 0
+    }
+  },
+  "323": {
+    "str_id": "cart_1",
+    "name": "minecart, vertical",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 164
+    }
+  },
+  "324": {
+    "str_id": "cart_2",
+    "name": "minecart, horizontal",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 165
+    }
+  },
+  "325": {
+    "str_id": "rail_1",
+    "name": "railway, vertical",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 166
+    }
+  },
+  "326": {
+    "str_id": "rail_2",
+    "name": "railway, horizontal",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 167
+    }
+  },
+  "327": {
+    "str_id": "rail_3",
+    "name": "railway, N to E curve",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 168
+    }
+  },
+  "328": {
+    "str_id": "rail_4",
+    "name": "railway, N to W curve",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 169
+    }
+  },
+  "329": {
+    "str_id": "rail_5",
+    "name": "railway, E to S curve",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 170
+    }
+  },
+  "33": {
+    "str_id": "fdpriest",
+    "name": "female dwarf priest",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        4500,
+        4501,
+        4502,
+        4503,
+        4504,
+        4505,
+        4506,
+        4507,
+        4508,
+        4509
+      ],
+      "portrait": 652,
+      "weapon": 65,
+      "armor": 334,
+      "strength": 14,
+      "inteligence": 12,
+      "dexterity": 8,
+      "wisdom": 10,
+      "vitality": 12,
+      "luck": 8
+    }
+  },
+  "330": {
+    "str_id": "rail_6",
+    "name": "railway, W to S curve",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 171
+    }
+  },
+  "331": {
+    "str_id": "rail_7",
+    "name": "railway, crosspiece",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 172
+    }
+  },
+  "332": {
+    "str_id": "sign_2",
+    "name": "sign, stone",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 173
+    }
+  },
+  "333": {
+    "str_id": "suit_1",
+    "name": "suit, full leather",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1001,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": false,
+      "journeyman": true,
+      "buy_cost": 80,
+      "sell_cost": 80,
+      "equip_to": "suit",
+      "armor_value": 16
+    }
+  },
+  "334": {
+    "str_id": "suit_2",
+    "name": "suit, full chainmail",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1101,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 100,
+      "sell_cost": 100,
+      "equip_to": "suit",
+      "armor_value": 32
+    }
+  },
+  "335": {
+    "str_id": "suit_3",
+    "name": "suit, full plate",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1201,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 150,
+      "sell_cost": 150,
+      "equip_to": "suit",
+      "armor_value": 52
+    }
+  },
+  "336": {
+    "str_id": "darkmage",
+    "name": "female dark mage",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        7100,
+        7101,
+        7102,
+        7103,
+        7104,
+        7105,
+        7106,
+        7107,
+        7108,
+        7109
+      ],
+      "portrait": 650,
+      "weapon": 244,
+      "armor": 396,
+      "strength": 7,
+      "inteligence": 20,
+      "dexterity": 18,
+      "wisdom": 14,
+      "vitality": 10,
+      "luck": 12
+    }
+  },
+  "337": {
+    "str_id": "sacks",
+    "name": "sacks",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 174
+    }
+  },
+  "338": {
+    "str_id": "opn_sack",
+    "name": "sacks, open",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 175
+    }
+  },
+  "339": {
+    "str_id": "aldon_3",
+    "name": "Orb of Kal-Dun",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Item": {
+      "frame": 1414
+    }
+  },
+  "34": {
+    "str_id": "fdthief",
+    "name": "female dwarf thief",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        4100,
+        4101,
+        4102,
+        4103,
+        4104,
+        4105,
+        4106,
+        4107,
+        4108,
+        4109
+      ],
+      "portrait": 652,
+      "weapon": 7,
+      "armor": 333,
+      "strength": 11,
+      "inteligence": 7,
+      "dexterity": 13,
+      "wisdom": 8,
+      "vitality": 11,
+      "luck": 10
+    }
+  },
+  "340": {
+    "str_id": "wall_1",
+    "name": "horizontal sliding brick",
+    "blocker": true,
+    "sight_blocker": true,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        21,
+        21,
+        21,
+        21,
+        21,
+        21,
+        21,
+        21,
+        21,
+        21
+      ],
+      "portrait": 0,
+      "weapon": 0,
+      "armor": 0,
+      "strength": 8,
+      "inteligence": 8,
+      "dexterity": 8,
+      "wisdom": 8,
+      "vitality": 8,
+      "luck": 8
+    }
+  },
+  "341": {
+    "str_id": "wall_2",
+    "name": "vertical sliding brick",
+    "blocker": true,
+    "sight_blocker": true,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "portrait": 0,
+      "weapon": 0,
+      "armor": 0,
+      "strength": 8,
+      "inteligence": 8,
+      "dexterity": 8,
+      "wisdom": 8,
+      "vitality": 8,
+      "luck": 8
+    }
+  },
+  "342": {
+    "str_id": "wall_3",
+    "name": "horizontal sliding dungeon",
+    "blocker": true,
+    "sight_blocker": true,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        29,
+        29,
+        29,
+        29,
+        29,
+        29,
+        29,
+        29,
+        29,
+        29
+      ],
+      "portrait": 0,
+      "weapon": 0,
+      "armor": 0,
+      "strength": 8,
+      "inteligence": 8,
+      "dexterity": 8,
+      "wisdom": 8,
+      "vitality": 8,
+      "luck": 8
+    }
+  },
+  "343": {
+    "str_id": "wall_4",
+    "name": "vertical sliding dungeon",
+    "blocker": true,
+    "sight_blocker": true,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28
+      ],
+      "portrait": 0,
+      "weapon": 0,
+      "armor": 0,
+      "strength": 8,
+      "inteligence": 8,
+      "dexterity": 8,
+      "wisdom": 8,
+      "vitality": 8,
+      "luck": 8
+    }
+  },
+  "344": {
+    "str_id": "wall_5",
+    "name": "horizontal sliding stone",
+    "blocker": true,
+    "sight_blocker": true,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        37,
+        37,
+        37,
+        37,
+        37,
+        37,
+        37,
+        37,
+        37,
+        37
+      ],
+      "portrait": 0,
+      "weapon": 0,
+      "armor": 0,
+      "strength": 8,
+      "inteligence": 8,
+      "dexterity": 8,
+      "wisdom": 8,
+      "vitality": 8,
+      "luck": 8
+    }
+  },
+  "345": {
+    "str_id": "wall_6",
+    "name": "vertical sliding stone",
+    "blocker": true,
+    "sight_blocker": true,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        36,
+        36,
+        36,
+        36,
+        36,
+        36,
+        36,
+        36,
+        36,
+        36
+      ],
+      "portrait": 0,
+      "weapon": 0,
+      "armor": 0,
+      "strength": 8,
+      "inteligence": 8,
+      "dexterity": 8,
+      "wisdom": 8,
+      "vitality": 8,
+      "luck": 8
+    }
+  },
+  "346": {
+    "str_id": "corpse9",
+    "name": "corpse, child",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 5309
+    }
+  },
+  "347": {
+    "str_id": "corpse10",
+    "name": "corpse, goblin",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 5409
+    }
+  },
+  "348": {
+    "str_id": "corpse11",
+    "name": "corpse, giant",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 5509
+    }
+  },
+  "349": {
+    "str_id": "corpse12",
+    "name": "corpse, rat",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 5609
+    }
+  },
+  "35": {
+    "str_id": "fdwarf",
+    "name": "female dwarf",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        2900,
+        2901,
+        2902,
+        2903,
+        2904,
+        2905,
+        2906,
+        2907,
+        2908,
+        2909
+      ],
+      "portrait": 652,
+      "weapon": 8,
+      "armor": 333,
+      "strength": 10,
+      "inteligence": 7,
+      "dexterity": 7,
+      "wisdom": 8,
+      "vitality": 10,
+      "luck": 8
+    }
+  },
+  "350": {
+    "str_id": "corpse13",
+    "name": "corpse, cat",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 5709
+    }
+  },
+  "351": {
+    "str_id": "corpse14",
+    "name": "corpse, dog",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 5809
+    }
+  },
+  "352": {
+    "str_id": "corpse15",
+    "name": "corpse, orc",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 6009
+    }
+  },
+  "353": {
+    "str_id": "corpse16",
+    "name": "corpse, zombie",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 6109
+    }
+  },
+  "354": {
+    "str_id": "corpse17",
+    "name": "corpse, troll",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 6209
+    }
+  },
+  "355": {
+    "str_id": "corpse18",
+    "name": "corpse, ogre",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 6309
+    }
+  },
+  "356": {
+    "str_id": "corpse19",
+    "name": "corpse, spider",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 6409
+    }
+  },
+  "357": {
+    "str_id": "corpse20",
+    "name": "corpse, male peasant",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 5009
+    }
+  },
+  "358": {
+    "str_id": "corpse21",
+    "name": "corpse, female peasant",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 5109
+    }
+  },
+  "359": {
+    "str_id": "corpse22",
+    "name": "corpse, male thief",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 3609
+    }
+  },
+  "36": {
+    "str_id": "fecaster",
+    "name": "female elf mage",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        4900,
+        4901,
+        4902,
+        4903,
+        4904,
+        4905,
+        4906,
+        4907,
+        4908,
+        4909
+      ],
+      "portrait": 657,
+      "weapon": 314,
+      "armor": 396,
+      "strength": 4,
+      "inteligence": 15,
+      "dexterity": 15,
+      "wisdom": 10,
+      "vitality": 7,
+      "luck": 8
+    }
+  },
+  "360": {
+    "str_id": "corpse23",
+    "name": "corpse, female thief",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 3709
+    }
+  },
+  "361": {
+    "str_id": "demon",
+    "name": "demon",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "Creature": {
+      "frames": [
+        7200,
+        7201,
+        7202,
+        7203,
+        7204,
+        7205,
+        7206,
+        7207,
+        7208,
+        7209
+      ],
+      "portrait": 716,
+      "weapon": 244,
+      "armor": 227,
+      "strength": 15,
+      "inteligence": 18,
+      "dexterity": 18,
+      "wisdom": 14,
+      "vitality": 12,
+      "luck": 8
+    }
+  },
+  "362": {
+    "str_id": "dragon",
+    "name": "dragon",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "Creature": {
+      "frames": [
+        7400,
+        7401,
+        7402,
+        7403,
+        7404,
+        7405,
+        7406,
+        7407,
+        7408,
+        7409
+      ],
+      "portrait": 715,
+      "weapon": 237,
+      "armor": 227,
+      "strength": 16,
+      "inteligence": 19,
+      "dexterity": 18,
+      "wisdom": 14,
+      "vitality": 15,
+      "luck": 9
+    }
+  },
+  "363": {
+    "str_id": "bite_d",
+    "name": "Bite, Dragon",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 0,
+      "damage_min": 3,
+      "damage_max": 10,
+      "delay": 24,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 0,
+      "sell_cost": 80,
+      "equip_to": "melee"
+    }
+  },
+  "364": {
+    "str_id": "dragon2",
+    "name": "dragonling",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "Creature": {
+      "frames": [
+        7300,
+        7301,
+        7302,
+        7303,
+        7304,
+        7305,
+        7306,
+        7307,
+        7308,
+        7309
+      ],
+      "portrait": 715,
+      "weapon": 363,
+      "armor": 227,
+      "strength": 14,
+      "inteligence": 6,
+      "dexterity": 14,
+      "wisdom": 4,
+      "vitality": 10,
+      "luck": 8
+    }
+  },
+  "365": {
+    "str_id": "trap_5",
+    "name": "Trap, Spark II",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Usable": {
+      "frame": 1460,
+      "buy_cost": 40,
+      "sell_cost": 40,
+      "level": 5,
+      "fighter": false,
+      "thief": true,
+      "priest": false,
+      "mage": false,
+      "journeyman": false
+    }
+  },
+  "366": {
+    "str_id": "trap_6",
+    "name": "Trap, Spark III",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Usable": {
+      "frame": 1460,
+      "buy_cost": 50,
+      "sell_cost": 50,
+      "level": 9,
+      "fighter": false,
+      "thief": true,
+      "priest": false,
+      "mage": false,
+      "journeyman": false
+    }
+  },
+  "367": {
+    "str_id": "trap_7",
+    "name": "Trap, Flame I",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Usable": {
+      "frame": 1460,
+      "buy_cost": 40,
+      "sell_cost": 40,
+      "level": 5,
+      "fighter": false,
+      "thief": true,
+      "priest": false,
+      "mage": false,
+      "journeyman": false
+    }
+  },
+  "368": {
+    "str_id": "trap_8",
+    "name": "Trap, Flame II",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Usable": {
+      "frame": 1460,
+      "buy_cost": 50,
+      "sell_cost": 50,
+      "level": 9,
+      "fighter": false,
+      "thief": true,
+      "priest": false,
+      "mage": false,
+      "journeyman": false
+    }
+  },
+  "369": {
+    "str_id": "gate_h",
+    "name": "fence, horizontal",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 176
+    }
+  },
+  "37": {
+    "str_id": "fefighter",
+    "name": "female elf fighter",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        3300,
+        3301,
+        3302,
+        3303,
+        3304,
+        3305,
+        3306,
+        3307,
+        3308,
+        3309
+      ],
+      "portrait": 651,
+      "weapon": 190,
+      "armor": 334,
+      "strength": 12,
+      "inteligence": 8,
+      "dexterity": 15,
+      "wisdom": 7,
+      "vitality": 11,
+      "luck": 8
+    }
+  },
+  "370": {
+    "str_id": "gate_v",
+    "name": "fence, vertical",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 177
+    }
+  },
+  "371": {
+    "str_id": "gate_se",
+    "name": "fence, southeast",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 178
+    }
+  },
+  "372": {
+    "str_id": "gate_sw",
+    "name": "fence, southwest",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 179
+    }
+  },
+  "373": {
+    "str_id": "gate_nw",
+    "name": "fence, northwest",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 180
+    }
+  },
+  "374": {
+    "str_id": "gate_ne",
+    "name": "fence, northeast",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 181
+    }
+  },
+  "375": {
+    "str_id": "neck_8",
+    "name": "Prayer Beads",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1431,
+      "level": 8,
+      "fighter": false,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 40,
+      "sell_cost": 1250,
+      "equip_to": "neck",
+      "armor_value": 0
+    }
+  },
+  "376": {
+    "str_id": "token",
+    "name": "token, gold",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Usable": {
+      "frame": 1505,
+      "buy_cost": 0,
+      "sell_cost": 10,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true
+    }
+  },
+  "377": {
+    "str_id": "clif_h_n",
+    "name": "cliff, horiz.north",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 182
+    }
+  },
+  "378": {
+    "str_id": "clif_h_s",
+    "name": "cliff, horiz.south",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 183
+    }
+  },
+  "379": {
+    "str_id": "clif_v_w",
+    "name": "cliff, vert.west",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 184
+    }
+  },
+  "38": {
+    "str_id": "felf",
+    "name": "female elf",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        2700,
+        2701,
+        2702,
+        2703,
+        2704,
+        2705,
+        2706,
+        2707,
+        2708,
+        2709
+      ],
+      "portrait": 651,
+      "weapon": 8,
+      "armor": 333,
+      "strength": 8,
+      "inteligence": 9,
+      "dexterity": 10,
+      "wisdom": 7,
+      "vitality": 7,
+      "luck": 8
+    }
+  },
+  "380": {
+    "str_id": "clif_v_e",
+    "name": "cliff, vert.east",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 185
+    }
+  },
+  "381": {
+    "str_id": "blackness",
+    "name": "darkness, void",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 186
+    }
+  },
+  "382": {
+    "str_id": "clif_nw",
+    "name": "cliff, n.west",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 187
+    }
+  },
+  "383": {
+    "str_id": "clif_ne",
+    "name": "cliff, n.east",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 188
+    }
+  },
+  "384": {
+    "str_id": "clif_sw",
+    "name": "cliff, s.west",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 189
+    }
+  },
+  "385": {
+    "str_id": "clif_se",
+    "name": "cliff, s.east",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 190
+    }
+  },
+  "386": {
+    "str_id": "clif_1",
+    "name": "cliff, corner 1",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 191
+    }
+  },
+  "387": {
+    "str_id": "clif_2",
+    "name": "cliff, corner 2",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 192
+    }
+  },
+  "388": {
+    "str_id": "clif_3",
+    "name": "cliff, corner 3",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 193
+    }
+  },
+  "389": {
+    "str_id": "clif_4",
+    "name": "cliff, corner 4",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 194
+    }
+  },
+  "39": {
+    "str_id": "fethief",
+    "name": "female elf thief",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        3900,
+        3901,
+        3902,
+        3903,
+        3904,
+        3905,
+        3906,
+        3907,
+        3908,
+        3909
+      ],
+      "portrait": 653,
+      "weapon": 7,
+      "armor": 333,
+      "strength": 10,
+      "inteligence": 8,
+      "dexterity": 17,
+      "wisdom": 7,
+      "vitality": 7,
+      "luck": 10
+    }
+  },
+  "390": {
+    "str_id": "g_swrd_s",
+    "name": "Storm Sword",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 302,
+      "damage_min": 5,
+      "damage_max": 19,
+      "delay": 25,
+      "level": 12,
+      "fighter": true,
+      "thief": false,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 25,
+      "sell_cost": 25,
+      "equip_to": "melee"
+    }
+  },
+  "391": {
+    "str_id": "blackness",
+    "name": "darkness, solid",
+    "blocker": true,
+    "sight_blocker": true,
+    "draw_depth": 3,
+    "Physical": {
+      "frame": 186
+    }
+  },
+  "392": {
+    "str_id": "staff_4",
+    "name": "Blizzard Staff",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 341,
+      "damage_min": 0,
+      "damage_max": 0,
+      "delay": 50,
+      "level": 12,
+      "fighter": false,
+      "thief": false,
+      "priest": false,
+      "mage": true,
+      "journeyman": false,
+      "buy_cost": 0,
+      "sell_cost": 150,
+      "equip_to": "range"
+    }
+  },
+  "393": {
+    "str_id": "token2",
+    "name": "token, silver",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Usable": {
+      "frame": 1504,
+      "buy_cost": 0,
+      "sell_cost": 5,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true
+    }
+  },
+  "394": {
+    "str_id": "token3",
+    "name": "token, bronze",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Usable": {
+      "frame": 1505,
+      "buy_cost": 0,
+      "sell_cost": 2,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true
+    }
+  },
+  "395": {
+    "str_id": "dknight",
+    "name": "death knight",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        7500,
+        7501,
+        7502,
+        7503,
+        7504,
+        7505,
+        7506,
+        7507,
+        7508,
+        7509
+      ],
+      "portrait": 708,
+      "weapon": 248,
+      "armor": 335,
+      "strength": 18,
+      "inteligence": 12,
+      "dexterity": 12,
+      "wisdom": 12,
+      "vitality": 13,
+      "luck": 8
+    }
+  },
+  "396": {
+    "str_id": "suit_4",
+    "name": "suit, mage armor",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1302,
+      "level": 1,
+      "fighter": false,
+      "thief": false,
+      "priest": false,
+      "mage": true,
+      "journeyman": false,
+      "buy_cost": 120,
+      "sell_cost": 120,
+      "equip_to": "suit",
+      "armor_value": 14
+    }
+  },
+  "397": {
+    "str_id": "mag_shot",
+    "name": "Magic Shot",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 0,
+      "damage_min": 4,
+      "damage_max": 12,
+      "delay": 30,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 40,
+      "sell_cost": 40,
+      "equip_to": "range"
+    }
+  },
+  "398": {
+    "str_id": "cloak1",
+    "name": "oilskin cloak",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1304,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 50,
+      "sell_cost": 50,
+      "equip_to": "back",
+      "armor_value": 1
+    }
+  },
+  "399": {
+    "str_id": "cloak2",
+    "name": "war cloak",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1304,
+      "level": 6,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 0,
+      "sell_cost": 70,
+      "equip_to": "back",
+      "armor_value": 6
+    }
+  },
+  "4": {
+    "str_id": "l_bow",
+    "name": "long bow",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 400,
+      "damage_min": 1,
+      "damage_max": 10,
+      "delay": 30,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 250,
+      "sell_cost": 60,
+      "equip_to": "range"
+    }
+  },
+  "40": {
+    "str_id": "ffighter",
+    "name": "female human fighter",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        3100,
+        3101,
+        3102,
+        3103,
+        3104,
+        3105,
+        3106,
+        3107,
+        3108,
+        3109
+      ],
+      "portrait": 654,
+      "weapon": 1,
+      "armor": 334,
+      "strength": 14,
+      "inteligence": 7,
+      "dexterity": 11,
+      "wisdom": 7,
+      "vitality": 14,
+      "luck": 8
+    }
+  },
+  "400": {
+    "str_id": "cloak3",
+    "name": "Spirit Cloak",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1304,
+      "level": 12,
+      "fighter": false,
+      "thief": false,
+      "priest": true,
+      "mage": true,
+      "journeyman": false,
+      "buy_cost": 1250,
+      "sell_cost": 1250,
+      "equip_to": "back",
+      "armor_value": 0
+    }
+  },
+  "401": {
+    "str_id": "aldon_4",
+    "name": "Crescent Amulet",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Item": {
+      "frame": 1430
+    }
+  },
+  "402": {
+    "str_id": "assassin",
+    "name": "assassin",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        3600,
+        3601,
+        3602,
+        3603,
+        3604,
+        3605,
+        3606,
+        3607,
+        3608,
+        3609
+      ],
+      "portrait": 600,
+      "weapon": 121,
+      "armor": 333,
+      "strength": 15,
+      "inteligence": 8,
+      "dexterity": 18,
+      "wisdom": 8,
+      "vitality": 12,
+      "luck": 10
+    }
+  },
+  "403": {
+    "str_id": "key_11",
+    "name": "key, Sewers",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Item": {
+      "frame": 1441
+    }
+  },
+  "404": {
+    "str_id": "neck_9",
+    "name": "Crescent Badge",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1431,
+      "level": 12,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 0,
+      "sell_cost": 70,
+      "equip_to": "neck",
+      "armor_value": 5
+    }
+  },
+  "405": {
+    "str_id": "h_pot_5",
+    "name": "potion, mana renewal",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Usable": {
+      "frame": 1401,
+      "buy_cost": 250,
+      "sell_cost": 250,
+      "level": 6,
+      "fighter": false,
+      "thief": false,
+      "priest": true,
+      "mage": true,
+      "journeyman": false
+    }
+  },
+  "406": {
+    "str_id": "v_s_door",
+    "name": "vertical stone door",
+    "blocker": false,
+    "sight_blocker": true,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 196
+    }
+  },
+  "407": {
+    "str_id": "h_s_door",
+    "name": "horizontal stone door",
+    "blocker": false,
+    "sight_blocker": true,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 195
+    }
+  },
+  "408": {
+    "str_id": "b_cell_v",
+    "name": "vertical brick cell",
+    "blocker": false,
+    "sight_blocker": true,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 198
+    }
+  },
+  "409": {
+    "str_id": "b_cell_h",
+    "name": "horizontal brick cell",
+    "blocker": false,
+    "sight_blocker": true,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 197
+    }
+  },
+  "41": {
+    "str_id": "fhuman",
+    "name": "female human",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        2500,
+        2501,
+        2502,
+        2503,
+        2504,
+        2505,
+        2506,
+        2507,
+        2508,
+        2509
+      ],
+      "portrait": 650,
+      "weapon": 8,
+      "armor": 333,
+      "strength": 8,
+      "inteligence": 8,
+      "dexterity": 8,
+      "wisdom": 8,
+      "vitality": 8,
+      "luck": 8
+    }
+  },
+  "410": {
+    "str_id": "w_wood_v",
+    "name": "vertical wood door",
+    "blocker": false,
+    "sight_blocker": true,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 200
+    }
+  },
+  "411": {
+    "str_id": "w_wood_h",
+    "name": "horizontal wood door",
+    "blocker": false,
+    "sight_blocker": true,
+    "draw_depth": 1,
+    "Physical": {
+      "frame": 199
+    }
+  },
+  "42": {
+    "str_id": "fpriest",
+    "name": "female human priest",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        4300,
+        4301,
+        4302,
+        4303,
+        4304,
+        4305,
+        4306,
+        4307,
+        4308,
+        4309
+      ],
+      "portrait": 650,
+      "weapon": 65,
+      "armor": 334,
+      "strength": 12,
+      "inteligence": 12,
+      "dexterity": 12,
+      "wisdom": 10,
+      "vitality": 10,
+      "luck": 8
+    }
+  },
+  "43": {
+    "str_id": "fthief",
+    "name": "female human thief",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        3700,
+        3701,
+        3702,
+        3703,
+        3704,
+        3705,
+        3706,
+        3707,
+        3708,
+        3709
+      ],
+      "portrait": 654,
+      "weapon": 7,
+      "armor": 333,
+      "strength": 10,
+      "inteligence": 8,
+      "dexterity": 15,
+      "wisdom": 8,
+      "vitality": 9,
+      "luck": 10
+    }
+  },
+  "44": {
+    "str_id": "giant",
+    "name": "giant",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        5500,
+        5501,
+        5502,
+        5503,
+        5504,
+        5505,
+        5506,
+        5507,
+        5508,
+        5509
+      ],
+      "portrait": 714,
+      "weapon": 109,
+      "armor": 335,
+      "strength": 20,
+      "inteligence": 10,
+      "dexterity": 15,
+      "wisdom": 10,
+      "vitality": 18,
+      "luck": 8
+    }
+  },
+  "45": {
+    "str_id": "mcaster",
+    "name": "male human mage",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        4600,
+        4601,
+        4602,
+        4603,
+        4604,
+        4605,
+        4606,
+        4607,
+        4608,
+        4609
+      ],
+      "portrait": 603,
+      "weapon": 237,
+      "armor": 396,
+      "strength": 6,
+      "inteligence": 14,
+      "dexterity": 12,
+      "wisdom": 10,
+      "vitality": 9,
+      "luck": 8
+    }
+  },
+  "46": {
+    "str_id": "mdfighter",
+    "name": "male dwarf fighter",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        3400,
+        3401,
+        3402,
+        3403,
+        3404,
+        3405,
+        3406,
+        3407,
+        3408,
+        3409
+      ],
+      "portrait": 604,
+      "weapon": 2,
+      "armor": 334,
+      "strength": 15,
+      "inteligence": 6,
+      "dexterity": 10,
+      "wisdom": 7,
+      "vitality": 15,
+      "luck": 8
+    }
+  },
+  "47": {
+    "str_id": "mdpriest",
+    "name": "male dwarf priest",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        4400,
+        4401,
+        4402,
+        4403,
+        4404,
+        4405,
+        4406,
+        4407,
+        4408,
+        4409
+      ],
+      "portrait": 604,
+      "weapon": 65,
+      "armor": 334,
+      "strength": 14,
+      "inteligence": 12,
+      "dexterity": 8,
+      "wisdom": 10,
+      "vitality": 12,
+      "luck": 8
+    }
+  },
+  "48": {
+    "str_id": "mdthief",
+    "name": "male dwarf thief",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        4000,
+        4001,
+        4002,
+        4003,
+        4004,
+        4005,
+        4006,
+        4007,
+        4008,
+        4009
+      ],
+      "portrait": 604,
+      "weapon": 7,
+      "armor": 333,
+      "strength": 11,
+      "inteligence": 7,
+      "dexterity": 13,
+      "wisdom": 8,
+      "vitality": 11,
+      "luck": 10
+    }
+  },
+  "49": {
+    "str_id": "mdwarf",
+    "name": "male dwarf",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        2800,
+        2801,
+        2802,
+        2803,
+        2804,
+        2805,
+        2806,
+        2807,
+        2808,
+        2809
+      ],
+      "portrait": 604,
+      "weapon": 8,
+      "armor": 333,
+      "strength": 10,
+      "inteligence": 7,
+      "dexterity": 7,
+      "wisdom": 8,
+      "vitality": 10,
+      "luck": 8
+    }
+  },
+  "5": {
+    "str_id": "bite",
+    "name": "Bite",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 0,
+      "damage_min": 1,
+      "damage_max": 5,
+      "delay": 20,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 0,
+      "sell_cost": 30,
+      "equip_to": "melee"
+    }
+  },
+  "50": {
+    "str_id": "mecaster",
+    "name": "male elf mage",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        4800,
+        4801,
+        4802,
+        4803,
+        4804,
+        4805,
+        4806,
+        4807,
+        4808,
+        4809
+      ],
+      "portrait": 607,
+      "weapon": 314,
+      "armor": 396,
+      "strength": 4,
+      "inteligence": 15,
+      "dexterity": 15,
+      "wisdom": 10,
+      "vitality": 7,
+      "luck": 8
+    }
+  },
+  "51": {
+    "str_id": "mefighter",
+    "name": "male elf fighter",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        3200,
+        3201,
+        3202,
+        3203,
+        3204,
+        3205,
+        3206,
+        3207,
+        3208,
+        3209
+      ],
+      "portrait": 601,
+      "weapon": 190,
+      "armor": 334,
+      "strength": 12,
+      "inteligence": 8,
+      "dexterity": 15,
+      "wisdom": 7,
+      "vitality": 11,
+      "luck": 8
+    }
+  },
+  "52": {
+    "str_id": "melf",
+    "name": "male elf",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        2600,
+        2601,
+        2602,
+        2603,
+        2604,
+        2605,
+        2606,
+        2607,
+        2608,
+        2609
+      ],
+      "portrait": 601,
+      "weapon": 8,
+      "armor": 333,
+      "strength": 8,
+      "inteligence": 9,
+      "dexterity": 10,
+      "wisdom": 7,
+      "vitality": 7,
+      "luck": 8
+    }
+  },
+  "53": {
+    "str_id": "methief",
+    "name": "male elf thief",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        3800,
+        3801,
+        3802,
+        3803,
+        3804,
+        3805,
+        3806,
+        3807,
+        3808,
+        3809
+      ],
+      "portrait": 601,
+      "weapon": 7,
+      "armor": 333,
+      "strength": 10,
+      "inteligence": 8,
+      "dexterity": 17,
+      "wisdom": 7,
+      "vitality": 7,
+      "luck": 10
+    }
+  },
+  "54": {
+    "str_id": "mfighter",
+    "name": "male human fighter",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        3000,
+        3001,
+        3002,
+        3003,
+        3004,
+        3005,
+        3006,
+        3007,
+        3008,
+        3009
+      ],
+      "portrait": 605,
+      "weapon": 1,
+      "armor": 334,
+      "strength": 14,
+      "inteligence": 7,
+      "dexterity": 11,
+      "wisdom": 7,
+      "vitality": 14,
+      "luck": 8
+    }
+  },
+  "55": {
+    "str_id": "mhuman",
+    "name": "male human",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        2400,
+        2401,
+        2402,
+        2403,
+        2404,
+        2405,
+        2406,
+        2407,
+        2408,
+        2409
+      ],
+      "portrait": 600,
+      "weapon": 8,
+      "armor": 333,
+      "strength": 8,
+      "inteligence": 8,
+      "dexterity": 8,
+      "wisdom": 8,
+      "vitality": 8,
+      "luck": 8
+    }
+  },
+  "56": {
+    "str_id": "mpriest",
+    "name": "male human priest",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        4200,
+        4201,
+        4202,
+        4203,
+        4204,
+        4205,
+        4206,
+        4207,
+        4208,
+        4209
+      ],
+      "portrait": 600,
+      "weapon": 65,
+      "armor": 334,
+      "strength": 12,
+      "inteligence": 12,
+      "dexterity": 12,
+      "wisdom": 10,
+      "vitality": 10,
+      "luck": 8
+    }
+  },
+  "57": {
+    "str_id": "skeleton",
+    "name": "skeleton",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        5900,
+        5901,
+        5902,
+        5903,
+        5904,
+        5905,
+        5906,
+        5907,
+        5908,
+        5909
+      ],
+      "portrait": 708,
+      "weapon": 21,
+      "armor": 11,
+      "strength": 8,
+      "inteligence": 1,
+      "dexterity": 12,
+      "wisdom": 1,
+      "vitality": 8,
+      "luck": 7
+    }
+  },
+  "58": {
+    "str_id": "gld_mster",
+    "name": "GuildMaster",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        5200,
+        5201,
+        5202,
+        5203,
+        5204,
+        5205,
+        5206,
+        5207,
+        5208,
+        5209
+      ],
+      "portrait": 604,
+      "weapon": 8,
+      "armor": 333,
+      "strength": 8,
+      "inteligence": 8,
+      "dexterity": 8,
+      "wisdom": 8,
+      "vitality": 8,
+      "luck": 8
+    }
+  },
+  "59": {
+    "str_id": "zombie",
+    "name": "zombie",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        6100,
+        6101,
+        6102,
+        6103,
+        6104,
+        6105,
+        6106,
+        6107,
+        6108,
+        6109
+      ],
+      "portrait": 708,
+      "weapon": 3,
+      "armor": 333,
+      "strength": 12,
+      "inteligence": 1,
+      "dexterity": 8,
+      "wisdom": 1,
+      "vitality": 8,
+      "luck": 7
+    }
+  },
+  "6": {
+    "str_id": "axe_r",
+    "name": "battle axe, rusty",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 311,
+      "damage_min": 1,
+      "damage_max": 7,
+      "delay": 26,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 10,
+      "sell_cost": 10,
+      "equip_to": "melee"
+    }
+  },
+  "60": {
+    "str_id": "tuf_hide",
+    "name": "tough hide",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 0,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 0,
+      "sell_cost": 50,
+      "equip_to": "suit",
+      "armor_value": 25
+    }
+  },
+  "61": {
+    "str_id": "dog",
+    "name": "large dog",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "Creature": {
+      "frames": [
+        5800,
+        5801,
+        5802,
+        5803,
+        5804,
+        5805,
+        5806,
+        5807,
+        5808,
+        5809
+      ],
+      "portrait": 709,
+      "weapon": 5,
+      "armor": 60,
+      "strength": 14,
+      "inteligence": 4,
+      "dexterity": 10,
+      "wisdom": 4,
+      "vitality": 8,
+      "luck": 9
+    }
+  },
+  "62": {
+    "str_id": "sling_1",
+    "name": "sling, magic",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 391,
+      "damage_min": 2,
+      "damage_max": 4,
+      "delay": 21,
+      "level": 5,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 1500,
+      "sell_cost": 40,
+      "equip_to": "range"
+    }
+  },
+  "63": {
+    "str_id": "cat",
+    "name": "large cat",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "Creature": {
+      "frames": [
+        5700,
+        5701,
+        5702,
+        5703,
+        5704,
+        5705,
+        5706,
+        5707,
+        5708,
+        5709
+      ],
+      "portrait": 710,
+      "weapon": 5,
+      "armor": 60,
+      "strength": 8,
+      "inteligence": 4,
+      "dexterity": 14,
+      "wisdom": 4,
+      "vitality": 7,
+      "luck": 12
+    }
+  },
+  "64": {
+    "str_id": "speaker",
+    "name": "speaker, nonblocker",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "portrait": 0,
+      "weapon": 0,
+      "armor": 0,
+      "strength": 8,
+      "inteligence": 8,
+      "dexterity": 8,
+      "wisdom": 8,
+      "vitality": 8,
+      "luck": 8
+    }
+  },
+  "65": {
+    "str_id": "mace",
+    "name": "mace",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 370,
+      "damage_min": 1,
+      "damage_max": 6,
+      "delay": 24,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 80,
+      "sell_cost": 80,
+      "equip_to": "melee"
+    }
+  },
+  "66": {
+    "str_id": "flail",
+    "name": "flail",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 360,
+      "damage_min": 2,
+      "damage_max": 7,
+      "delay": 25,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 100,
+      "sell_cost": 100,
+      "equip_to": "melee"
+    }
+  },
+  "67": {
+    "str_id": "l_arms",
+    "name": "leather bracers",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1002,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 80,
+      "sell_cost": 80,
+      "equip_to": "arm",
+      "armor_value": 2
+    }
+  },
+  "68": {
+    "str_id": "l_pants",
+    "name": "leather pants",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1004,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": false,
+      "journeyman": true,
+      "buy_cost": 50,
+      "sell_cost": 25,
+      "equip_to": "leg",
+      "armor_value": 3
+    }
+  },
+  "69": {
+    "str_id": "l_boots",
+    "name": "leather boots",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1005,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 60,
+      "sell_cost": 60,
+      "equip_to": "foot",
+      "armor_value": 1
+    }
+  },
+  "7": {
+    "str_id": "s_swrd",
+    "name": "short sword",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 300,
+      "damage_min": 2,
+      "damage_max": 6,
+      "delay": 22,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 100,
+      "sell_cost": 100,
+      "equip_to": "melee"
+    }
+  },
+  "70": {
+    "str_id": "c_gloves",
+    "name": "chain gloves",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1103,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 150,
+      "sell_cost": 150,
+      "equip_to": "hand",
+      "armor_value": 2
+    }
+  },
+  "71": {
+    "str_id": "p_pants",
+    "name": "plate greaves",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1204,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 1500,
+      "sell_cost": 1500,
+      "equip_to": "leg",
+      "armor_value": 8
+    }
+  },
+  "72": {
+    "str_id": "p_gloves",
+    "name": "plate gauntlets",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1203,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 600,
+      "sell_cost": 600,
+      "equip_to": "hand",
+      "armor_value": 3
+    }
+  },
+  "73": {
+    "str_id": "p_arms",
+    "name": "plate bracers",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1202,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 1200,
+      "sell_cost": 1200,
+      "equip_to": "arm",
+      "armor_value": 6
+    }
+  },
+  "74": {
+    "str_id": "p_boots",
+    "name": "plate boots",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1205,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 800,
+      "sell_cost": 800,
+      "equip_to": "foot",
+      "armor_value": 4
+    }
+  },
+  "75": {
+    "str_id": "c_arms",
+    "name": "chain sleeves",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1102,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 300,
+      "sell_cost": 300,
+      "equip_to": "arm",
+      "armor_value": 4
+    }
+  },
+  "76": {
+    "str_id": "c_pants",
+    "name": "chain pants",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1104,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 400,
+      "sell_cost": 400,
+      "equip_to": "leg",
+      "armor_value": 6
+    }
+  },
+  "77": {
+    "str_id": "c_boots",
+    "name": "chain boots",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1105,
+      "level": 1,
+      "fighter": true,
+      "thief": false,
+      "priest": true,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 200,
+      "sell_cost": 200,
+      "equip_to": "foot",
+      "armor_value": 2
+    }
+  },
+  "78": {
+    "str_id": "wzrdscap",
+    "name": "Wizards' Cap",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1006,
+      "level": 6,
+      "fighter": false,
+      "thief": false,
+      "priest": false,
+      "mage": true,
+      "journeyman": false,
+      "buy_cost": 1000,
+      "sell_cost": 250,
+      "equip_to": "head",
+      "armor_value": 2
+    }
+  },
+  "79": {
+    "str_id": "wzrdrobe",
+    "name": "Wizards' Robe",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1302,
+      "level": 5,
+      "fighter": false,
+      "thief": false,
+      "priest": false,
+      "mage": true,
+      "journeyman": false,
+      "buy_cost": 5000,
+      "sell_cost": 500,
+      "equip_to": "chest",
+      "armor_value": 8
+    }
+  },
+  "8": {
+    "str_id": "staff",
+    "name": "staff, oak",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 340,
+      "damage_min": 1,
+      "damage_max": 6,
+      "delay": 30,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 50,
+      "sell_cost": 50,
+      "equip_to": "melee"
+    }
+  },
+  "80": {
+    "str_id": "dagger_1",
+    "name": "dagger, magic",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 321,
+      "damage_min": 2,
+      "damage_max": 4,
+      "delay": 15,
+      "level": 5,
+      "fighter": true,
+      "thief": true,
+      "priest": false,
+      "mage": true,
+      "journeyman": true,
+      "buy_cost": 40,
+      "sell_cost": 40,
+      "equip_to": "melee"
+    }
+  },
+  "81": {
+    "str_id": "orc",
+    "name": "orc",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        6000,
+        6001,
+        6002,
+        6003,
+        6004,
+        6005,
+        6006,
+        6007,
+        6008,
+        6009
+      ],
+      "portrait": 700,
+      "weapon": 7,
+      "armor": 333,
+      "strength": 14,
+      "inteligence": 6,
+      "dexterity": 12,
+      "wisdom": 7,
+      "vitality": 14,
+      "luck": 8
+    }
+  },
+  "82": {
+    "str_id": "fnpc",
+    "name": "female human peasant",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        5100,
+        5101,
+        5102,
+        5103,
+        5104,
+        5105,
+        5106,
+        5107,
+        5108,
+        5109
+      ],
+      "portrait": 654,
+      "weapon": 22,
+      "armor": 333,
+      "strength": 8,
+      "inteligence": 8,
+      "dexterity": 8,
+      "wisdom": 8,
+      "vitality": 8,
+      "luck": 8
+    }
+  },
+  "83": {
+    "str_id": "mnpc",
+    "name": "male human peasant",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        5000,
+        5001,
+        5002,
+        5003,
+        5004,
+        5005,
+        5006,
+        5007,
+        5008,
+        5009
+      ],
+      "portrait": 600,
+      "weapon": 22,
+      "armor": 333,
+      "strength": 8,
+      "inteligence": 8,
+      "dexterity": 8,
+      "wisdom": 8,
+      "vitality": 8,
+      "luck": 8
+    }
+  },
+  "84": {
+    "str_id": "oldnpc",
+    "name": "old person",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        5200,
+        5201,
+        5202,
+        5203,
+        5204,
+        5205,
+        5206,
+        5207,
+        5208,
+        5209
+      ],
+      "portrait": 604,
+      "weapon": 8,
+      "armor": 0,
+      "strength": 6,
+      "inteligence": 10,
+      "dexterity": 6,
+      "wisdom": 10,
+      "vitality": 6,
+      "luck": 8
+    }
+  },
+  "85": {
+    "str_id": "child",
+    "name": "child",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        5300,
+        5301,
+        5302,
+        5303,
+        5304,
+        5305,
+        5306,
+        5307,
+        5308,
+        5309
+      ],
+      "portrait": 704,
+      "weapon": 20,
+      "armor": 0,
+      "strength": 5,
+      "inteligence": 8,
+      "dexterity": 10,
+      "wisdom": 6,
+      "vitality": 7,
+      "luck": 8
+    }
+  },
+  "86": {
+    "str_id": "key_1",
+    "name": "key, Cellar",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Item": {
+      "frame": 1440
+    }
+  },
+  "87": {
+    "str_id": "blocker",
+    "name": "speaker, blocker",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "portrait": 0,
+      "weapon": 0,
+      "armor": 0,
+      "strength": 8,
+      "inteligence": 8,
+      "dexterity": 8,
+      "wisdom": 8,
+      "vitality": 8,
+      "luck": 8
+    }
+  },
+  "88": {
+    "str_id": "mthief",
+    "name": "male human thief",
+    "blocker": true,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "User": {
+      "frames": [
+        3600,
+        3601,
+        3602,
+        3603,
+        3604,
+        3605,
+        3606,
+        3607,
+        3608,
+        3609
+      ],
+      "portrait": 600,
+      "weapon": 7,
+      "armor": 333,
+      "strength": 10,
+      "inteligence": 8,
+      "dexterity": 15,
+      "wisdom": 8,
+      "vitality": 9,
+      "luck": 10
+    }
+  },
+  "89": {
+    "str_id": "a_pot_4",
+    "name": "potion, wood skin",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Usable": {
+      "frame": 1401,
+      "buy_cost": 50,
+      "sell_cost": 50,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true
+    }
+  },
+  "9": {
+    "str_id": "l_chest",
+    "name": "leather tunic",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Armor": {
+      "frame": 1001,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": false,
+      "journeyman": true,
+      "buy_cost": 25,
+      "sell_cost": 25,
+      "equip_to": "chest",
+      "armor_value": 8
+    }
+  },
+  "90": {
+    "str_id": "rest",
+    "name": "Rest at Inn",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 0,
+    "Item": {
+      "frame": 110
+    }
+  },
+  "91": {
+    "str_id": "h_pot_2",
+    "name": "potion, heal",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Usable": {
+      "frame": 1400,
+      "buy_cost": 50,
+      "sell_cost": 50,
+      "level": 3,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true
+    }
+  },
+  "92": {
+    "str_id": "h_pot_3",
+    "name": "potion, major heal",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Usable": {
+      "frame": 1400,
+      "buy_cost": 100,
+      "sell_cost": 100,
+      "level": 5,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true
+    }
+  },
+  "93": {
+    "str_id": "s_pot_5",
+    "name": "potion, iron arm",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Usable": {
+      "frame": 1402,
+      "buy_cost": 100,
+      "sell_cost": 100,
+      "level": 1,
+      "fighter": true,
+      "thief": true,
+      "priest": true,
+      "mage": true,
+      "journeyman": true
+    }
+  },
+  "94": {
+    "str_id": "statue1",
+    "name": "statue, gold",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Item": {
+      "frame": 1503
+    }
+  },
+  "95": {
+    "str_id": "key_2",
+    "name": "key, Gunch",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Item": {
+      "frame": 1442
+    }
+  },
+  "96": {
+    "str_id": "key_3",
+    "name": "key, Jail",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Item": {
+      "frame": 1441
+    }
+  },
+  "97": {
+    "str_id": "l_swrd_1",
+    "name": "long sword, magic",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 302,
+      "damage_min": 3,
+      "damage_max": 9,
+      "delay": 22,
+      "level": 5,
+      "fighter": true,
+      "thief": false,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 2500,
+      "sell_cost": 2500,
+      "equip_to": "melee"
+    }
+  },
+  "98": {
+    "str_id": "s_swrd_1",
+    "name": "short sword, magic",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 302,
+      "damage_min": 2,
+      "damage_max": 7,
+      "delay": 21,
+      "level": 6,
+      "fighter": true,
+      "thief": true,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 2000,
+      "sell_cost": 2000,
+      "equip_to": "melee"
+    }
+  },
+  "99": {
+    "str_id": "axe_1",
+    "name": "battle axe, magic",
+    "blocker": false,
+    "sight_blocker": false,
+    "draw_depth": 2,
+    "Weapon": {
+      "frame": 312,
+      "damage_min": 4,
+      "damage_max": 9,
+      "delay": 24,
+      "level": 5,
+      "fighter": true,
+      "thief": false,
+      "priest": false,
+      "mage": false,
+      "journeyman": false,
+      "buy_cost": 2800,
+      "sell_cost": 2800,
+      "equip_to": "melee"
+    }
+  }
+}

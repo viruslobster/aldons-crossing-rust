@@ -1,0 +1,31 @@
+- don't let zipfritzle door trade with pets
+- dexterity button down wrong image
+- if zipfritzle runs into a wall he stops attacking you
+- different speeds
+- traps of slowness are forever
+- mage uses potion beyond level
+- the orb demon stops when he should attack right away
+- the movement is annoying around corners
+- damage types
+- being able to pick up aldon tomb statues
+- guards stop patroling after save
+- get rid of body.persist since everything is always persisted
+- eats corpse
+- pet names
+- load time is way too long
+- spelling error for nade "reasons *too* small"
+- enemies can't see through walls
+- make joining guilds and leveling up display the correct message
+- make train if ready scale (100 * level)
+- animate dead permanent half health
+// blessed ring => +1 luck
+// ring of battle => +2 str
+// holy ring => +1 int
+// holy breastplate => +1 int
+// storm sword => cast fireball on hit, on kill cast detonate corps
+// assasin daggers causes poison (green ball)
+
+# original bugs
+- Inn in the west won't sell to you
+- Bandits in the east duplicate after save
+
