@@ -11,7 +11,7 @@ Aldon's Crossing is a top down RPG game originally written for Palm PDA devices,
 
 ## Implementation
 
-The game is split into into a backend and a front end. The backend implements the core game while the frontend renders the game and implements the various dialogs in the game.
+The game is split into into a backend and a front end (although both run on the client). The backend implements the core game while the frontend renders the game and implements the various dialogs in the game.
 
 ### Backend
 
