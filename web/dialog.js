@@ -1849,6 +1849,30 @@ function aldonSpellBookDialog(game, spells) {
   return dialog;
 }
 
+function aldonMiniMapDialog(game) {
+  const num_tiles = 24;
+  const tile_size_px = 5;
+  const scale = 5;
+  const size = num_tiles * tile_size_px * scale;
+  const dialog = html(`
+    <aldon-dialog width="${game.width}" height="${game.height}">
+      <div slot="title">MiniMap</div>
+      <div slot="body">
+        <canvas 
+          style="position: absolute; left: 50%; transform: translate(-50%, 0%)" width="${size}" height="${size}" 
+          class="mini-map">
+        </canvas>
+        <div class="button-container">
+          <aldon-dialog-done-button></aldon-dialog-done-button>
+        </div>
+      </div>
+    </aldon-dialog>
+  `);
+  const minimap = dialog.querySelector(".mini-map");
+  game.game.draw_minimap(minimap, scale);
+  return dialog;
+}
+
 export {
   Dialog,
   aldonSaveGameDialog,
@@ -1865,4 +1889,5 @@ export {
   aldonDownloadGameDialog,
   aldonQuestLogDialog,
   aldonSpellBookDialog,
+  aldonMiniMapDialog,
 };

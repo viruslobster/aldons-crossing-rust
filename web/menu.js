@@ -4,6 +4,7 @@ import {
   aldonLoadGameDialog,
   aldonDeleteGameDialog,
   aldonAboutDialog,
+  aldonMiniMapDialog,
   aldonNotImplementedDialog,
   aldonReportBugDialog,
   aldonPreferencesDialog,
@@ -164,7 +165,7 @@ class AldonMenu extends HTMLElement {
       document.getElementById("game").appendChild(dialog);
     };
     root.querySelector("#mini-map").onclick = () => {
-      let dialog = aldonNotImplementedDialog(this.game);
+      let dialog = aldonMiniMapDialog(this.game);
       document.getElementById("game").appendChild(dialog);
     };
     root.querySelector("#message-log").onclick = () => {

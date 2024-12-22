@@ -7,7 +7,7 @@ use crate::{
     game::CONSOLE,
     js,
     stage::Stage,
-    thrift::save::{ClassType, RaceType},
+    thrift::save::{ClassType, RaceType, Team},
     AldonHtmlCanvasGame,
 };
 use wasm_bindgen::prelude::*;
@@ -407,7 +407,105 @@ impl AldonHtmlCanvasGame {
             1.0,  // scale
         )
     }
+
+    #[wasm_bindgen]
+    pub fn draw_minimap(&self, canvas: &web_sys::HtmlCanvasElement, scale: f64) {
+        let ctx = new_ctx(
+            canvas, false, // alpha
+            scale,
+        );
+        // tiles
+        for y in 0..24 {
+            for x in 0..24 {
+                let tile_id = self.game.stage.tile_at(x, y).unwrap();
+                let frame_id = minimap_frame(tile_id);
+                self.draw(&ctx, frame_id, (x as f64) * 5.0, (y as f64) * 5.0);
+            }
+        }
+        // props
+        let map_id = self.game.stage.map_id();
+        let map = &WORLD.maps[&map_id.to_string()];
+        for prop in &map.props {
+            let Some(frame) = minimap_prop_frame(prop.id) else {
+                continue;
+            };
+            self.draw(&ctx, frame, prop.x as f64 * 5.0, prop.y as f64 * 5.0);
+        }
+        // fog
+        for y in 0..24 {
+            for x in 0..24 {
+                let x = x as f64;
+                let y = y as f64;
+                if self.game.fog.occluded(x, y) {
+                    self.draw(&ctx, 2306, x * 5.0, y * 5.0);
+                }
+            }
+        }
+        // player
+        let player = self.game.stage.get_player();
+        let (x, y) = player.moving_to();
+        self.draw(&ctx, 2312, x * 5.0, y * 5.0);
+    }
 }
+
+fn minimap_prop_frame(prop_id: u16) -> Option<u16> {
+    if is_door(prop_id) {
+        return Some(2303);
+    }
+    if is_window(prop_id) {
+        return Some(2302);
+    }
+    // stairway
+    if matches!(prop_id, 158 | 159) {
+        return Some(2301);
+    }
+    // dungeon entrance
+    if prop_id == 137 {
+        return Some(2314);
+    }
+    // city
+    if matches!(prop_id, 125 | 126 | 127 | 128 | 129 | 130 | 131 | 132 | 133) {
+        return Some(2313);
+    }
+    let prop = &PROPS[&prop_id.to_string()];
+    if !prop.blocker {
+        return None;
+    }
+    Some(2316) // generic blocker
+}
+
+fn minimap_frame(tile_id: u8) -> u16 {
+    match tile_id {
+        0 | 1 | 2 => 2305, // red tile
+        3 => 2306,         // black
+        4 => 2308,         // tree
+        5 => 2309,         // water
+        6 => 2307,         // montain
+        7 | 12 => 2300,    // light grey tile
+        8 => 2304,         // dark grey tile
+        9 => 2311,         // dirt
+        10 => 2310,        // grass
+        11 => 2315,        // bushes
+        _ => 2306,         //black
+    }
+}
+// 2300, light grey tile
+// 2301, stairway lookin thing
+// 2302, red window
+// 2303, doorway
+// 2304, dark grey tile
+// 2305, red tile
+// 2306, black
+// 2307, mountain looking thing
+// 2308, tree
+// 2309, water
+// 2310, grass
+// 2311, dirt
+// 2312, player location
+// 2313, red dot
+// 2314, cave entrance
+// 2315, bushes
+// 2316, blocker
 
 fn player_prop_id(male: bool, race: RaceType, class: ClassType) -> u16 {
     match (male, race, class) {
