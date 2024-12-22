@@ -7,7 +7,7 @@ use crate::{
     game::CONSOLE,
     js,
     stage::Stage,
-    thrift::save::{ClassType, RaceType, Team},
+    thrift::save::{ClassType, RaceType},
     AldonHtmlCanvasGame,
 };
 use wasm_bindgen::prelude::*;
@@ -477,16 +477,15 @@ fn minimap_prop_frame(prop_id: u16) -> Option<u16> {
 fn minimap_frame(tile_id: u8) -> u16 {
     match tile_id {
         0 | 1 | 2 => 2305, // red tile
-        3 => 2306,         // black
+        3 => 2307,         // montain
         4 => 2308,         // tree
         5 => 2309,         // water
-        6 => 2307,         // montain
         7 | 12 => 2300,    // light grey tile
         8 => 2304,         // dark grey tile
-        9 => 2311,         // dirt
+        9 | 6 => 2311,     // road
         10 => 2310,        // grass
         11 => 2315,        // bushes
-        _ => 2306,         //black
+        _ => 2306,         // black
     }
 }
 // 2300, light grey tile
