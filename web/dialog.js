@@ -55,6 +55,1022 @@ const userPortraits = [
   { id: 657, x: 137, y: 125 },
 ];
 
+class AldonPicker extends HTMLElement {
+  constructor() {
+    super();
+    this.items = [];
+    this.getGold = () => 0;
+    this.itemNamer = (item, _idx) => item.name;
+    this.updateListeners = [];
+
+    const style = document.createElement("style");
+    style.textContent = `
+      .root {
+        font-size: 80px;
+        touch-action: pan-y;
+      }
+
+      .table {
+        height: 4em;
+        overflow: auto;
+        margin: 10px;
+        border: 1px solid black;
+        touch-action: pan-y;
+      }
+
+      .table .selected {
+        color: white;
+        background-color: black;
+        touch-action: pan-y;
+      }
+
+      .info-container {
+        display: inline-block;
+      }
+
+      .info-container canvas {
+        display: inline-block;
+        margin: 10px;
+      }
+
+      .info-text {
+        float: inline-end;
+        display: inline-block;
+      }
+      
+    `;
+    const preview = this.getAttribute("previewPic") === "true";
+    const info = this.getAttribute("itemInfo") === "true";
+    const root = html(`<div class="root"></div>`);
+
+    if (info) {
+      const div = html(`<div class="restriction"></div>`);
+      root.appendChild(div);
+    }
+    const table = html(`<div class="table"></div>`);
+    root.appendChild(table);
+
+    const infoContainer = html(`<span class="info-container"></span>`);
+
+    if (preview) {
+      const scale = 8;
+      const canvas = html(`
+        <canvas class="preview" width="${20 * scale}" height="${20 * scale}"></canvas>
+      `);
+      const ctx = canvas.getContext("2d");
+      ctx.imageSmoothingEnabled = false;
+      ctx.scale(scale, scale);
+      this.addEventListener("click", () => this.updatePreview());
+      infoContainer.appendChild(canvas);
+    }
+    if (info) {
+      const div = html(`
+        <div class="info-text">
+          <div class="info"></div>
+          <div class="gold">Gold:</div>
+        </div>
+      `);
+      infoContainer.appendChild(div);
+    }
+    if (preview || info) {
+      root.appendChild(infoContainer);
+    }
+    const shadowRoot = this.attachShadow({ mode: "open" });
+    shadowRoot.appendChild(style);
+    shadowRoot.appendChild(root);
+  }
+
+  connectedCallback() {}
+
+  /**
+   * item: { name: string }
+   */
+  addItem(item) {
+    const div = document.createElement("div");
+    this.items.push(item);
+    div.innerHTML = `${this.itemNamer(item, this.items.length - 1)}`;
+    if (this.items.length == 1) {
+      div.classList.add("selected");
+    }
+
+    div.addEventListener("click", (e) => {
+      const selected = this.shadowRoot.querySelector(".selected");
+      selected.classList.remove("selected");
+      e.target.classList.add("selected");
+      this.update();
+    });
+
+    const container = this.shadowRoot.querySelector(".table");
+    container.appendChild(div);
+    this.update();
+  }
+
+  /* Returns the index of the next selected item after the currently
+   * selected item is removed.
+   */
+  nextIndex() {
+    const selected = this.shadowRoot.querySelector(".selected");
+    if (selected === null) {
+      return null;
+    }
+    if (this.items.length <= 1) {
+      return null;
+    }
+    const divs = this.shadowRoot.querySelector(".table").children;
+    const i = [...divs].indexOf(selected);
+
+    if (i === this.items.length - 1) {
+      return i - 1;
+    }
+    return i;
+  }
+
+  selected() {
+    const i = this.selectedIndex();
+    if (i === null) {
+      return null;
+    }
+    return this.items[i];
+  }
+
+  selectedIndex() {
+    const selected = this.shadowRoot.querySelector(".selected");
+    if (selected === null) {
+      return null;
+    }
+    const divs = this.shadowRoot.querySelector(".table").children;
+    const i = [...divs].indexOf(selected);
+    return i;
+  }
+
+  removeSelected() {
+    const selected = this.shadowRoot.querySelector(".selected");
+    if (selected === null) {
+      return;
+    }
+    const selectedIdx = this.selectedIndex();
+    const newIdx = this.nextIndex();
+
+    selected.classList.remove("selected");
+    selected.remove();
+    this.items.splice(selectedIdx, 1);
+
+    if (newIdx === null) {
+      return;
+    }
+    const divs = this.shadowRoot.querySelector(".table").children;
+    const newSelected = divs[newIdx];
+    newSelected.classList.add("selected");
+    this.update();
+  }
+
+  update(message) {
+    for (const listener of this.updateListeners) {
+      listener();
+    }
+    const itemDivs = this.shadowRoot.querySelector(".table").children;
+    for (let i = 0; i < this.items.length; i++) {
+      itemDivs[i].innerText = this.itemNamer(this.items[i], i);
+    }
+    this.updatePreview();
+    if (this.getAttribute("itemInfo") !== "true") {
+      return;
+    }
+    const selected = this.selected();
+    if (selected === null) {
+      return;
+    }
+    const restriction = this.shadowRoot.querySelector(".restriction");
+    restriction.innerText = message || selected.restriction;
+
+    const info = this.shadowRoot.querySelector(".info");
+    info.innerText = selected.info;
+
+    const gold = this.shadowRoot.querySelector(".gold");
+    gold.innerText = `Gold: ${this.getGold()}`;
+  }
+
+  updatePreview() {
+    const canvas = this.shadowRoot.querySelector(".preview");
+    if (canvas === null) {
+      return;
+    }
+    const ctx = canvas.getContext("2d");
+
+    const item = this.selected();
+    if (item === null) {
+      return;
+    }
+    // draw background
+    ctx.drawImage(game.spritesheet, 247, 299, 20, 20, 0, 0, 20, 20);
+    ctx.drawImage(
+      game.spritesheet,
+      item.frame.x,
+      item.frame.y,
+      item.frame.w,
+      item.frame.h,
+      2,
+      2,
+      item.frame.w,
+      item.frame.h,
+    );
+  }
+}
+customElements.define("aldon-picker", AldonPicker);
+
+class AldonDialog extends HTMLElement {
+  constructor() {
+    super();
+    const width = this.getAttribute("width");
+    const height = this.getAttribute("height");
+    console.log(`width: ${width}, height: ${height}`);
+    const scale = (Math.min(width, height) - 10) / 860;
+    const border = 3;
+    const top = height / 2 - (860 * scale) / 2 - border * scale;
+    const left = width / 2 - (860 * scale) / 2 - border * scale;
+    const style = document.createElement("style");
+
+    style.textContent = `
+      .window {
+        width: ${860}px;
+        height: ${860}px;
+        transform: scale(${scale}, ${scale});
+        top: ${top}px;
+        left: ${left}px;
+
+        transform-origin: top left;
+        font-family: PalmOS;
+        font-smooth: never;
+        font-size: 80px;
+        border-radius: 8px;
+        position: absolute;
+        border: ${border}px solid #2c008b;
+        vertical-align: top;
+        z-index: 2;
+        background-color: white;
+        overflow: hidden;
+        touch-action: pan-y;
+      }
+
+      .window .title {
+        font-family: PalmOSBold;
+        font-size: 80px;
+        background-color: #2c008b;
+        text-align: center;
+        color: white;
+        border: 5px solid #2c008b;
+        height: 10%;
+      }
+
+      .window .body {
+        font-smooth: never;
+        padding: 5px;
+        height: 90%;
+        touch-action: pan-y;
+      }
+
+      .button-container {
+        position: absolute;
+        bottom: 10px;
+        font-size: 100px;
+      }
+    `;
+    const shadowRoot = this.attachShadow({ mode: "open" });
+    shadowRoot.appendChild(style);
+    shadowRoot.appendChild(dialogTemplate.content.cloneNode(true));
+  }
+}
+customElements.define("aldon-dialog", AldonDialog);
+
+class AldonDialogDoneButton extends HTMLElement {
+  constructor() {
+    super();
+  }
+
+  connectedCallback() {
+    this.innerHTML = `
+      <button class="done">Done</button>
+    `;
+
+    const btn = this.querySelector(".done");
+    btn.addEventListener("click", () => this.close());
+  }
+
+  close() {
+    const dialog = this.closest("aldon-dialog");
+    dialog.remove();
+  }
+}
+customElements.define("aldon-dialog-done-button", AldonDialogDoneButton);
+
+class Dialog {
+  constructor(
+    root,
+    canvas,
+    spritesheet,
+    viewport_width,
+    viewport_height,
+    margin,
+  ) {
+    this.game = null;
+    this.root = root;
+    this.dialogOld = new DialogOld(
+      root,
+      spritesheet,
+      viewport_width,
+      viewport_height,
+      margin,
+    );
+  }
+
+  isOpen() {
+    return this.dialogOld.isOpen();
+  }
+
+  setGame(game) {
+    this.game = game;
+    this.dialogOld.setGame(game.game);
+  }
+
+  resize(width, height) {
+    this.dialogOld.resize(width, height);
+  }
+
+  tell(
+    title,
+    portrait_x,
+    portrait_y,
+    portrait_w,
+    portrait_h,
+    msg,
+    choiceA,
+    choiceB,
+    choiceC,
+    fromActor,
+  ) {
+    this.dialogOld.tellMessage(
+      title,
+      portrait_x,
+      portrait_y,
+      portrait_w,
+      portrait_h,
+      msg,
+      choiceA,
+      choiceB,
+      choiceC,
+      fromActor,
+    );
+  }
+
+  createCharacter() {
+    this.dialogOld.createCharacter();
+  }
+
+  inventory(actorID, items) {
+    const dialog = html(`
+      <aldon-dialog width="${this.game.width}" height="${this.game.height}">
+        <div slot="title">Transaction</div>
+        <div slot="body">
+          <aldon-picker previewPic="true" itemInfo="true">
+          </aldon-picker>
+          <div class="button-container">
+            <aldon-dialog-done-button></aldon-dialog-done-button>
+            <button class="drop">Drop</button>
+            <button class="action"></button>
+            <button class="stats">Stats</button>
+          </div>
+        </div>
+      </aldon-dialog>
+    `);
+
+    const statsBtn = dialog.querySelector(".stats");
+    statsBtn.onclick = () => this.game.showStats(actorID);
+
+    const picker = dialog.querySelector("aldon-picker");
+    picker.getGold = () => this.game.game.gold(actorID);
+    picker.itemNamer = (item, idx) => {
+      const equiped = this.game.game.is_equiped(actorID, idx);
+      return equiped ? `${equiped} ${item.name}` : item.name;
+    };
+
+    for (let i = 0; i < items.length; i++) {
+      picker.addItem(items[i]);
+    }
+    const dropBtn = dialog.querySelector(".drop");
+    dropBtn.onclick = () => {
+      console.log("drop!");
+      const i = picker.selectedIndex();
+      const ok = this.game.game.drop(actorID, i);
+      if (ok) {
+        picker.removeSelected();
+
+        if (picker.items.length === 0) {
+          dialog.remove();
+          return;
+        }
+      }
+      const message = ok ? null : "Can't drop";
+      picker.update(message);
+      draw();
+    };
+    const equip = () => {
+      const i = picker.selectedIndex();
+      const ok = this.game.game.equip(actorID, i);
+      const message = ok ? null : "Can't equip";
+      picker.update(message);
+      draw();
+    };
+    const unequip = () => {
+      const i = picker.selectedIndex();
+      const ok = this.game.game.unequip(actorID, i);
+      const message = ok ? null : "Can't unequip";
+      picker.update(message);
+      draw();
+    };
+    const use = () => {
+      console.log("use!");
+      const i = picker.selectedIndex();
+      this.game.game.use_item(actorID, i);
+      picker.update("Used.");
+      const item = picker.items[i];
+      console.log(i);
+      console.log(item);
+      if (item.quantity === 0) {
+        picker.removeSelected();
+      }
+      if (picker.items.length === 0) {
+        dialog.remove();
+        return;
+      }
+      draw();
+    };
+    const draw = () => {
+      const i = picker.selectedIndex();
+      const actionBtn = dialog.querySelector(".action");
+      const item = picker.items[i];
+
+      if (item.usable) {
+        actionBtn.innerText = "Use";
+        actionBtn.onclick = use;
+        return;
+      }
+      const isEquiped = this.game.game.is_equiped(actorID, i);
+      const actionName = isEquiped ? "Unequip" : "Equip";
+      actionBtn.innerText = actionName;
+      actionBtn.onclick = isEquiped ? unequip : equip;
+    };
+    draw();
+    picker.addEventListener("click", draw);
+    this.root.appendChild(dialog);
+  }
+
+  pickup(actorID, items) {
+    const dialog = html(`
+      <aldon-dialog width="${this.game.width}" height="${this.game.height}">
+        <div slot="title">Transaction</div>
+        <div slot="body">
+          <aldon-picker previewPic="true" itemInfo="true">
+          </aldon-picker>
+          <div class="button-container">
+            <aldon-dialog-done-button></aldon-dialog-done-button>
+            <button class="pickup">Pickup</button>
+          </div>
+        </div>
+      </aldon-dialog>
+    `);
+
+    const picker = dialog.querySelector("aldon-picker");
+    picker.getGold = () => this.game.game.gold(actorID);
+
+    for (const item of items) {
+      picker.addItem(item);
+    }
+
+    const pickupBtn = dialog.querySelector(".pickup");
+    pickupBtn.onclick = () => {
+      const i = picker.selectedIndex();
+      const ok = this.game.game.pickup(actorID, i);
+      if (!ok) {
+        picker.update("You can't pick this up.");
+        return;
+      }
+      picker.removeSelected();
+      if (picker.items.length === 0) {
+        dialog.remove();
+      }
+    };
+    this.root.appendChild(dialog);
+  }
+
+  buySell(actorID, items, kind) {
+    const kindStr = kind === "buy" ? "Buy" : "Sell";
+    const dialog = html(`
+      <aldon-dialog width="${this.game.width}" height="${this.game.height}">
+        <div slot="title">Transaction</div>
+        <div slot="body">
+          <aldon-picker previewPic="true" itemInfo="true">
+          </aldon-picker>
+          <div class="button-container">
+            <aldon-dialog-done-button></aldon-dialog-done-button>
+            <button class="buysell">${kindStr}</button>
+            <button class="unequip">Unequip</button>
+          </div>
+        </div>
+      </aldon-dialog>
+    `);
+
+    const picker = dialog.querySelector("aldon-picker");
+    picker.getGold = () => this.game.game.gold(actorID);
+    const cost = (item) => (kind === "buy" ? item.buy_cost : item.sell_cost);
+    picker.itemNamer = (item) => `(${cost(item)})${item.name}`;
+
+    for (const item of items) {
+      picker.addItem(item);
+    }
+
+    const unequipBtn = dialog.querySelector(".unequip");
+    unequipBtn.onclick = () => {
+      const i = picker.selectedIndex();
+      this.game.game.unequip(actorID, i);
+      picker.update("Unequiped");
+    };
+    picker.updateListeners.push(() => {
+      const i = picker.selectedIndex();
+      unequipBtn.style.visibility = this.game.game.is_equiped(actorID, i)
+        ? "visible"
+        : "hidden";
+    });
+    picker.update();
+
+    const buysellBtn = dialog.querySelector(".buysell");
+    const buy = () => {
+      const i = picker.selectedIndex();
+      const ok = this.game.game.buy(actorID, i);
+      if (!ok) {
+        picker.update("You can't pick this up.");
+        return;
+      }
+      picker.update("Sold!");
+    };
+    const sell = () => {
+      const i = picker.selectedIndex();
+      const equiped = this.game.game.is_equiped(actorID, i);
+      if (equiped) {
+        picker.update("Item is equiped.");
+        return;
+      }
+      const ok = this.game.game.sell(actorID, i);
+      if (!ok) {
+        picker.update("You can't sell this.");
+        return;
+      }
+      picker.removeSelected();
+      if (picker.items.length === 0) {
+        dialog.remove();
+        return;
+      }
+      picker.update("Sold!");
+    };
+    buysellBtn.onclick = kind === "buy" ? buy : sell;
+    this.root.appendChild(dialog);
+  }
+
+  pickButton(buttonIdx, buttons) {
+    const dialog = html(`
+      <aldon-dialog width="${this.game.width}" height="${this.game.height}">
+        <div slot="title">Transaction</div>
+        <div slot="body">
+          Set Item or Ability.
+          <aldon-picker previewPic="true">
+          </aldon-picker>
+          <div class="button-container">
+            <button class="done">Done</button>
+            <button class="set">Set</button>
+          </div>
+        </div>
+      </aldon-dialog>
+    `);
+
+    const picker = dialog.querySelector("aldon-picker");
+    for (const button of buttons) {
+      picker.addItem(button);
+    }
+
+    const doneBtn = dialog.querySelector(".done");
+    doneBtn.onclick = () => {
+      this.game.untoggleMenuButton();
+      dialog.remove();
+      console.log("foo");
+    };
+
+    const setBtn = dialog.querySelector(".set");
+    setBtn.onclick = () => {
+      const idx = picker.selectedIndex();
+      const button = buttons[idx];
+      this.game.setButton(buttonIdx, button);
+      dialog.remove();
+      this.game.untoggleMenuButton();
+    };
+    this.root.appendChild(dialog);
+  }
+
+  stats(playerStats) {
+    this.dialogOld.stats(playerStats);
+  }
+
+  spellbook(spells) {
+    const dialog = html(`
+      <aldon-dialog width="${this.game.width}" height="${this.game.height}">
+        <div slot="title">Transaction</div>
+        <div slot="body">
+          <aldon-picker previewPic="true" itemInfo="true">
+          </aldon-picker>
+          <div class="button-container">
+            <aldon-dialog-done-button></aldon-dialog-done-button>
+            <button class="set">Set</button>
+          </div>
+        </div>
+      </aldon-dialog>
+    `);
+    const picker = dialog.querySelector("aldon-picker");
+
+    for (const spell of spells) {
+      picker.addItem({
+        name: spell.name,
+        restriction: "Set Item or Ability.",
+        info: `Level=${spell.level}, Mana Cost=${spell.cost}`,
+        frame: spell.frame,
+        id: spell.id,
+      });
+    }
+
+    const setBtn = dialog.querySelector(".set");
+    setBtn.onclick = () => {
+      dialog.remove();
+      const spell = picker.selected();
+      console.log(spell);
+      this.game.game.set_spellbook_spell(spell.id);
+    };
+    this.root.appendChild(dialog);
+  }
+
+  reportBug() {
+    const dialog = html(`
+      <aldon-dialog width="${this.game.width}" height="${this.game.height}">
+        <div slot="title">Report Bug</div>
+        <div slot="body">
+          Click <a class="download">here</a> to download crash data. Send this to me along with a screenshot.
+          <div class="button-container">
+            <button class="ok">Ok</button>
+          </div>
+        </div>
+      </aldon-dialog>
+    `);
+
+    const okBtn = dialog.querySelector(".ok");
+    okBtn.onclick = () => dialog.remove();
+
+    const downloadLink = dialog.querySelector(".download");
+    const logs = this.game.getLogs();
+    downloadLink.setAttribute(
+      "href",
+      "data:text/plain;charset=utf-8," + encodeURIComponent(logs),
+    );
+    downloadLink.setAttribute("download", `aldon_debug_logs_${Date.now()}`);
+
+    this.root.appendChild(dialog);
+  }
+
+  preferences() {
+    const scale = Number(localStorage.getItem("aldon-this.game-scale")) || 2;
+    const dialog = html(`
+      <aldon-dialog width="${this.game.width}" height="${this.game.height}">
+        <div slot="title">Preferences</div>
+        <div slot="body">
+          <div>
+            <button class="scale-down">-</button>
+            <button class="scale-up">+</button>
+            Scale: <span class="scale-label">${scale}</span>
+          </div>
+          <div class="button-container">
+            <button class="ok">Ok</button>
+          </div>
+        </div>
+      </aldon-dialog>
+    `);
+
+    const scaleLabel = dialog.querySelector(".scale-label");
+
+    const okBtn = dialog.querySelector(".ok");
+    okBtn.onclick = () => dialog.remove();
+
+    const scaleDown = dialog.querySelector(".scale-down");
+    scaleDown.onclick = () => {
+      let scale = this.game.getScale();
+      scale = this.game.setScale(scale - 1);
+      scaleLabel.innerText = `${scale}`;
+    };
+    const scaleUp = dialog.querySelector(".scale-up");
+    scaleUp.onclick = () => {
+      let scale = this.game.getScale();
+      scale = this.game.setScale(scale + 1);
+      scaleLabel.innerText = `${scale}`;
+    };
+    this.root.appendChild(dialog);
+  }
+
+  questLog() {
+    const dialog = html(`
+      <aldon-dialog width="${this.game.width}" height="${this.game.height}">
+        <div slot="title">Log</div>
+        <div slot="body">
+          <aldon-picker> </aldon-picker>
+          <div class="button-container">
+            <aldon-dialog-done-button></aldon-dialog-done-button>
+          </div>
+        </div>
+      </aldon-dialog>
+    `);
+    const picker = dialog.querySelector("aldon-picker");
+
+    for (const quest of this.game.quests()) {
+      picker.addItem(quest);
+    }
+    this.root.appendChild(dialog);
+  }
+
+  minimap() {
+    const num_tiles = 24;
+    const tile_size_px = 5;
+    const scale = 5;
+    const size = num_tiles * tile_size_px * scale;
+    const dialog = html(`
+      <aldon-dialog width="${this.game.width}" height="${this.game.height}">
+        <div slot="title">MiniMap</div>
+        <div slot="body">
+          <canvas 
+            style="position: absolute; left: 50%; transform: translate(-50%, 0%)" width="${size}" height="${size}" 
+            class="mini-map">
+          </canvas>
+          <div class="button-container">
+            <aldon-dialog-done-button></aldon-dialog-done-button>
+          </div>
+        </div>
+      </aldon-dialog>
+    `);
+    const minimap = dialog.querySelector(".mini-map");
+    this.game.game.draw_minimap(minimap, scale);
+    this.root.appendChild(dialog);
+  }
+
+  downloadGame() {
+    const dialog = html(`
+      <aldon-dialog width="${this.game.width}" height="${this.game.height}">
+        <div slot="title">Game Menu</div>
+        <div slot="body">
+          <aldon-picker></aldon-picker>
+          <div class="button-container">
+            <aldon-dialog-done-button></aldon-dialog-done-button>
+            <button class="download">Download</button>
+          </div>
+        </div>
+      </aldon-dialog>
+    `);
+
+    const picker = dialog.querySelector("aldon-picker");
+    const store = this.game.getSaveStore();
+    let saves = store.quicksave ? [store.quicksave] : [];
+    saves = saves.concat(store.saves.filter((s) => s.data !== ""));
+
+    for (const save of saves) {
+      const name = saveName(save);
+      picker.addItem({ name });
+    }
+
+    const downloadBtn = dialog.querySelector(".download");
+    downloadBtn.onclick = () => {
+      const slot = picker.selectedIndex();
+      if (slot === -1) {
+        return;
+      }
+      const save = saves[slot];
+      const encoded = encodeURIComponent(save.data);
+      const link = html(`
+      <a 
+        style="display: none"
+        download="${save.name}"
+        href="data:text/plain;charset=utf-8,${encoded}"
+      >
+      </a>
+    `);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      dialog.remove();
+    };
+    this.root.appendChild(dialog);
+  }
+
+  saveGame() {
+    const dialog = html(`
+      <aldon-dialog width="${this.game.width}" height="${this.game.height}">
+        <div slot="title">Game Menu</div>
+        <div slot="body">
+          <aldon-picker></aldon-picker>
+          <div class="button-container">
+            <aldon-dialog-done-button></aldon-dialog-done-button>
+            <button class="save">Save</button>
+          </div>
+        </div>
+      </aldon-dialog>
+    `);
+
+    const picker = dialog.querySelector("aldon-picker");
+    const store = this.game.getSaveStore();
+    for (const save of store.saves) {
+      const name = saveName(save);
+      picker.addItem({ name });
+    }
+
+    const saveBtn = dialog.querySelector(".save");
+    saveBtn.onclick = () => {
+      const slot = picker.selectedIndex();
+      this.game.save(slot);
+      dialog.remove();
+    };
+    this.root.appendChild(dialog);
+  }
+
+  loadGame() {
+    const dialog = html(`
+      <aldon-dialog width="${this.game.width}" height="${this.game.height}">
+        <div slot="title">Game Menu</div>
+        <div slot="body">
+          <aldon-picker></aldon-picker>
+          <div class="button-container">
+            <aldon-dialog-done-button></aldon-dialog-done-button>
+            <button class="from-file">From File</button>
+            <button class="load">Load</button>
+          </div>
+        </div>
+      </aldon-dialog>
+    `);
+
+    const picker = dialog.querySelector("aldon-picker");
+    const store = this.game.getSaveStore();
+    let saves = store.quicksave ? [store.quicksave] : [];
+    saves = saves.concat(store.saves.filter((s) => s.data !== ""));
+
+    for (const save of saves) {
+      const name = saveName(save);
+      picker.addItem({ name });
+    }
+
+    const loadBtn = dialog.querySelector(".load");
+    loadBtn.onclick = () => {
+      const slot = picker.selectedIndex();
+      if (slot === -1) {
+        return;
+      }
+      const save = saves[slot];
+      this.game.loadSave(save);
+      dialog.remove();
+    };
+
+    const fromFileBtn = dialog.querySelector(".from-file");
+    fromFileBtn.onclick = () => {
+      const fileInput = html(`<input type="file" style="display: none">`);
+      fileInput.onchange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const data = e.target.result;
+            console.log(data);
+            this.game.loadSave({ data });
+            dialog.remove();
+          };
+          reader.readAsText(file); // Read the file as a text string
+          const gameContainer = document.getElementById("game-container");
+          if (this.gameContainer.requestFullscreen) {
+            this.gameContainer.requestFullscreen();
+          }
+        }
+      };
+      document.body.appendChild(fileInput);
+      fileInput.click();
+      document.body.removeChild(fileInput);
+    };
+    this.root.appendChild(dialog);
+  }
+
+  about() {
+    const dialog = html(`
+      <aldon-dialog width="${this.game.width}" height="${this.game.height}">
+        <div slot="title">About Aldon's Crossing</div>
+        <div slot="body">
+          <div>Aldon's Crossing</div>
+          <div>A Constant Games Production.</div>
+          <div>c 1999-2002</div>
+          <div>Reimplemented by <a href="https://github.com/viruslobster">@viruslobster</a></div>
+          <div><img src="assets/qr.svg"></img></div>
+          <div class="button-container">
+            <button class="ok">OK</button>
+          </div>
+        </div>
+      </aldon-dialog>
+    `);
+
+    const okBtn = dialog.querySelector(".ok");
+    okBtn.onclick = () => dialog.remove();
+    this.root.appendChild(dialog);
+  }
+
+  deleteGame() {
+    const dialog = html(`
+      <aldon-dialog width="${this.game.width}" height="${this.game.height}">
+        <div slot="title">Game Menu</div>
+        <div slot="body">
+          <aldon-picker></aldon-picker>
+          <div class="button-container">
+            <aldon-dialog-done-button></aldon-dialog-done-button>
+            <button class="delete">Delete</button>
+          </div>
+        </div>
+      </aldon-dialog>
+    `);
+
+    const picker = dialog.querySelector("aldon-picker");
+    const store = this.game.getSaveStore();
+
+    let saves = store.quicksave ? [store.quicksave] : [];
+    saves = saves.concat(store.saves.filter((s) => s.data !== ""));
+
+    for (const save of saves) {
+      const name = saveName(save);
+      picker.addItem({ name });
+    }
+
+    const saveBtn = dialog.querySelector(".delete");
+    saveBtn.onclick = () => {
+      const i = picker.selectedIndex();
+      if (i === 0 && store.quicksave) {
+        this.game.deleteQuicksave();
+        return;
+      }
+      const save = saves[i];
+      this.game.deleteSave(save);
+      dialog.remove();
+    };
+    this.root.appendChild(dialog);
+  }
+
+  notImplemented() {
+    const dialog = html(`
+      <aldon-dialog width="${this.game.width}" height="${this.game.height}">
+        <div slot="title">Not Implemented</div>
+        <div slot="body">
+          This feature is not implemented yet.
+          <div class="button-container">
+            <button class="damn">Damn</button>
+          </div>
+        </div>
+      </aldon-dialog>
+    `);
+    const damnBtn = dialog.querySelector(".damn");
+    damnBtn.onclick = () => dialog.remove();
+    this.root.appendChild(dialog);
+  }
+}
+
+/**
+ * A simple way to create html inline like html(`<div prop="foo">text</div>`)
+ *
+ * You might think we can use a <template> instead of a <div> here
+ * but that doesn't work if you're trying to use custom elements.
+ */
+function html(content) {
+  const el = document.createElement("div");
+  el.innerHTML = content.trim();
+  return el.firstChild;
+}
+
+const dialogTemplate = document.createElement("template");
+dialogTemplate.innerHTML = `
+  <div class="window">
+    <div class="title">
+      <slot name="title"></slot>
+    </div>
+    <div class="body">
+      <slot name="body"></slot>
+    </div>
+  </div>
+`;
+function saveName(save) {
+  const time = save.time ? new Date(save.time).toLocaleString() : "";
+  return `${save.name} ${time}`;
+}
+
 // TODO: delete old style dialogs
 function createWindow(
   type,
@@ -101,7 +1117,7 @@ function closeWindow() {
 }
 
 // TODO: delete old style dialogs
-class Dialog {
+class DialogOld {
   constructor(root, spritesheet, viewport_width, viewport_height, margin) {
     this.game = null;
     this.root = root; // The node where windows will be attached
@@ -226,7 +1242,7 @@ class Dialog {
       };
       container.appendChild(button);
       const choiceMsg = choice[i];
-      if (choiceMsg !== null) {
+      if (choiceMsg !== undefined) {
         container.appendChild(document.createTextNode(choiceMsg));
       } else {
         container.style.visibility = "hidden";
@@ -913,981 +1929,24 @@ function statDetail(stat, value) {
   }
 }
 
-// Here begins the new style dialogs
-const pickerTemplate = document.createElement("template");
-pickerTemplate.innerHTML = `
-  <div>
-      <div class="transaction-table"></div>
-      <slot name="preview"></slot>
-  </div>
-`;
+// Avoid aliasing problems with rust. These dialogs methods are called from
+// rust, run as js, and make api calls back to rust. This recursive usage is
+// not allowed by wasm-bindgen. So instead schedule the dialog method to run
+// in a couple millis from js (not from rust).
+const methods = Object.getOwnPropertyNames(Dialog.prototype);
+const skipMethods = ["isOpen", "setGame", "resize", "constructor"];
+for (const method of methods) {
+  if (skipMethods.includes(method)) continue;
 
-class AldonPicker extends HTMLElement {
-  constructor() {
-    super();
-    this.items = [];
-    this.getGold = () => 0;
-    this.itemNamer = (item, _idx) => item.name;
-    this.updateListeners = [];
+  const origional = Dialog.prototype[method];
+  if (typeof origional !== "function") continue;
+  console.log(method);
 
-    const style = document.createElement("style");
-    style.textContent = `
-      .root {
-        font-size: 80px;
-        touch-action: pan-y;
-      }
-
-      .table {
-        height: 4em;
-        overflow: auto;
-        margin: 10px;
-        border: 1px solid black;
-        touch-action: pan-y;
-      }
-
-      .table .selected {
-        color: white;
-        background-color: black;
-        touch-action: pan-y;
-      }
-
-      .info-container {
-        display: inline-block;
-      }
-
-      .info-container canvas {
-        display: inline-block;
-        margin: 10px;
-      }
-
-      .info-text {
-        float: inline-end;
-        display: inline-block;
-      }
-      
-    `;
-    const preview = this.getAttribute("previewPic") === "true";
-    const info = this.getAttribute("itemInfo") === "true";
-    const root = html(`<div class="root"></div>`);
-
-    if (info) {
-      const div = html(`<div class="restriction"></div>`);
-      root.appendChild(div);
-    }
-    const table = html(`<div class="table"></div>`);
-    root.appendChild(table);
-
-    const infoContainer = html(`<span class="info-container"></span>`);
-
-    if (preview) {
-      const scale = 8;
-      const canvas = html(`
-        <canvas class="preview" width="${20 * scale}" height="${20 * scale}"></canvas>
-      `);
-      const ctx = canvas.getContext("2d");
-      ctx.imageSmoothingEnabled = false;
-      ctx.scale(scale, scale);
-      this.addEventListener("click", () => this.updatePreview());
-      infoContainer.appendChild(canvas);
-    }
-    if (info) {
-      const div = html(`
-        <div class="info-text">
-          <div class="info"></div>
-          <div class="gold">Gold:</div>
-        </div>
-      `);
-      infoContainer.appendChild(div);
-    }
-    if (preview || info) {
-      root.appendChild(infoContainer);
-    }
-    const shadowRoot = this.attachShadow({ mode: "open" });
-    shadowRoot.appendChild(style);
-    shadowRoot.appendChild(root);
-  }
-
-  connectedCallback() {}
-
-  /**
-   * item: { name: string }
-   */
-  addItem(item) {
-    const div = document.createElement("div");
-    this.items.push(item);
-    div.innerHTML = `${this.itemNamer(item, this.items.length - 1)}`;
-    if (this.items.length == 1) {
-      div.classList.add("selected");
-    }
-
-    div.addEventListener("click", (e) => {
-      const selected = this.shadowRoot.querySelector(".selected");
-      selected.classList.remove("selected");
-      e.target.classList.add("selected");
-      this.update();
-    });
-
-    const container = this.shadowRoot.querySelector(".table");
-    container.appendChild(div);
-    this.update();
-  }
-
-  /* Returns the index of the next selected item after the currently
-   * selected item is removed.
-   */
-  nextIndex() {
-    const selected = this.shadowRoot.querySelector(".selected");
-    if (selected === null) {
-      return null;
-    }
-    if (this.items.length <= 1) {
-      return null;
-    }
-    const divs = this.shadowRoot.querySelector(".table").children;
-    const i = [...divs].indexOf(selected);
-
-    if (i === this.items.length - 1) {
-      return i - 1;
-    }
-    return i;
-  }
-
-  selected() {
-    const i = this.selectedIndex();
-    if (i === null) {
-      return null;
-    }
-    return this.items[i];
-  }
-
-  selectedIndex() {
-    const selected = this.shadowRoot.querySelector(".selected");
-    if (selected === null) {
-      return null;
-    }
-    const divs = this.shadowRoot.querySelector(".table").children;
-    const i = [...divs].indexOf(selected);
-    return i;
-  }
-
-  removeSelected() {
-    const selected = this.shadowRoot.querySelector(".selected");
-    if (selected === null) {
-      return;
-    }
-    const selectedIdx = this.selectedIndex();
-    const newIdx = this.nextIndex();
-
-    selected.classList.remove("selected");
-    selected.remove();
-    this.items.splice(selectedIdx, 1);
-
-    if (newIdx === null) {
-      return;
-    }
-    const divs = this.shadowRoot.querySelector(".table").children;
-    const newSelected = divs[newIdx];
-    newSelected.classList.add("selected");
-    this.update();
-  }
-
-  update(message) {
-    for (const listener of this.updateListeners) {
-      listener();
-    }
-    const itemDivs = this.shadowRoot.querySelector(".table").children;
-    for (let i = 0; i < this.items.length; i++) {
-      itemDivs[i].innerText = this.itemNamer(this.items[i], i);
-    }
-    this.updatePreview();
-    if (this.getAttribute("itemInfo") !== "true") {
-      return;
-    }
-    const selected = this.selected();
-    if (selected === null) {
-      return;
-    }
-    const restriction = this.shadowRoot.querySelector(".restriction");
-    restriction.innerText = message || selected.restriction;
-
-    const info = this.shadowRoot.querySelector(".info");
-    info.innerText = selected.info;
-
-    const gold = this.shadowRoot.querySelector(".gold");
-    gold.innerText = `Gold: ${this.getGold()}`;
-  }
-
-  updatePreview() {
-    const canvas = this.shadowRoot.querySelector(".preview");
-    if (canvas === null) {
-      return;
-    }
-    const ctx = canvas.getContext("2d");
-
-    const item = this.selected();
-    if (item === null) {
-      return;
-    }
-    // draw background
-    ctx.drawImage(game.spritesheet, 247, 299, 20, 20, 0, 0, 20, 20);
-    ctx.drawImage(
-      game.spritesheet,
-      item.frame.x,
-      item.frame.y,
-      item.frame.w,
-      item.frame.h,
-      2,
-      2,
-      item.frame.w,
-      item.frame.h,
-    );
-  }
-}
-customElements.define("aldon-picker", AldonPicker);
-
-/**
- * A simple way to create html inline like html(`<div prop="foo">text</div>`)
- *
- * You might think we can use a <template> instead of a <div> here
- * but that doesn't work if you're trying to use custom elements.
- */
-function html(content) {
-  const el = document.createElement("div");
-  el.innerHTML = content.trim();
-  return el.firstChild;
+  Dialog.prototype[method] = function (...args) {
+    console.log("here");
+    console.log(this);
+    setTimeout(() => origional.apply(this, args), 50);
+  };
 }
 
-const dialogTemplate = document.createElement("template");
-dialogTemplate.innerHTML = `
-  <div class="window">
-    <div class="title">
-      <slot name="title"></slot>
-    </div>
-    <div class="body">
-      <slot name="body"></slot>
-    </div>
-  </div>
-`;
-
-class AldonDialog extends HTMLElement {
-  constructor() {
-    super();
-    const width = this.getAttribute("width");
-    const height = this.getAttribute("height");
-    console.log(`width: ${width}, height: ${height}`);
-    const scale = (Math.min(width, height) - 10) / 860;
-    const border = 3;
-    const top = height / 2 - (860 * scale) / 2 - border * scale;
-    const left = width / 2 - (860 * scale) / 2 - border * scale;
-    const style = document.createElement("style");
-
-    style.textContent = `
-      .window {
-        width: ${860}px;
-        height: ${860}px;
-        transform: scale(${scale}, ${scale});
-        top: ${top}px;
-        left: ${left}px;
-
-        transform-origin: top left;
-        font-family: PalmOS;
-        font-smooth: never;
-        font-size: 80px;
-        border-radius: 8px;
-        position: absolute;
-        border: ${border}px solid #2c008b;
-        vertical-align: top;
-        z-index: 2;
-        background-color: white;
-        overflow: hidden;
-        touch-action: pan-y;
-      }
-
-      .window .title {
-        font-family: PalmOSBold;
-        font-size: 80px;
-        background-color: #2c008b;
-        text-align: center;
-        color: white;
-        border: 5px solid #2c008b;
-        height: 10%;
-      }
-
-      .window .body {
-        font-smooth: never;
-        padding: 5px;
-        height: 90%;
-        touch-action: pan-y;
-      }
-
-      .button-container {
-        position: absolute;
-        bottom: 10px;
-        font-size: 100px;
-      }
-    `;
-    const shadowRoot = this.attachShadow({ mode: "open" });
-    shadowRoot.appendChild(style);
-    shadowRoot.appendChild(dialogTemplate.content.cloneNode(true));
-  }
-}
-customElements.define("aldon-dialog", AldonDialog);
-
-function saveName(save) {
-  const time = save.time ? new Date(save.time).toLocaleString() : "";
-  return `${save.name} ${time}`;
-}
-
-function aldonLoadGameDialog(game) {
-  const dialog = html(`
-    <aldon-dialog width="${game.width}" height="${game.height}">
-      <div slot="title">Game Menu</div>
-      <div slot="body">
-        <aldon-picker></aldon-picker>
-        <div class="button-container">
-          <aldon-dialog-done-button></aldon-dialog-done-button>
-          <button class="from-file">From File</button>
-          <button class="load">Load</button>
-        </div>
-      </div>
-    </aldon-dialog>
-  `);
-
-  const picker = dialog.querySelector("aldon-picker");
-  const store = game.getSaveStore();
-  let saves = store.quicksave ? [store.quicksave] : [];
-  saves = saves.concat(store.saves.filter((s) => s.data !== ""));
-
-  for (const save of saves) {
-    const name = saveName(save);
-    picker.addItem({ name });
-  }
-
-  const loadBtn = dialog.querySelector(".load");
-  loadBtn.onclick = () => {
-    const slot = picker.selectedIndex();
-    if (slot === -1) {
-      return;
-    }
-    const save = saves[slot];
-    game.loadSave(save);
-    dialog.remove();
-  };
-
-  const fromFileBtn = dialog.querySelector(".from-file");
-  fromFileBtn.onclick = () => {
-    const fileInput = html(`<input type="file" style="display: none">`);
-    fileInput.onchange = (event) => {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          const data = e.target.result;
-          console.log(data);
-          game.loadSave({ data });
-          dialog.remove();
-        };
-        reader.readAsText(file); // Read the file as a text string
-        const gameContainer = document.getElementById("game-container");
-        if (gameContainer.requestFullscreen) {
-          gameContainer.requestFullscreen();
-        }
-      }
-    };
-    document.body.appendChild(fileInput);
-    fileInput.click();
-    document.body.removeChild(fileInput);
-  };
-  return dialog;
-}
-
-function aldonDownloadGameDialog(game) {
-  const dialog = html(`
-    <aldon-dialog width="${game.width}" height="${game.height}">
-      <div slot="title">Game Menu</div>
-      <div slot="body">
-        <aldon-picker></aldon-picker>
-        <div class="button-container">
-          <aldon-dialog-done-button></aldon-dialog-done-button>
-          <button class="download">Download</button>
-        </div>
-      </div>
-    </aldon-dialog>
-  `);
-
-  const picker = dialog.querySelector("aldon-picker");
-  const store = game.getSaveStore();
-  let saves = store.quicksave ? [store.quicksave] : [];
-  saves = saves.concat(store.saves.filter((s) => s.data !== ""));
-
-  for (const save of saves) {
-    const name = saveName(save);
-    picker.addItem({ name });
-  }
-
-  const downloadBtn = dialog.querySelector(".download");
-  downloadBtn.onclick = () => {
-    const slot = picker.selectedIndex();
-    if (slot === -1) {
-      return;
-    }
-    const save = saves[slot];
-    const encoded = encodeURIComponent(save.data);
-    const link = html(`
-      <a 
-        style="display: none"
-        download="${save.name}"
-        href="data:text/plain;charset=utf-8,${encoded}"
-      >
-      </a>
-    `);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    dialog.remove();
-  };
-  return dialog;
-}
-
-function aldonSaveGameDialog(game) {
-  const dialog = html(`
-    <aldon-dialog width="${game.width}" height="${game.height}">
-      <div slot="title">Game Menu</div>
-      <div slot="body">
-        <aldon-picker></aldon-picker>
-        <div class="button-container">
-          <aldon-dialog-done-button></aldon-dialog-done-button>
-          <button class="save">Save</button>
-        </div>
-      </div>
-    </aldon-dialog>
-  `);
-
-  const picker = dialog.querySelector("aldon-picker");
-  const store = game.getSaveStore();
-  for (const save of store.saves) {
-    const name = saveName(save);
-    picker.addItem({ name });
-  }
-
-  const saveBtn = dialog.querySelector(".save");
-  saveBtn.onclick = () => {
-    const slot = picker.selectedIndex();
-    game.save(slot);
-    dialog.remove();
-  };
-  return dialog;
-}
-
-function aldonAboutDialog(game) {
-  const dialog = html(`
-    <aldon-dialog width="${game.width}" height="${game.height}">
-      <div slot="title">About Aldon's Crossing</div>
-      <div slot="body">
-        <div>Aldon's Crossing</div>
-        <div>A Constant Games Production.</div>
-        <div>c 1999-2002</div>
-        <div>Reimplemented by <a href="https://github.com/viruslobster">@viruslobster</a></div>
-        <div><img src="assets/qr.svg"></img></div>
-        <div class="button-container">
-          <button class="ok">OK</button>
-        </div>
-      </div>
-    </aldon-dialog>
-  `);
-
-  const okBtn = dialog.querySelector(".ok");
-  okBtn.onclick = () => dialog.remove();
-  return dialog;
-}
-
-function aldonNotImplementedDialog(game) {
-  const dialog = html(`
-    <aldon-dialog width="${game.width}" height="${game.height}">
-      <div slot="title">Not Implemented</div>
-      <div slot="body">
-        This feature is not implemented yet.
-        <div class="button-container">
-          <button class="damn">Damn</button>
-        </div>
-      </div>
-    </aldon-dialog>
-  `);
-
-  const damnBtn = dialog.querySelector(".damn");
-  damnBtn.onclick = () => dialog.remove();
-  return dialog;
-}
-
-function aldonDeleteGameDialog(game) {
-  const dialog = html(`
-    <aldon-dialog width="${game.width}" height="${game.height}">
-      <div slot="title">Game Menu</div>
-      <div slot="body">
-        <aldon-picker></aldon-picker>
-        <div class="button-container">
-          <aldon-dialog-done-button></aldon-dialog-done-button>
-          <button class="delete">Delete</button>
-        </div>
-      </div>
-    </aldon-dialog>
-  `);
-
-  const picker = dialog.querySelector("aldon-picker");
-  const store = game.getSaveStore();
-
-  let saves = store.quicksave ? [store.quicksave] : [];
-  saves = saves.concat(store.saves.filter((s) => s.data !== ""));
-
-  for (const save of saves) {
-    const name = saveName(save);
-    picker.addItem({ name });
-  }
-
-  const saveBtn = dialog.querySelector(".delete");
-  saveBtn.onclick = () => {
-    const i = picker.selectedIndex();
-    if (i === 0 && store.quicksave) {
-      game.deleteQuicksave();
-      return;
-    }
-    const save = saves[i];
-    game.deleteSave(save);
-    dialog.remove();
-  };
-  return dialog;
-}
-
-function aldonPickButtonDialog(button_idx, buttons, game) {
-  const dialog = html(`
-    <aldon-dialog width="${game.width}" height="${game.height}">
-      <div slot="title">Transaction</div>
-      <div slot="body">
-        Set Item or Ability.
-        <aldon-picker previewPic="true">
-        </aldon-picker>
-        <div class="button-container">
-          <button class="done">Done</button>
-          <button class="set">Set</button>
-        </div>
-      </div>
-    </aldon-dialog>
-  `);
-
-  const picker = dialog.querySelector("aldon-picker");
-  for (const button of buttons) {
-    picker.addItem(button);
-  }
-
-  const doneBtn = dialog.querySelector(".done");
-  doneBtn.onclick = () => {
-    game.untoggleMenuButton();
-    dialog.remove();
-    console.log("foo");
-  };
-
-  const setBtn = dialog.querySelector(".set");
-  setBtn.onclick = () => {
-    const idx = picker.selectedIndex();
-    const button = buttons[idx];
-    game.setButton(button_idx, button);
-    dialog.remove();
-    game.untoggleMenuButton();
-  };
-  return dialog;
-}
-
-class AldonDialogDoneButton extends HTMLElement {
-  constructor() {
-    super();
-  }
-
-  connectedCallback() {
-    this.innerHTML = `
-      <button class="done">Done</button>
-    `;
-
-    const btn = this.querySelector(".done");
-    btn.addEventListener("click", () => this.close());
-  }
-
-  close() {
-    const dialog = this.closest("aldon-dialog");
-    dialog.remove();
-  }
-}
-customElements.define("aldon-dialog-done-button", AldonDialogDoneButton);
-
-function aldonInventoryDialog(game, actorID, items) {
-  const dialog = html(`
-    <aldon-dialog width="${game.width}" height="${game.height}">
-      <div slot="title">Transaction</div>
-      <div slot="body">
-        <aldon-picker previewPic="true" itemInfo="true">
-        </aldon-picker>
-        <div class="button-container">
-          <aldon-dialog-done-button></aldon-dialog-done-button>
-          <button class="drop">Drop</button>
-          <button class="action"></button>
-          <button class="stats">Stats</button>
-        </div>
-      </div>
-    </aldon-dialog>
-  `);
-
-  const statsBtn = dialog.querySelector(".stats");
-  statsBtn.onclick = () => game.showStats(actorID);
-
-  const picker = dialog.querySelector("aldon-picker");
-  picker.getGold = () => game.game.gold(actorID);
-  picker.itemNamer = (item, idx) => {
-    const equiped = game.game.is_equiped(actorID, idx);
-    return equiped ? `${equiped} ${item.name}` : item.name;
-  };
-
-  for (let i = 0; i < items.length; i++) {
-    picker.addItem(items[i]);
-  }
-  const dropBtn = dialog.querySelector(".drop");
-  dropBtn.onclick = () => {
-    console.log("drop!");
-    const i = picker.selectedIndex();
-    const ok = game.game.drop(actorID, i);
-    if (ok) {
-      picker.removeSelected();
-
-      if (picker.items.length === 0) {
-        dialog.remove();
-        return;
-      }
-    }
-    const message = ok ? null : "Can't drop";
-    picker.update(message);
-    draw();
-  };
-  const equip = () => {
-    const i = picker.selectedIndex();
-    const ok = game.game.equip(actorID, i);
-    const message = ok ? null : "Can't equip";
-    picker.update(message);
-    draw();
-  };
-  const unequip = () => {
-    const i = picker.selectedIndex();
-    const ok = game.game.unequip(actorID, i);
-    const message = ok ? null : "Can't unequip";
-    picker.update(message);
-    draw();
-  };
-  const use = () => {
-    console.log("use!");
-    const i = picker.selectedIndex();
-    game.game.use_item(actorID, i);
-    picker.update("Used.");
-    const item = picker.items[i];
-    console.log(i);
-    console.log(item);
-    if (item.quantity === 0) {
-      picker.removeSelected();
-    }
-    if (picker.items.length === 0) {
-      dialog.remove();
-      return;
-    }
-    draw();
-  };
-  const draw = () => {
-    const i = picker.selectedIndex();
-    const actionBtn = dialog.querySelector(".action");
-    const item = picker.items[i];
-
-    if (item.usable) {
-      actionBtn.innerText = "Use";
-      actionBtn.onclick = use;
-      return;
-    }
-    const isEquiped = game.game.is_equiped(actorID, i);
-    const actionName = isEquiped ? "Unequip" : "Equip";
-    actionBtn.innerText = actionName;
-    actionBtn.onclick = isEquiped ? unequip : equip;
-  };
-  draw();
-  picker.addEventListener("click", draw);
-  return dialog;
-}
-
-function aldonPickupDialog(game, actorID, items) {
-  const dialog = html(`
-    <aldon-dialog width="${game.width}" height="${game.height}">
-      <div slot="title">Transaction</div>
-      <div slot="body">
-        <aldon-picker previewPic="true" itemInfo="true">
-        </aldon-picker>
-        <div class="button-container">
-          <aldon-dialog-done-button></aldon-dialog-done-button>
-          <button class="pickup">Pickup</button>
-        </div>
-      </div>
-    </aldon-dialog>
-  `);
-
-  const picker = dialog.querySelector("aldon-picker");
-  picker.getGold = () => game.game.gold(actorID);
-
-  for (const item of items) {
-    picker.addItem(item);
-  }
-
-  const pickupBtn = dialog.querySelector(".pickup");
-  pickupBtn.onclick = () => {
-    const i = picker.selectedIndex();
-    const ok = game.game.pickup(actorID, i);
-    if (!ok) {
-      picker.update("You can't pick this up.");
-      return;
-    }
-    picker.removeSelected();
-    if (picker.items.length === 0) {
-      dialog.remove();
-    }
-  };
-  return dialog;
-}
-
-function aldonBuySellDialog(game, actorID, items, kind) {
-  const kindStr = kind === "buy" ? "Buy" : "Sell";
-  const dialog = html(`
-    <aldon-dialog width="${game.width}" height="${game.height}">
-      <div slot="title">Transaction</div>
-      <div slot="body">
-        <aldon-picker previewPic="true" itemInfo="true">
-        </aldon-picker>
-        <div class="button-container">
-          <aldon-dialog-done-button></aldon-dialog-done-button>
-          <button class="buysell">${kindStr}</button>
-          <button class="unequip">Unequip</button>
-        </div>
-      </div>
-    </aldon-dialog>
-  `);
-
-  const picker = dialog.querySelector("aldon-picker");
-  picker.getGold = () => game.game.gold(actorID);
-  const cost = (item) => (kind === "buy" ? item.buy_cost : item.sell_cost);
-  picker.itemNamer = (item) => `(${cost(item)})${item.name}`;
-
-  for (const item of items) {
-    picker.addItem(item);
-  }
-
-  const unequipBtn = dialog.querySelector(".unequip");
-  unequipBtn.onclick = () => {
-    const i = picker.selectedIndex();
-    game.game.unequip(actorID, i);
-    picker.update("Unequiped");
-  };
-  picker.updateListeners.push(() => {
-    const i = picker.selectedIndex();
-    unequipBtn.style.visibility = game.game.is_equiped(actorID, i)
-      ? "visible"
-      : "hidden";
-  });
-  picker.update();
-
-  const buysellBtn = dialog.querySelector(".buysell");
-  const buy = () => {
-    const i = picker.selectedIndex();
-    const ok = game.game.buy(actorID, i);
-    if (!ok) {
-      picker.update("You can't pick this up.");
-      return;
-    }
-    picker.update("Sold!");
-  };
-  const sell = () => {
-    const i = picker.selectedIndex();
-    const equiped = game.game.is_equiped(actorID, i);
-    if (equiped) {
-      picker.update("Item is equiped.");
-      return;
-    }
-    const ok = game.game.sell(actorID, i);
-    if (!ok) {
-      picker.update("You can't sell this.");
-      return;
-    }
-    picker.removeSelected();
-    if (picker.items.length === 0) {
-      dialog.remove();
-      return;
-    }
-    picker.update("Sold!");
-  };
-  buysellBtn.onclick = kind === "buy" ? buy : sell;
-  return dialog;
-}
-
-function aldonReportBugDialog(game) {
-  const dialog = html(`
-    <aldon-dialog width="${game.width}" height="${game.height}">
-      <div slot="title">Report Bug</div>
-      <div slot="body">
-        Click <a class="download">here</a> to download crash data. Send this to me along with a screenshot.
-        <div class="button-container">
-          <button class="ok">Ok</button>
-        </div>
-      </div>
-    </aldon-dialog>
-  `);
-
-  const okBtn = dialog.querySelector(".ok");
-  okBtn.onclick = () => dialog.remove();
-
-  const downloadLink = dialog.querySelector(".download");
-  const logs = game.getLogs();
-  downloadLink.setAttribute(
-    "href",
-    "data:text/plain;charset=utf-8," + encodeURIComponent(logs),
-  );
-  downloadLink.setAttribute("download", `aldon_debug_logs_${Date.now()}`);
-
-  return dialog;
-}
-
-function aldonPreferencesDialog(game) {
-  const scale = Number(localStorage.getItem("aldon-game-scale")) || 2;
-  const dialog = html(`
-    <aldon-dialog width="${game.width}" height="${game.height}">
-      <div slot="title">Preferences</div>
-      <div slot="body">
-        <div>
-          <button class="scale-down">-</button>
-          <button class="scale-up">+</button>
-          Scale: <span class="scale-label">${scale}</span>
-        </div>
-        <div class="button-container">
-          <button class="ok">Ok</button>
-        </div>
-      </div>
-    </aldon-dialog>
-  `);
-
-  const scaleLabel = dialog.querySelector(".scale-label");
-
-  const okBtn = dialog.querySelector(".ok");
-  okBtn.onclick = () => dialog.remove();
-
-  const scaleDown = dialog.querySelector(".scale-down");
-  scaleDown.onclick = () => {
-    let scale = game.getScale();
-    scale = game.setScale(scale - 1);
-    scaleLabel.innerText = `${scale}`;
-  };
-  const scaleUp = dialog.querySelector(".scale-up");
-  scaleUp.onclick = () => {
-    let scale = game.getScale();
-    scale = game.setScale(scale + 1);
-    scaleLabel.innerText = `${scale}`;
-  };
-  return dialog;
-}
-
-function aldonQuestLogDialog(game) {
-  const dialog = html(`
-    <aldon-dialog width="${game.width}" height="${game.height}">
-      <div slot="title">Log</div>
-      <div slot="body">
-        <aldon-picker> </aldon-picker>
-        <div class="button-container">
-          <aldon-dialog-done-button></aldon-dialog-done-button>
-        </div>
-      </div>
-    </aldon-dialog>
-  `);
-  const picker = dialog.querySelector("aldon-picker");
-
-  for (const quest of game.quests()) {
-    picker.addItem(quest);
-  }
-  return dialog;
-}
-
-function aldonSpellBookDialog(game, spells) {
-  const dialog = html(`
-    <aldon-dialog width="${game.width}" height="${game.height}">
-      <div slot="title">Transaction</div>
-      <div slot="body">
-        <aldon-picker previewPic="true" itemInfo="true">
-        </aldon-picker>
-        <div class="button-container">
-          <aldon-dialog-done-button></aldon-dialog-done-button>
-          <button class="set">Set</button>
-        </div>
-      </div>
-    </aldon-dialog>
-  `);
-
-  const picker = dialog.querySelector("aldon-picker");
-
-  for (const spell of spells) {
-    picker.addItem({
-      name: spell.name,
-      restriction: "Set Item or Ability.",
-      info: `Level=${spell.level}, Mana Cost=${spell.cost}`,
-      frame: spell.frame,
-      id: spell.id,
-    });
-  }
-
-  const setBtn = dialog.querySelector(".set");
-  setBtn.onclick = () => {
-    dialog.remove();
-    const spell = picker.selected();
-    console.log(spell);
-    game.game.set_spellbook_spell(spell.id);
-  };
-  return dialog;
-}
-
-function aldonMiniMapDialog(game) {
-  const num_tiles = 24;
-  const tile_size_px = 5;
-  const scale = 5;
-  const size = num_tiles * tile_size_px * scale;
-  const dialog = html(`
-    <aldon-dialog width="${game.width}" height="${game.height}">
-      <div slot="title">MiniMap</div>
-      <div slot="body">
-        <canvas 
-          style="position: absolute; left: 50%; transform: translate(-50%, 0%)" width="${size}" height="${size}" 
-          class="mini-map">
-        </canvas>
-        <div class="button-container">
-          <aldon-dialog-done-button></aldon-dialog-done-button>
-        </div>
-      </div>
-    </aldon-dialog>
-  `);
-  const minimap = dialog.querySelector(".mini-map");
-  game.game.draw_minimap(minimap, scale);
-  return dialog;
-}
-
-export {
-  Dialog,
-  aldonSaveGameDialog,
-  aldonLoadGameDialog,
-  aldonDeleteGameDialog,
-  aldonAboutDialog,
-  aldonNotImplementedDialog,
-  aldonPickButtonDialog,
-  aldonInventoryDialog,
-  aldonPickupDialog,
-  aldonBuySellDialog,
-  aldonReportBugDialog,
-  aldonPreferencesDialog,
-  aldonDownloadGameDialog,
-  aldonQuestLogDialog,
-  aldonSpellBookDialog,
-  aldonMiniMapDialog,
-};
+export { Dialog };

@@ -18,6 +18,7 @@
 - make joining guilds and leveling up display the correct message
 - make train if ready scale (100 * level)
 - animate dead permanent half health
+- draw after death
 // blessed ring => +1 luck
 // ring of battle => +2 str
 // holy ring => +1 int

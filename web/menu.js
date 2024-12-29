@@ -1,16 +1,4 @@
 // The drop down menu at the top of the game. Made to resemble system menu on old Palm devices.
-import {
-  aldonSaveGameDialog,
-  aldonLoadGameDialog,
-  aldonDeleteGameDialog,
-  aldonAboutDialog,
-  aldonMiniMapDialog,
-  aldonNotImplementedDialog,
-  aldonReportBugDialog,
-  aldonPreferencesDialog,
-  aldonDownloadGameDialog,
-  aldonQuestLogDialog,
-} from "./dialog.js";
 
 /**
  * You might think we can use a <template> instead of a <div> here
@@ -26,6 +14,7 @@ class AldonMenu extends HTMLElement {
   constructor() {
     super();
     this.game = null;
+    this.dialog = null;
     const style = document.createElement("style");
 
     style.textContent = `
@@ -141,49 +130,21 @@ class AldonMenu extends HTMLElement {
     root
       .querySelector("#quick-save")
       .addEventListener("click", () => this.game.quicksave());
-    root.querySelector("#load").onclick = () => {
-      let dialog = aldonLoadGameDialog(this.game);
-      document.getElementById("game").appendChild(dialog);
-    };
-    root.querySelector("#save").onclick = () => {
-      let dialog = aldonSaveGameDialog(this.game);
-      document.getElementById("game").appendChild(dialog);
-    };
-    root.querySelector("#delete").onclick = () => {
-      let dialog = aldonDeleteGameDialog(this.game);
-      document.getElementById("game").appendChild(dialog);
-    };
-    root.querySelector("#download").onclick = () => {
-      let dialog = aldonDownloadGameDialog(this.game);
-      document.getElementById("game").appendChild(dialog);
-    };
-    root.querySelector("#new").onclick = () => {
-      this.game.dialog.createCharacter();
-    };
-    root.querySelector("#quest-log").onclick = () => {
-      let dialog = aldonQuestLogDialog(this.game);
-      document.getElementById("game").appendChild(dialog);
-    };
-    root.querySelector("#mini-map").onclick = () => {
-      let dialog = aldonMiniMapDialog(this.game);
-      document.getElementById("game").appendChild(dialog);
-    };
-    root.querySelector("#message-log").onclick = () => {
-      let dialog = aldonNotImplementedDialog(this.game);
-      document.getElementById("game").appendChild(dialog);
-    };
-    root.querySelector("#preferences").onclick = () => {
-      let dialog = aldonPreferencesDialog(this.game);
-      document.getElementById("game").appendChild(dialog);
-    };
-    root.querySelector("#report-bug").onclick = () => {
-      let dialog = aldonReportBugDialog(this.game);
-      document.getElementById("game").appendChild(dialog);
-    };
-    root.querySelector("#about").onclick = () => {
-      let dialog = aldonAboutDialog(this.game);
-      document.getElementById("game").appendChild(dialog);
-    };
+
+    root.querySelector("#load").onclick = () => this.dialog.loadGame();
+    root.querySelector("#save").onclick = () => this.dialog.saveGame();
+    root.querySelector("#delete").onclick = () => this.dialog.deleteGame();
+    root.querySelector("#download").onclick = () => this.dialog.downloadGame();
+    root.querySelector("#new").onclick = () => this.dialog.createCharacter();
+    root.querySelector("#quest-log").onclick = () => this.dialog.questLog();
+    root.querySelector("#mini-map").onclick = () => this.dialog.minimap();
+    root.querySelector("#message-log").onclick = () =>
+      this.dialog.notImplemented();
+    root.querySelector("#preferences").onclick = () =>
+      this.dialog.preferences();
+    root.querySelector("#report-bug").onclick = () => this.dialog.reportBug();
+    root.querySelector("#about").onclick = () => this.dialog.about();
+
     const shadowRoot = this.attachShadow({ mode: "open" });
     shadowRoot.appendChild(style);
     shadowRoot.appendChild(root);

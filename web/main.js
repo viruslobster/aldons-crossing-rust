@@ -1,14 +1,7 @@
 // Setup for the game
 import init, { AldonHtmlCanvasGame, aldon_debug_logs } from "./pkg/aldonlib.js";
 import "./menu.js";
-import {
-  Dialog,
-  aldonPickButtonDialog,
-  aldonInventoryDialog,
-  aldonPickupDialog,
-  aldonBuySellDialog,
-  aldonSpellBookDialog,
-} from "./dialog.js";
+import { Dialog } from "./dialog.js";
 
 let game = null;
 let unrecoverableError = null;
@@ -28,6 +21,7 @@ class Game {
     this.height = 430 * 2;
     this.dialog = new Dialog(
       root,
+      canvas,
       spritesheet,
       this.width,
       this.height,
@@ -37,62 +31,10 @@ class Game {
   }
 
   setup() {
-    const tellMessage = this.dialog.tellMessage.bind(this.dialog);
-
-    // so this doesn't run within game.update and borrow game twice
-    const executeTrade = (actor_id, items, buttons) =>
-      setTimeout(
-        // () => this.dialog.transaction(actor_id, items, buttons),
-        () => {
-          const dialog = aldonInventoryDialog(this, actor_id, items);
-          let div = document.getElementById("game");
-          div.appendChild(dialog);
-        },
-        100,
-      );
-
-    const showStats = (stats) => this.dialog.stats(stats);
-    const pickButton = (button_idx, buttons) => {
-      const dialog = aldonPickButtonDialog(button_idx, buttons, game);
-      let div = document.getElementById("game");
-      div.appendChild(dialog);
-    };
-    const pickup = (actorID, items) => {
-      setTimeout(() => {
-        const dialog = aldonPickupDialog(this, actorID, items);
-        let div = document.getElementById("game");
-        div.appendChild(dialog);
-      }, 100);
-    };
-    const buysell = (actorID, items, kind) => {
-      setTimeout(() => {
-        const dialog = aldonBuySellDialog(this, actorID, items, kind);
-        let div = document.getElementById("game");
-        div.appendChild(dialog);
-      }, 100);
-    };
-    const spellbook = (spells) => {
-      setTimeout(() => {
-        const dialog = aldonSpellBookDialog(this, spells);
-        document.getElementById("game").appendChild(dialog);
-      }, 100);
-    };
-
-    this.game = new AldonHtmlCanvasGame(
-      canvas,
-      spritesheet,
-      tellMessage,
-      executeTrade,
-      pickup,
-      buysell,
-      showStats,
-      pickButton,
-      spellbook,
-      //this.dialog.stats.bind(this.dialog),
-    );
+    this.game = new AldonHtmlCanvasGame(this.canvas, spritesheet, this.dialog);
     const scale = this.getScale();
     this.setScale(scale);
-    this.dialog.setGame(this.game);
+    this.dialog.setGame(this);
 
     this.root.onmousedown = (e) => {
       this.mouseX = e.offsetX;
@@ -107,7 +49,6 @@ class Game {
       this.stopInputHandling();
     };
     this.root.ontouchstart = (e) => {
-      const menu = document.getElementsByClassName("menu-container")[0];
       if (e.target.id !== "canvas") {
         return;
       }
@@ -150,29 +91,12 @@ class Game {
     this.is_setup = true;
   }
 
-  saveLoad() {
-    this.game.save_load();
-  }
-
   update(now) {
     this.game.update(now);
     this.game.render(now);
   }
 
-  loadNextMap() {
-    console.clear();
-    this.map_id++;
-    console.log(`load map ${this.map_id}`);
-    this.game.load_map(this.map_id);
-  }
-
-  loadMap(id) {
-    this.map_id = id;
-    console.log(`load map ${id}`);
-    this.game.load_map(id);
-  }
-
-  startInputHandling(e) {
+  startInputHandling() {
     if (this.dialog.isOpen()) {
       return;
     }
@@ -190,17 +114,12 @@ class Game {
       if (!this.handlingInput) {
         return;
       }
-      const x = this.mouseX / this.getScale();
-      const y = this.mouseY / this.getScale();
       this.game.input_down(
         this.mouseX / this.getScale(),
         this.mouseY / this.getScale(),
       );
       setTimeout(input_handler, 250);
     };
-    // On android there is some noise when a touch first happens. Wait a
-    // little to avoid using this data.
-    //setTimeout(input_handler, 1000);
     input_handler();
   }
 
@@ -346,7 +265,6 @@ class Game {
     const menu = document.querySelector("#aldon-menu-container");
     let menuHeight = menu.offsetHeight;
     this.height = Math.min(430 * scale, window.innerHeight - menuHeight);
-    //menu.style.width = `${this.width - 12}px`;
 
     const canvas = document.getElementById("canvas");
     canvas.width = this.width;
@@ -432,6 +350,7 @@ async function createGame() {
   await init();
   await document.fonts.ready;
   game.setup();
+  menu.dialog = game.dialog;
   window.addEventListener("resize", async () => {
     game.resize();
   });

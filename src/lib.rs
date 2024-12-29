@@ -54,30 +54,59 @@ pub struct AldonHtmlCanvasGame {
 }
 
 #[wasm_bindgen]
+extern "C" {
+    pub type AldonDialog;
+
+    #[wasm_bindgen(method)]
+    fn tell(
+        this: &AldonDialog,
+        title: &str,
+        portrait_x: f64,
+        portrait_y: f64,
+        portrait_w: f64,
+        portrait_h: f64,
+        msg: &str,
+        choiceA: Option<&str>,
+        choiceB: Option<&str>,
+        choiceC: Option<&str>,
+        fromActor: u16,
+    );
+
+    #[wasm_bindgen(method)]
+    fn inventory(
+        this: &AldonDialog,
+        body: BodyWrapper,
+        items: Vec<TransactionItem>,
+        buttons: Vec<String>,
+    );
+
+    #[wasm_bindgen(method)]
+    fn pickup(this: &AldonDialog, body: BodyWrapper, items: Vec<TransactionItem>);
+
+    #[wasm_bindgen(method)]
+    fn buySell(this: &AldonDialog, body: BodyWrapper, items: Vec<TransactionItem>, kind: &str);
+
+    #[wasm_bindgen(method)]
+    fn pickButton(this: &AldonDialog, button_idx: usize, buttons: Vec<Button>);
+
+    #[wasm_bindgen(method)]
+    fn stats(this: &AldonDialog, stats: PlayerStats);
+
+    #[wasm_bindgen(method)]
+    fn spellbook(this: &AldonDialog, spells: Vec<Spell>);
+}
+
+#[wasm_bindgen]
 impl AldonHtmlCanvasGame {
     #[wasm_bindgen(constructor)]
     pub fn new(
         canvas: &HtmlCanvasElement,
         spritesheet: &HtmlImageElement,
-        tell_msg_impl: js_sys::Function,
-        execute_trade_impl: js_sys::Function,
-        pickup_impl: js_sys::Function,
-        buy_sell_impl: js_sys::Function,
-        stats_impl: js_sys::Function,
-        pick_button_impl: js_sys::Function,
-        spellbook_impl: js_sys::Function,
+        aldon_dialog: AldonDialog,
     ) -> Self {
         panic::set_hook(Box::new(panic_hook));
 
-        let dialog = Rc::new(HtmlDialog::new(
-            tell_msg_impl,
-            execute_trade_impl,
-            pickup_impl,
-            buy_sell_impl,
-            stats_impl,
-            pick_button_impl,
-            spellbook_impl,
-        ));
+        let dialog = Rc::new(HtmlDialog::new(aldon_dialog));
         Self {
             canvas: canvas.clone(),
             stage_canvas: new_canvas(384 * 4, 384 * 4).unwrap(),
@@ -319,36 +348,16 @@ impl AldonHtmlCanvasGame {
     }
 }
 
-struct HtmlDialog {
-    tell_msg_impl: js_sys::Function,
-    execute_trade_impl: js_sys::Function,
-    pickup_impl: js_sys::Function,
-    buy_sell_impl: js_sys::Function,
-    stats_impl: js_sys::Function,
-    pick_button_impl: js_sys::Function,
-    spellbook_impl: js_sys::Function,
+pub struct HtmlDialog {
+    dialog: AldonDialog,
     transaction: RefCell<Vec<Rc<Body>>>,
     transaction_type: Cell<Option<TransactionType>>,
 }
 
 impl HtmlDialog {
-    fn new(
-        tell_msg_impl: js_sys::Function,
-        execute_trade_impl: js_sys::Function,
-        pickup_impl: js_sys::Function,
-        buy_sell_impl: js_sys::Function,
-        stats_impl: js_sys::Function,
-        pick_button_impl: js_sys::Function,
-        spellbook_impl: js_sys::Function,
-    ) -> Self {
+    fn new(dialog: AldonDialog) -> Self {
         Self {
-            tell_msg_impl,
-            execute_trade_impl,
-            stats_impl,
-            pickup_impl,
-            buy_sell_impl,
-            pick_button_impl,
-            spellbook_impl,
+            dialog,
             transaction: RefCell::new(Vec::new()),
             transaction_type: Cell::new(None),
         }
@@ -358,24 +367,19 @@ impl HtmlDialog {
 impl Dialog for HtmlDialog {
     fn tell_message(&self, title: &str, portrait_id: u16, msg_id: u16, from_actor: u16) {
         let msg = &WORLD.messages[&msg_id.to_string()];
-        let this = JsValue::null();
-        let choice_a = choice_to_js_value(&msg.choice_a);
-        let choice_b = choice_to_js_value(&msg.choice_b);
-        let choice_c = choice_to_js_value(&msg.choice_c);
         let frame = &SPRITES.frames[&portrait_id.to_string()].frame;
-
-        let args = js_sys::Array::new();
-        args.push(&JsValue::from(title));
-        args.push(&JsValue::from(frame.x));
-        args.push(&JsValue::from(frame.y));
-        args.push(&JsValue::from(frame.w));
-        args.push(&JsValue::from(frame.h));
-        args.push(&JsValue::from(&msg.value));
-        args.push(&choice_a);
-        args.push(&choice_b);
-        args.push(&choice_c);
-        args.push(&JsValue::from(from_actor));
-        self.tell_msg_impl.apply(&this, &args).unwrap();
+        self.dialog.tell(
+            title,
+            frame.x,
+            frame.y,
+            frame.w,
+            frame.h,
+            &msg.value,
+            msg.choice_a.as_deref(),
+            msg.choice_b.as_deref(),
+            msg.choice_c.as_deref(),
+            from_actor,
+        );
     }
 
     fn execute_trade(&self, kind: TransactionType, body: Rc<Body>, new_transaction: Vec<Rc<Body>>) {
@@ -383,81 +387,29 @@ impl Dialog for HtmlDialog {
         *transaction = new_transaction;
         self.transaction_type.set(Some(kind));
 
-        js::log("Executing trade");
-        for (i, body) in transaction.iter().enumerate() {
-            js::log(&format!("[{}] {}", i, body.name));
-        }
+        let items = transaction
+            .iter()
+            .enumerate()
+            .map(|(i, item)| TransactionItem::new(i, item.clone(), None /* equiped */))
+            .collect();
 
-        // TODO: cover special cases
-        // SVC_gldr(18) has no prop // guild reset, journyman sprite
-        // SVC_lvl(13) has no prop  // level up, sprite 2208
-        // SVC_rest(90) has no prop // rest at the inn, bed sprite
-        // SVC_gldt(15) has no prop // thief
-        // SVC_gldp(16) has no prop // priest
-        // SVC_gldf(14) has no prop // fighter
-        // SVC_gldm(17) has no prop // mage
-
-        let items_arg = js_sys::Array::new();
-        for (i, body) in transaction.iter().enumerate() {
-            let item = TransactionItem::new(i, body.clone(), None /* equiped */);
-            items_arg.push(&JsValue::from(item));
-        }
-
-        let buttons_arg = js_sys::Array::new();
-        buttons_arg.push(&JsValue::from("Done"));
-
-        match self.transaction_type.get() {
-            None => panic!("Transaction type not set"),
-            Some(TransactionType::Buy) => {
-                buttons_arg.push(&JsValue::from("Buy"));
-            }
-            Some(TransactionType::Sell) => {
-                buttons_arg.push(&JsValue::from("Sell"));
-                buttons_arg.push(&JsValue::from("Unequip"));
-            }
-            Some(TransactionType::PickUp) => {
-                buttons_arg.push(&JsValue::from("Pick Up"));
-            }
-            Some(TransactionType::Inventory) => {
-                buttons_arg.push(&JsValue::from("Drop"));
-                buttons_arg.push(&JsValue::from("Equip"));
-                buttons_arg.push(&JsValue::from("Stats"));
-            }
-        }
-
-        let this = JsValue::null();
-        self.execute_trade_impl
-            .call3(
-                &this,
-                &JsValue::from(BodyWrapper(body)),
-                &items_arg,
-                &buttons_arg,
-            )
-            .unwrap();
+        self.dialog.inventory(
+            BodyWrapper(body),
+            items,
+            vec!["Drop".to_string(), "Equip".to_string(), "Stats".to_string()],
+        );
     }
 
     fn pickup(&self, body: Rc<Body>, new_transaction: Vec<Rc<Body>>) {
         let mut transaction = self.transaction.borrow_mut();
         *transaction = new_transaction;
+        let items = transaction
+            .iter()
+            .enumerate()
+            .map(|(i, item)| TransactionItem::new(i, item.clone(), None /* equiped */))
+            .collect();
 
-        js::log("Pickup");
-        for (i, body) in transaction.iter().enumerate() {
-            js::log(&format!("[{}] {}", i, body.name));
-        }
-
-        let items_arg = js_sys::Array::new();
-        for (i, body) in transaction.iter().enumerate() {
-            let item = TransactionItem::new(i, body.clone(), None /* equiped */);
-            items_arg.push(&JsValue::from(item));
-        }
-
-        let buttons_arg = js_sys::Array::new();
-        buttons_arg.push(&JsValue::from("Done"));
-
-        let this = JsValue::null();
-        self.pickup_impl
-            .call2(&this, &JsValue::from(BodyWrapper(body)), &items_arg)
-            .unwrap();
+        self.dialog.pickup(BodyWrapper(body), items);
     }
 
     fn buy_sell(&self, body: Rc<Body>, items: Vec<Rc<Body>>, kind: TransactionType) {
@@ -466,46 +418,34 @@ impl Dialog for HtmlDialog {
         let mut transaction = self.transaction.borrow_mut();
         *transaction = items;
 
-        let items_arg = js_sys::Array::new();
-        for (i, body) in transaction.iter().enumerate() {
-            let item = TransactionItem::new(i, body.clone(), None /* equiped */);
-            items_arg.push(&JsValue::from(item));
-        }
-
         let kind_str = match kind {
-            TransactionType::Buy => JsValue::from("buy"),
-            TransactionType::Sell => JsValue::from("sell"),
+            TransactionType::Buy => "buy",
+            TransactionType::Sell => "sell",
 
             // TODO: make panic not possible
             _ => panic!("Unsupported transaction type in buy_sell"),
         };
+        let items = transaction
+            .iter()
+            .enumerate()
+            .map(|(i, item)| TransactionItem::new(i, item.clone(), None /* equiped */))
+            .collect();
 
-        let this = JsValue::null();
-        self.buy_sell_impl
-            .call3(
-                &this,
-                &JsValue::from(BodyWrapper(body)),
-                &items_arg,
-                &kind_str,
-            )
-            .unwrap();
+        self.dialog.buySell(BodyWrapper(body), items, kind_str);
     }
 
     fn stats(&self, stats: &stats::PlayerStats) {
-        self.stats_impl
-            .call1(&JsValue::null(), &JsValue::from(PlayerStats(stats.clone())))
-            .unwrap();
+        self.dialog.stats(PlayerStats(stats.clone()));
     }
 
     fn pick_button(&self, button_idx: usize, buttons: Vec<buttons::Button>) {
-        let args = js_sys::Array::new();
-        for button in buttons.iter() {
-            let btn = Button(*button);
-            args.push(&JsValue::from(btn));
-        }
-        self.pick_button_impl
-            .call2(&JsValue::null(), &JsValue::from(button_idx), &args)
-            .unwrap();
+        let js_buttons = buttons.iter().map(|b| Button(*b)).collect();
+        self.dialog.pickButton(button_idx, js_buttons);
+    }
+
+    fn spellbook(&self, spells: &[u16]) {
+        let js_spells = spells.iter().map(|s| Spell(*s)).collect();
+        self.dialog.spellbook(js_spells);
     }
 
     fn get_transaction(&self) -> Vec<Rc<Body>> {
@@ -515,18 +455,6 @@ impl Dialog for HtmlDialog {
     fn remove_item(&self, index: usize) -> Rc<Body> {
         let mut transaction = self.transaction.borrow_mut();
         transaction.remove(index)
-    }
-
-    fn spellbook(&self, spells: &[u16]) {
-        let js_spells = js_sys::Array::new();
-        for spell_id in spells {
-            let js_spell = Spell(*spell_id);
-            js_spells.push(&JsValue::from(js_spell));
-        }
-
-        self.spellbook_impl
-            .call1(&JsValue::null(), &js_spells)
-            .unwrap();
     }
 }
 
