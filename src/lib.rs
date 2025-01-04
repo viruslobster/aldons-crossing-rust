@@ -492,14 +492,6 @@ fn panic_hook(info: &panic::PanicInfo) {
     logs.push(msg);
 }
 
-fn choice_to_js_value(choice: &Option<String>) -> JsValue {
-    if let Some(choice) = choice {
-        JsValue::from(choice)
-    } else {
-        JsValue::null()
-    }
-}
-
 #[wasm_bindgen]
 pub struct TransactionItem {
     index: usize,

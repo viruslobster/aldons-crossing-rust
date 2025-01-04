@@ -15,8 +15,9 @@ class AldonMenu extends HTMLElement {
     super();
     this.game = null;
     this.dialog = null;
+    const fontUrl = new URL("/assets/palmos.ttf", import.meta.url);
+    const fontBoldUrl = new URL("/assets/palmos.ttf", import.meta.url);
     const style = document.createElement("style");
-
     style.textContent = `
       .menu-container {
         background-color: white;

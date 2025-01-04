@@ -32,7 +32,7 @@ thrift = "0.17.0"
 
 [dependencies.web-sys]
 version = "0.3.61"
-features = ["Document", "Window", "Element", "HtmlCanvasElement", "CanvasRenderingContext2d", "HtmlImageElement", "TextMetrics", "OffscreenCanvas", "OffscreenCanvasRenderingContext2d", "ImageBitmap", "DomMatrix", "ContextAttributes2d", "CssStyleDeclaration"]
+features = ["Document", "Window", "Element", "HtmlCanvasElement", "CanvasRenderingContext2d", "HtmlImageElement", "TextMetrics", "OffscreenCanvas", "OffscreenCanvasRenderingContext2d", "ImageBitmap", "DomMatrix", "ContextAttributes2d", "CssStyleDeclaration", "Storage"]
 
 [dependencies.getrandom]
 version = "0.2"

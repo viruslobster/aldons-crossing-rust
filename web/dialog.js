@@ -36,7 +36,7 @@ const portraits = [
   { id: 715, x: 137, y: 159 },
 ];
 
-const userPortraits = [
+const USER_PORTRAITS = [
   { id: 600, x: 235, y: 91 },
   { id: 601, x: 269, y: 91 },
   { id: 602, x: 303, y: 91 },
@@ -54,6 +54,63 @@ const userPortraits = [
   { id: 656, x: 103, y: 125 },
   { id: 657, x: 137, y: 125 },
 ];
+
+const RACES = ["human", "dwarf", "elf"];
+
+const DEFAULT_STATS = {
+  human: {
+    str: 8,
+    dex: 8,
+    vit: 8,
+    int: 8,
+    wis: 8,
+    luck: 8,
+  },
+  dwarf: {
+    str: 10,
+    dex: 7,
+    vit: 9,
+    int: 7,
+    wis: 8,
+    luck: 8,
+  },
+  elf: {
+    str: 7,
+    dex: 10,
+    vit: 7,
+    int: 8,
+    wis: 8,
+    luck: 8,
+  },
+};
+
+const STAT_BOUNDS = {
+  human: {
+    str: [3, 16],
+    dex: [3, 16],
+    vit: [3, 16],
+    int: [3, 16],
+    wis: [3, 16],
+    luck: [3, 18],
+  },
+  dwarf: {
+    str: [5, 17],
+    dex: [2, 15],
+    vit: [5, 17],
+    int: [2, 15],
+    wis: [3, 16],
+    luck: [3, 16],
+  },
+  elf: {
+    str: [2, 15],
+    dex: [5, 18],
+    vit: [2, 15],
+    int: [3, 16],
+    wis: [3, 16],
+    luck: [3, 16],
+  },
+};
+
 
 class AldonPicker extends HTMLElement {
   constructor() {
@@ -140,7 +197,7 @@ class AldonPicker extends HTMLElement {
     shadowRoot.appendChild(root);
   }
 
-  connectedCallback() {}
+  connectedCallback() { }
 
   /**
    * item: { name: string }
@@ -292,16 +349,15 @@ class AldonDialog extends HTMLElement {
 
     style.textContent = `
       .window {
-        width: ${860}px;
-        height: ${860}px;
+        width: 860px;
+        height: 860px;
         transform: scale(${scale}, ${scale});
         top: ${top}px;
         left: ${left}px;
-
         transform-origin: top left;
         font-family: PalmOS;
         font-smooth: never;
-        font-size: 80px;
+        font-size: 90px;
         border-radius: 8px;
         position: absolute;
         border: ${border}px solid #2c008b;
@@ -310,11 +366,12 @@ class AldonDialog extends HTMLElement {
         background-color: white;
         overflow: hidden;
         touch-action: pan-y;
+        display: flex;
+        flex-direction: column;
       }
 
       .window .title {
         font-family: PalmOSBold;
-        font-size: 80px;
         background-color: #2c008b;
         text-align: center;
         color: white;
@@ -323,16 +380,12 @@ class AldonDialog extends HTMLElement {
       }
 
       .window .body {
+        font-family: PalmOS;
         font-smooth: never;
         padding: 5px;
-        height: 90%;
         touch-action: pan-y;
-      }
-
-      .button-container {
-        position: absolute;
-        bottom: 10px;
-        font-size: 100px;
+        height: 90%;
+        position: relative;
       }
     `;
     const shadowRoot = this.attachShadow({ mode: "open" });
@@ -363,37 +416,186 @@ class AldonDialogDoneButton extends HTMLElement {
 }
 customElements.define("aldon-dialog-done-button", AldonDialogDoneButton);
 
+class CreateCharacterDialog extends HTMLElement {
+  constructor() {
+    super();
+    this.game = null;
+    this.playerName = "";
+    this.picIdx = 0;
+    this.raceIdx = 0;
+    this.stats = { ...DEFAULT_STATS[this.race] };
+    this.points = 12;
+  }
+
+  get race() {
+    return RACES[this.raceIdx];
+  }
+
+  connectedCallback() {
+    this.render();
+  }
+
+  render() {
+    const width = this.getAttribute("width");
+    const height = this.getAttribute("height");
+    const raceName = capitalize(this.race);
+    const scale = 5;
+    this.innerHTML = `
+      <aldon-dialog width="${width}" height="${height}">
+        <div slot="title">Character Creation</div>
+        <div slot="body">
+          <input 
+            style="width: 45%"
+            class="player-name" 
+            maxlength="14" 
+            type="text" 
+            placehold="Enter Name" 
+            value="${this.playerName}"
+          >
+          <canvas class="picture" width="${32 * scale}" height="${32 * scale}"></canvas>
+          <button class="prev-pic"><</button>
+          <button class="next-pic">></button>
+          <div class="race-container">
+            <button class="next-race">></button>
+            <div>Race:${raceName}</div>
+          </div>
+          <div>
+            ${this.statRow("str")}
+            ${this.statRow("dex")}
+            ${this.statRow("vit")}
+            ${this.statRow("int")}
+            ${this.statRow("wis")}
+            ${this.statRow("luck")}
+          </div>
+          <div>Points:${this.points}</div>
+          <div class="button-container">
+            <button class="done">Done</button>
+          </div>
+        </div>
+      </aldon-dialog>
+    `;
+    const nextRaceBtn = this.querySelector(".next-race")
+    nextRaceBtn.onclick = () => this.nextRace();
+
+    for (const row of this.querySelectorAll(".stat-row")) {
+      const kind = row.getAttribute("kind");
+      row.querySelector(".decrement").onclick = () => this.decrementStat(kind);
+      row.querySelector(".increment").onclick = () => this.incrementStat(kind);
+    }
+    const nameInput = this.querySelector(".player-name");
+    nameInput.oninput = () => this.playerName = nameInput.value;
+
+    const prevPic = this.querySelector(".prev-pic");
+    prevPic.onclick = () => this.nextPic(/*backwards*/ true);
+    const nextPic = this.querySelector(".next-pic");
+    nextPic.onclick = () => this.nextPic();
+
+    const doneBtn = this.querySelector(".done");
+    doneBtn.onclick = () => this.done();
+
+    this.renderCanvas(scale);
+  }
+
+  nextPic(backwards = false) {
+    this.picIdx += backwards ? -1 : 1;
+    if (this.picIdx >= USER_PORTRAITS.length) {
+      this.picIdx = 0;
+    } else if (this.picIdx < 0) {
+      this.picIdx = USER_PORTRAITS.length - 1;
+    }
+    this.render();
+  }
+
+  nextRace() {
+    this.raceIdx = (this.raceIdx + 1) % RACES.length;
+    this.stats = { ...DEFAULT_STATS[this.race] };
+    this.points = 12;
+    this.render();
+  }
+
+  renderCanvas(scale) {
+    const canvas = this.querySelector("canvas");
+    const ctx = canvas.getContext("2d");
+    ctx.imageSmoothingEnabled = false;
+    ctx.scale(scale, scale);
+    const x = USER_PORTRAITS[this.picIdx].x;
+    const y = USER_PORTRAITS[this.picIdx].y;
+    ctx.drawImage(this.game.spritesheet, x, y, 32, 32, 0, 0, 32, 32);
+  }
+
+  done() {
+    const portrait = USER_PORTRAITS[this.picIdx].id;
+    this.game.game.new_game(
+      this.playerName,
+      this.race,
+      portrait,
+      this.stats.str,
+      this.stats.dex,
+      this.stats.vit,
+      this.stats.int,
+      this.stats.wis,
+      this.stats.luck,
+    );
+    this.remove();
+  }
+
+  statRow(kind) {
+    const detail = statDetail(kind, this.stats[kind]);
+    const name = capitalize(kind);
+    const value = this.stats[kind];
+    return `
+      <div class="stat-row" kind="${kind}">
+        <button class="decrement">-</button>
+        <button class="increment">+</button>
+        <div class="stat-row-label">${name}:${value} (${detail})</div>
+      </div>
+    `;
+  }
+
+  decrementStat(kind) {
+    console.log("decrement");
+    const [min, _] = STAT_BOUNDS[this.race][kind];
+
+    if (this.stats[kind] <= min) {
+      this.stats[kind] = min;
+      return;
+    }
+    this.stats[kind]--;
+    this.points++;
+    this.render();
+    console.log("finished");
+  }
+
+  incrementStat(kind) {
+    const [_, max] = STAT_BOUNDS[this.race][kind];
+
+    if (this.stats[kind] >= max) {
+      this.stats[kind] = max;
+      return;
+    }
+    if (this.points <= 0) {
+      this.points = 0;
+      return;
+    }
+    this.points--;
+    this.stats[kind]++;
+    this.render();
+  }
+}
+customElements.define("aldon-create-character-dialog", CreateCharacterDialog);
+
 class Dialog {
-  constructor(
-    root,
-    canvas,
-    spritesheet,
-    viewport_width,
-    viewport_height,
-    margin,
-  ) {
+  constructor(root) {
     this.game = null;
     this.root = root;
-    this.dialogOld = new DialogOld(
-      root,
-      spritesheet,
-      viewport_width,
-      viewport_height,
-      margin,
-    );
   }
 
   isOpen() {
-    return this.dialogOld.isOpen();
+    return this.root.querySelector("aldon-dialog") !== null;
   }
 
   setGame(game) {
     this.game = game;
-    this.dialogOld.setGame(game.game);
-  }
-
-  resize(width, height) {
-    this.dialogOld.resize(width, height);
   }
 
   tell(
@@ -408,22 +610,78 @@ class Dialog {
     choiceC,
     fromActor,
   ) {
-    this.dialogOld.tellMessage(
-      title,
+    const scale = 8;
+    const stylePicture = `
+        position: relative;
+        right: 2px;
+        top: 2px;
+        float: right;
+    `;
+    const dialog = html(`
+      <aldon-dialog width="${this.game.width}" height="${this.game.height}">
+        <div slot="title">${title}</div>
+        <div slot="body">
+          <canvas 
+            style="${stylePicture}" class="picture" width="${32 * scale}" height="${32 * scale}">
+          </canvas>
+          <div class="message">
+            ${msg.replace(/&/gi, "<br>")}
+          </div>
+          <div class="responses">
+          </div>
+        </div>
+      </aldon-dialog>
+    `);
+    const pic = dialog.querySelector(".picture");
+    const ctx = pic.getContext("2d");
+    ctx.imageSmoothingEnabled = false;
+    ctx.scale(scale, scale);
+    ctx.drawImage(
+      this.game.spritesheet,
       portrait_x,
       portrait_y,
       portrait_w,
       portrait_h,
-      msg,
-      choiceA,
-      choiceB,
-      choiceC,
-      fromActor,
+      0,
+      0,
+      portrait_w,
+      portrait_h,
     );
+    const choices = [choiceA, choiceB, choiceC];
+    const responses = dialog.querySelector(".responses");
+    const buttonNames = ["A", "B", "C"];
+    for (let i = 0; i < 3; i++) {
+      const response = html(`
+        <div>
+          <button>${buttonNames[i]}</button>
+          ${choices[i]}
+        </div>
+      `);
+      const button = response.querySelector("button");
+      button.onclick = () => {
+        dialog.remove();
+        setTimeout(() => {
+          this.game.game.send_response(fromActor, i);
+        }, 400);
+      };
+      if (choices[i] === undefined) {
+        response.style.visibility = "hidden";
+      }
+      responses.appendChild(response);
+    }
+    this.root.appendChild(dialog);
   }
 
   createCharacter() {
-    this.dialogOld.createCharacter();
+    const dialog = html(`
+      <aldon-create-character-dialog 
+        width="${this.game.width}"
+        height=${this.game.height}"
+      >
+      </aldon-create-character-dialog>
+    `);
+    dialog.game = this.game;
+    this.root.appendChild(dialog);
   }
 
   inventory(actorID, items) {
@@ -675,7 +933,69 @@ class Dialog {
   }
 
   stats(playerStats) {
-    this.dialogOld.stats(playerStats);
+    const scale = 5;
+    const gp_scale = 4;
+    const style_row_item = "width: 30%; display: inline-block";
+    const style_gp = `
+      display: inline;
+    `;
+    const can_level_up = Stats.max_level(playerStats.exp) > playerStats.level;
+    const style_done_button = `
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+    `;
+    console.log(`stats: ${this.game.width} x ${this.game.height}`);
+
+    const dialog = html(`
+      <aldon-dialog width="${this.game.width}" height="${this.game.height}">
+        <div slot="title">Stats</div>
+        <div slot="body">
+          <div style="overflow: auto">
+            <canvas style="float: right" class="picture" width="${32 * scale}" height="${32 * scale}"></canvas>
+            <div>${playerStats.name}</div>
+            <div>Class: ${playerStats.klass}</div>
+            <div>Race: ${playerStats.race}</div>
+          </div>
+          <div>
+            <span style="${style_row_item}">Lvl: ${playerStats.level}${can_level_up ? "+" : ""}</span>
+            <span style="${style_row_item}">HP: ${playerStats.hp}/${playerStats.hp_max}</span>
+            <span style="${style_row_item}">AC: ${playerStats.ac}</span>
+          </div>
+          <div style="display: flex">
+            <span style="${style_row_item}">EXP: ${playerStats.exp}</span>
+            <span style="${style_row_item}">MP: ${playerStats.mp}/${playerStats.mp_max}</span>
+            <span style="width: 30%; display: inline-flex">
+              <canvas id="gp-pic" style="${style_gp}" width="${16 * gp_scale}" height="${16 * gp_scale}"></canvas>
+              <span style="">: ${playerStats.gp}</span>
+            <span>
+          </div>
+          <div>Str:${playerStats.str} (${statDetail("str", playerStats.str)})</div>
+          <div>Dex:${playerStats.dex} (${statDetail("dex", playerStats.dex)})</div>
+          <div>Vit:${playerStats.vit} (${statDetail("vit", playerStats.vit)})</div>
+          <div>Int:${playerStats.int} (${statDetail("int", playerStats.int)})</div>
+          <div>Wis:${playerStats.wis} (${statDetail("wis", playerStats.wis)})</div>
+          <div>Luck:${playerStats.luck} (${statDetail("luck", playerStats.luck)})</div>
+          <div class="button-container" style="${style_done_button}">
+            <aldon-dialog-done-button></aldon-dialog-done-button>
+          </div>
+        </div>
+      </aldon-dialog>
+    `);
+    const ctx = dialog.querySelector(".picture").getContext("2d");
+    ctx.imageSmoothingEnabled = false;
+    ctx.scale(scale, scale);
+    const portrait_idx =
+      portraits.findIndex((p) => p.id == playerStats.portrait) || 0;
+    const x = portraits[portrait_idx].x;
+    const y = portraits[portrait_idx].y;
+    ctx.drawImage(this.game.spritesheet, x, y, 32, 32, 0, 0, 32, 32);
+
+    const gp_ctx = dialog.querySelector("#gp-pic").getContext("2d");
+    gp_ctx.imageSmoothingEnabled = false;
+    gp_ctx.scale(gp_scale, gp_scale);
+    gp_ctx.drawImage(this.game.spritesheet, 495, 179, 16, 16, 0, 0, 16, 16);
+    this.root.appendChild(dialog);
   }
 
   spellbook(spells) {
@@ -742,7 +1062,7 @@ class Dialog {
   }
 
   preferences() {
-    const scale = Number(localStorage.getItem("aldon-this.game-scale")) || 2;
+    const scale = this.game.getScale();
     const dialog = html(`
       <aldon-dialog width="${this.game.width}" height="${this.game.height}">
         <div slot="title">Preferences</div>
@@ -1066,836 +1386,10 @@ dialogTemplate.innerHTML = `
     </div>
   </div>
 `;
+
 function saveName(save) {
   const time = save.time ? new Date(save.time).toLocaleString() : "";
   return `${save.name} ${time}`;
-}
-
-// TODO: delete old style dialogs
-function createWindow(
-  type,
-  titleStr,
-  viewport_width,
-  viewport_height,
-  width,
-  height,
-  margin,
-) {
-  const body = document.createElement("div");
-  body.setAttribute("class", "body");
-
-  const title = document.createElement("div");
-  title.setAttribute("class", "title");
-  title.innerHTML = titleStr;
-
-  const window = document.createElement("div");
-  window.setAttribute("id", "window");
-  window.setAttribute("class", `window ${type}`);
-  window.appendChild(title);
-  window.appendChild(body);
-  window.style.margin = `${margin}px`;
-  window.style.width = `${width - margin * 2}px`;
-  window.style.height = `${height - margin * 2}px`;
-
-  const adjusted_scale =
-    (Math.min(viewport_width, viewport_height) - 3) / (430 * 2);
-  window.style.transform = `scale(${adjusted_scale}, ${adjusted_scale})`;
-
-  const scale = Math.min(viewport_width, viewport_height) / (430 * 2);
-  const top = viewport_height / 2 - (height * scale) / 2;
-  const left = viewport_width / 2 - (width * scale) / 2;
-  window.style.top = `${top}px`;
-  window.style.left = `${left}px`;
-  return window;
-}
-
-// TODO: delete old style dialogs
-function closeWindow() {
-  const window = document.getElementById("window");
-  if (window == null) throw "could not find window element";
-  window.remove();
-}
-
-// TODO: delete old style dialogs
-class DialogOld {
-  constructor(root, spritesheet, viewport_width, viewport_height, margin) {
-    this.game = null;
-    this.root = root; // The node where windows will be attached
-    this.spritesheet = spritesheet;
-    this.dialogOpen = false;
-    this.viewport_width = viewport_width;
-    this.viewport_height = viewport_height;
-    this.width = 430 * 2;
-    this.height = 430 * 2;
-    this.margin = margin;
-    this.items = [];
-    this.selected = 0;
-    this.message = null;
-    this.createCharacterDialog = new CreateCharacterDialog(
-      root,
-      spritesheet,
-      viewport_width,
-      viewport_height,
-      this.width,
-      this.height,
-      this.scale,
-      margin,
-    );
-    this.statsDialog = new StatsDialog(
-      root,
-      spritesheet,
-      viewport_width,
-      viewport_height,
-      this.width,
-      this.height,
-      this.scale,
-      margin,
-    );
-  }
-
-  resize(width, height) {
-    this.viewport_width = width;
-    this.viewport_height = height;
-    this.createCharacterDialog.resize(width, height);
-    this.statsDialog.resize(width, height);
-  }
-
-  stats(stats) {
-    this.statsDialog.open(stats);
-  }
-
-  setGame(game) {
-    this.game = game;
-    this.createCharacterDialog.game = game;
-  }
-
-  isOpen() {
-    return (
-      this.dialogOpen ||
-      this.createCharacterDialog.isOpen() ||
-      this.statsDialog.isOpen()
-    );
-  }
-
-  selectedItem() {
-    return this.items[this.selected];
-  }
-
-  popSelectedItem() {
-    const item = this.selectedItem();
-    this.items.splice(this.selected, 1);
-    if (this.selected >= this.items.length) {
-      this.selected = Math.max(this.items.length - 1, 0);
-    }
-    return item;
-  }
-
-  tellMessage(
-    title,
-    portrait_x,
-    portrait_y,
-    portrait_w,
-    portrait_h,
-    msg,
-    choiceA,
-    choiceB,
-    choiceC,
-    fromActor,
-  ) {
-    const choice = [choiceA, choiceB, choiceC];
-    const pic = document.createElement("canvas");
-    const scale = 8;
-    pic.setAttribute("class", "picture");
-    pic.setAttribute("width", 32 * scale);
-    pic.setAttribute("height", 32 * scale);
-
-    const ctx = pic.getContext("2d");
-    if (ctx == null) throw "could not get 2d drawing context";
-    ctx.imageSmoothingEnabled = false;
-    ctx.scale(scale, scale);
-    ctx.drawImage(
-      this.spritesheet,
-      portrait_x,
-      portrait_y,
-      portrait_w,
-      portrait_h,
-      0,
-      0,
-      portrait_w,
-      portrait_h,
-    );
-
-    const responses = document.createElement("div");
-    responses.setAttribute("class", "responses");
-    const buttonNames = ["A", "B", "C"];
-    for (let i = 0; i < 3; i++) {
-      const container = document.createElement("div");
-      const button = document.createElement("button");
-      button.innerHTML = buttonNames[i];
-
-      button.onclick = () => {
-        closeWindow();
-        setTimeout(() => {
-          this.dialogOpen = false;
-          this.game.send_response(fromActor, i);
-        }, 400);
-      };
-      container.appendChild(button);
-      const choiceMsg = choice[i];
-      if (choiceMsg !== undefined) {
-        container.appendChild(document.createTextNode(choiceMsg));
-      } else {
-        container.style.visibility = "hidden";
-      }
-      responses.appendChild(container);
-    }
-
-    const bodyStrDiv = document.createElement("div");
-    bodyStrDiv.innerHTML = msg.replace(/&/gi, "<br />");
-
-    const margin = 20;
-    const window = createWindow(
-      "actor",
-      title,
-      this.viewport_width,
-      this.viewport_height,
-      this.width,
-      this.height,
-      this.margin,
-    );
-    const body = window.querySelector(".body");
-    body.appendChild(pic);
-    body.appendChild(bodyStrDiv);
-    body.appendChild(responses);
-    this.root.appendChild(window);
-
-    this.dialogOpen = true;
-  }
-
-  option(name, value) {
-    const opt = document.createElement("option");
-    opt.setAttribute("value", value.toString());
-    opt.innerHTML = name;
-    return opt;
-  }
-
-  createSellBtn(actorID, draw) {
-    const btn = document.createElement("button");
-    btn.innerHTML = "Sell";
-    btn.onclick = () => {
-      const ok = this.game.sell(actorID, this.selected);
-      if (ok) {
-        this.message = "Sold!";
-        this.popSelectedItem();
-        if (this.items.length === 0) {
-          this.finishTransaction();
-          return;
-        }
-      } else {
-        this.message = "You can't sell this.";
-      }
-      draw();
-    };
-    return btn;
-  }
-
-  createBuyBtn(actorID, draw) {
-    const btn = document.createElement("button");
-    btn.innerHTML = "Buy";
-    btn.onclick = () => {
-      const ok = this.game.buy(actorID, this.selected);
-      if (ok) {
-        this.message = "Sold!";
-        if (this.items.length === 0) {
-          this.finishTransaction();
-          return;
-        }
-      } else {
-        this.message = "You can't pick this up.";
-      }
-      draw();
-    };
-    return btn;
-  }
-
-  createStatsBtn(actorID) {
-    const btn = document.createElement("button");
-    btn.innerHTML = "Stats";
-    btn.onclick = () => {
-      const stats = this.game.stats(actorID);
-      console.log("show stats");
-    };
-    return btn;
-  }
-
-  createUnequipBtn(actorID, draw) {
-    const item = this.selectedItem();
-    const btn = document.createElement("button");
-    if (true) {
-      // TODO: if equiped
-      btn.setAttribute("class", "hidden");
-    }
-    btn.innerHTML = "Unenquip";
-    btn.onClick = () => {
-      this.game.unequip(actorID, this.selected);
-      draw();
-    };
-    return btn;
-  }
-
-  createEquipBtn(actorID, draw) {
-    const btn = document.createElement("button");
-    const item = this.selectedItem();
-    const alreadyEquiped = this.game.is_equiped(this.selected);
-    console.log(`equiped = ${alreadyEquiped}`);
-
-    btn.innerHTML = alreadyEquiped ? "Unequip" : "Equip";
-    if (alreadyEquiped) {
-      btn.onclick = () => {
-        const ok = this.game.unequip(actorID, this.selected);
-        if (!ok) {
-          this.message = "Can't unequip";
-        }
-        draw();
-      };
-    } else {
-      btn.onclick = () => {
-        const ok = this.game.equip(actorID, this.selected);
-        if (!ok) {
-          this.message = "Can't equip";
-        }
-        draw();
-      };
-    }
-    return btn;
-  }
-
-  createDropBtn(actorID, draw) {
-    const btn = document.createElement("button");
-    btn.innerHTML = "Drop";
-    btn.onclick = () => {
-      console.log(`Attempting to drop ${this.selectedItem()}`);
-      console.log(this.selectedItem());
-      const ok = this.game.drop(actorID, this.selected);
-      if (ok) {
-        this.popSelectedItem();
-        if (this.items.length === 0) {
-          this.finishTransaction();
-          return;
-        }
-      } else {
-        this.message = "Can't drop";
-      }
-      draw();
-    };
-    return btn;
-  }
-
-  createPickUpBtn(actorID, draw) {
-    const btn = document.createElement("button");
-    btn.innerHTML = "Pick Up";
-    btn.onclick = () => {
-      const ok = this.game.pickup(actorID, this.selected);
-      if (ok) {
-        this.popSelectedItem();
-        if (this.items.length === 0) {
-          this.finishTransaction();
-          return;
-        }
-      } else {
-        this.message = "You can't pick this up";
-      }
-      console.log(`selected: ${this.selected}`);
-      draw();
-    };
-    return btn;
-  }
-
-  createDoneBtn() {
-    const btn = document.createElement("button");
-    btn.innerHTML = "Done";
-    btn.onclick = () => {
-      this.finishTransaction();
-    };
-    return btn;
-  }
-
-  finishTransaction() {
-    closeWindow();
-    setTimeout(() => {
-      this.dialogOpen = false;
-    }, 100);
-  }
-
-  createCharacter() {
-    this.createCharacterDialog.open();
-  }
-
-  showStats() {
-    this.statsDialog.open();
-  }
-}
-
-// TODO: delete old style dialogs
-class CreateCharacterDialog {
-  constructor(
-    root,
-    spritesheet,
-    viewport_width,
-    viewport_height,
-    width,
-    height,
-    scale,
-    margin,
-  ) {
-    this.game = null;
-    this.root = root;
-    this.spritesheet = spritesheet;
-    this.width = width;
-    this.height = height;
-    this.scale = scale;
-    this.margin = margin;
-    this.dialogOpen = false;
-    this.viewport_width = viewport_width;
-    this.viewport_height = viewport_height;
-
-    this.portrait_idx = 0;
-    this.points = 12;
-    this.boundsByRace = {
-      human: {
-        str: [3, 16],
-        dex: [3, 16],
-        vit: [3, 16],
-        int: [3, 16],
-        wis: [3, 16],
-        luck: [3, 18],
-      },
-      dwarf: {
-        str: [5, 17],
-        dex: [2, 15],
-        vit: [5, 17],
-        int: [2, 15],
-        wis: [3, 16],
-        luck: [3, 16],
-      },
-      elf: {
-        str: [2, 15],
-        dex: [5, 18],
-        vit: [2, 15],
-        int: [3, 16],
-        wis: [3, 16],
-        luck: [3, 16],
-      },
-    };
-    this.defaultByRace = {
-      human: {
-        str: 8,
-        dex: 8,
-        vit: 8,
-        int: 8,
-        wis: 8,
-        luck: 8,
-      },
-      dwarf: {
-        str: 10,
-        dex: 7,
-        vit: 9,
-        int: 7,
-        wis: 8,
-        luck: 8,
-      },
-      elf: {
-        str: 7,
-        dex: 10,
-        vit: 7,
-        int: 8,
-        wis: 8,
-        luck: 8,
-      },
-    };
-
-    this.stats = { ...this.defaultByRace.human };
-    this.race = "human";
-  }
-
-  resize(width, height) {
-    this.viewport_width = width;
-    this.viewport_height = height;
-  }
-
-  open() {
-    const window = createWindow(
-      "character-creation",
-      "Character Creation",
-      this.viewport_width,
-      this.viewport_height,
-      this.width,
-      this.height,
-      this.margin,
-    );
-    const body = window.querySelector(".body");
-    this.root.appendChild(window);
-
-    const nameInput = document.createElement("input");
-    nameInput.setAttribute("maxlength", "14");
-    nameInput.setAttribute("type", "text");
-    nameInput.setAttribute("placeholder", "Enter Name");
-    body.appendChild(nameInput);
-    const pic = document.createElement("canvas");
-    body.appendChild(pic);
-    const scale = 6;
-    pic.setAttribute("class", "picture");
-    pic.setAttribute("width", 32 * scale);
-    pic.setAttribute("height", 32 * scale);
-    const ctx = pic.getContext("2d");
-    ctx.imageSmoothingEnabled = false;
-    ctx.scale(scale, scale);
-
-    const drawPic = () => {
-      const x = userPortraits[this.portrait_idx].x;
-      const y = userPortraits[this.portrait_idx].y;
-      ctx.drawImage(this.spritesheet, x, y, 32, 32, 0, 0, 32, 32);
-    };
-
-    const prevPicBtn = document.createElement("button");
-    prevPicBtn.innerHTML = "<";
-    body.appendChild(prevPicBtn);
-    prevPicBtn.onclick = () => {
-      this.portrait_idx--;
-      if (this.portrait_idx < 0) {
-        this.portrait_idx = userPortraits.length - 1;
-      }
-      draw();
-    };
-
-    const nextPicBtn = document.createElement("button");
-    nextPicBtn.innerHTML = ">";
-    body.appendChild(nextPicBtn);
-    nextPicBtn.onclick = () => {
-      this.portrait_idx++;
-      if (this.portrait_idx >= userPortraits.length) {
-        this.portrait_idx = 0;
-      }
-      draw();
-    };
-
-    const raceDiv = document.createElement("div");
-    raceDiv.setAttribute("class", "race-container");
-    body.appendChild(raceDiv);
-
-    const nextRaceBtn = document.createElement("button");
-    nextRaceBtn.innerHTML = ">";
-    raceDiv.appendChild(nextRaceBtn);
-
-    const raceTxt = document.createElement("div");
-    raceDiv.appendChild(raceTxt);
-
-    const drawRace = () => {
-      const raceName = this.race.charAt(0).toUpperCase() + this.race.slice(1);
-      raceTxt.innerHTML = `Race:${raceName}`;
-    };
-
-    const pointsDiv = document.createElement("div");
-    const drawPoints = () => {
-      pointsDiv.innerHTML = `Points:${this.points}`;
-    };
-
-    const statsDiv = document.createElement("div");
-    body.appendChild(statsDiv);
-
-    const drawStats = () => {
-      statsDiv.innerHTML = "";
-
-      for (const [stat, value] of Object.entries(this.stats)) {
-        const row = this.createStatRow(stat, draw);
-        statsDiv.appendChild(row);
-      }
-    };
-
-    const draw = () => {
-      drawPic();
-      drawPoints();
-      drawRace();
-      drawStats();
-    };
-
-    body.appendChild(pointsDiv);
-
-    const doneBtn = document.createElement("button");
-    doneBtn.setAttribute("class", "done-button");
-    body.appendChild(doneBtn);
-    doneBtn.innerHTML = "Done";
-    doneBtn.onclick = () => {
-      closeWindow();
-      const portrait = userPortraits[this.portrait_idx].id;
-      this.game.new_game(
-        nameInput.value,
-        this.race,
-        portrait,
-        this.stats.str,
-        this.stats.dex,
-        this.stats.vit,
-        this.stats.int,
-        this.stats.wis,
-        this.stats.luck,
-      );
-
-      setTimeout(() => {
-        this.dialogOpen = false;
-      }, 400);
-    };
-
-    nextRaceBtn.onclick = () => {
-      switch (this.race) {
-        case "human":
-          this.race = "dwarf";
-          break;
-        case "dwarf":
-          this.race = "elf";
-          break;
-        case "elf":
-          this.race = "human";
-          break;
-        default:
-          throw `Unknown race ${this.race}`;
-      }
-      this.stats = { ...this.defaultByRace[this.race] };
-      this.points = 12;
-      draw();
-    };
-
-    draw();
-    this.dialogOpen = true;
-  }
-
-  incrementStat(stat) {
-    if (this.points <= 0) {
-      return;
-    }
-    const [_, max] = this.boundsByRace[this.race][stat];
-    if (this.stats[stat] >= max) {
-      return;
-    }
-    this.points--;
-    this.stats[stat]++;
-  }
-
-  decrementStat(stat) {
-    const [min, _] = this.boundsByRace[this.race][stat];
-    if (this.stats[stat] <= min) {
-      return;
-    }
-    this.points++;
-    this.stats[stat]--;
-  }
-
-  createStatRow(stat, draw) {
-    const containerDiv = document.createElement("div");
-    containerDiv.setAttribute("class", "stat-row");
-
-    const minusBtn = document.createElement("button");
-    minusBtn.innerHTML = "-";
-    containerDiv.appendChild(minusBtn);
-
-    const plusBtn = document.createElement("button");
-    plusBtn.innerHTML = "+";
-    containerDiv.appendChild(plusBtn);
-
-    const textDiv = document.createElement("div");
-    textDiv.setAttribute("class", "stat-row-label");
-    containerDiv.appendChild(textDiv);
-
-    const statName = stat.charAt(0).toUpperCase() + stat.slice(1);
-    const detail = statDetail(stat, this.stats[stat]);
-    textDiv.innerHTML = `${statName}:${this.stats[stat]} (${detail})`;
-
-    minusBtn.onclick = () => {
-      this.decrementStat(stat);
-      draw();
-    };
-
-    plusBtn.onclick = () => {
-      this.incrementStat(stat);
-      draw();
-    };
-    return containerDiv;
-  }
-
-  isOpen() {
-    return this.dialogOpen;
-  }
-}
-
-// TODO: delete old style dialogs
-class BaseDialog {
-  constructor(
-    root,
-    spritesheet,
-    viewport_width,
-    viewport_height,
-    width,
-    height,
-    scale,
-    margin,
-  ) {
-    this.game = null;
-    this.root = root;
-    this.spritesheet = spritesheet;
-    this.width = width;
-    this.height = height;
-    this.scale = scale;
-    this.margin = margin;
-    this.dialogOpen = false;
-    this.viewport_width = viewport_width;
-    this.viewport_height = viewport_height;
-    this.window_open = false;
-  }
-
-  resize(width, height) {
-    this.viewport_width = width;
-    this.viewport_height = height;
-  }
-
-  isOpen() {
-    return this.window_open;
-  }
-
-  open() {
-    console.log(`Size: ${this.viewport_width} x ${this.viewport_height}`);
-    const window = createWindow(
-      "character-stats",
-      "Stats",
-      this.viewport_width,
-      this.viewport_height,
-      this.width,
-      this.height,
-      this.margin,
-    );
-    this.root.appendChild(window);
-    this.window_open = true;
-    this.render();
-  }
-
-  close() {
-    const window = document.getElementById("window");
-    if (window == null) throw "could not find window element";
-    window.remove();
-    this.window_open = false;
-  }
-
-  render() {
-    if (!this.window_open) {
-      return;
-    }
-    const window = document.getElementById("window");
-    const body = window.querySelector(".body");
-    body.innerHTML = `<h1>Hi</h1>`;
-  }
-}
-
-// TODO: delete old style dialogs
-class StatsDialog extends BaseDialog {
-  constructor(
-    root,
-    spritesheet,
-    viewport_width,
-    viewport_height,
-    width,
-    height,
-    scale,
-    margin,
-  ) {
-    super(
-      root,
-      spritesheet,
-      viewport_width,
-      viewport_height,
-      width,
-      height,
-      scale,
-      margin,
-    );
-  }
-
-  open(stats) {
-    this.stats = stats;
-    super.open();
-  }
-
-  render() {
-    if (!this.window_open) {
-      return;
-    }
-    const window = document.getElementById("window");
-    const body = window.querySelector(".body");
-    const scale = 7;
-    const gp_scale = 4;
-
-    const style_row_item = "width: 30%; display: inline-block";
-    const style_done_button = `
-        position: fixed;
-        bottom: 10px;
-        right: 10px;
-    `;
-    const style_gp = `
-      display: inline;
-    `;
-    const can_level_up = Stats.max_level(this.stats.exp) > this.stats.level;
-
-    body.innerHTML = `
-      <div style="overflow: auto">
-        <canvas style="float: right" class="picture" width="${32 * scale}" height="${32 * scale}"></canvas>
-        <div>${this.stats.name}</div>
-        <div>Class: ${this.stats.klass}</div>
-        <div>Race: ${this.stats.race}</div>
-      </div>
-      <div>
-        <span style="${style_row_item}">Lvl: ${this.stats.level}${
-          can_level_up ? "+" : ""
-        }</span>
-        <span style="${style_row_item}">HP: ${this.stats.hp}/${
-          this.stats.hp_max
-        }</span>
-        <span style="${style_row_item}">AC: ${this.stats.ac}</span>
-      </div>
-      <div style="display: flex">
-        <span style="${style_row_item}">EXP: ${this.stats.exp}</span>
-        <span style="${style_row_item}">MP: ${this.stats.mp}/${
-          this.stats.mp_max
-        }</span>
-        <span style="width: 30%; display: inline-flex">
-          <canvas id="gp-pic" style="${style_gp}" width="${16 * gp_scale}" height="${16 * gp_scale}"></canvas>
-          <span style="">: ${this.stats.gp}</span>
-        <span>
-      </div>
-      <div>Str:${this.stats.str} (${statDetail("str", this.stats.str)})</div>
-      <div>Dex:${this.stats.dex} (${statDetail("dex", this.stats.dex)})</div>
-      <div>Vit:${this.stats.vit} (${statDetail("vit", this.stats.vit)})</div>
-      <div>Int:${this.stats.int} (${statDetail("int", this.stats.int)})</div>
-      <div>Wis:${this.stats.wis} (${statDetail("wis", this.stats.wis)})</div>
-      <div>Luck:${this.stats.luck} (${statDetail(
-        "luck",
-        this.stats.luck,
-      )})</div>
-      
-      <button style="${style_done_button}" class="closeButton">Done</button>
-    `;
-    body.querySelector(".closeButton").onclick = () => this.close();
-
-    const ctx = body.querySelector(".picture").getContext("2d");
-    ctx.imageSmoothingEnabled = false;
-    ctx.scale(scale, scale);
-    const portrait_idx =
-      portraits.findIndex((p) => p.id == this.stats.portrait) || 0;
-    const x = portraits[portrait_idx].x;
-    const y = portraits[portrait_idx].y;
-    ctx.drawImage(this.spritesheet, x, y, 32, 32, 0, 0, 32, 32);
-
-    const gp_ctx = body.querySelector("#gp-pic").getContext("2d");
-    gp_ctx.imageSmoothingEnabled = false;
-    gp_ctx.scale(gp_scale, gp_scale);
-    gp_ctx.drawImage(this.spritesheet, 495, 179, 16, 16, 0, 0, 16, 16);
-  }
 }
 
 function withSign(num) {
@@ -1940,13 +1434,14 @@ for (const method of methods) {
 
   const origional = Dialog.prototype[method];
   if (typeof origional !== "function") continue;
-  console.log(method);
 
-  Dialog.prototype[method] = function (...args) {
-    console.log("here");
-    console.log(this);
+  Dialog.prototype[method] = function(...args) {
     setTimeout(() => origional.apply(this, args), 50);
   };
+}
+
+function capitalize(str) {
+  return str[0].toUpperCase() + str.slice(1);
 }
 
 export { Dialog };

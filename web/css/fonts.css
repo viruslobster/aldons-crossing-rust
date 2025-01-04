@@ -1,0 +1,9 @@
+@font-face {
+  font-family: PalmOS;
+  src: url(/assets/palmos.ttf);
+}
+
+@font-face {
+  font-family: PalmOSBold;
+  src: url(/assets/palmos_bold.ttf);
+}
