@@ -236,6 +236,11 @@ class Game {
     return Math.min(Math.max(scale, 1), 10);
   }
 
+  setDefaultScale(scale) {
+    if (localStorage.getItem("aldon-game-scale") !== null) return;
+    localStorage.setItem("aldon-game-scale", scale);
+  }
+
   setScale(scale) {
     const bounded = Math.min(Math.max(scale, 1), 10);
     localStorage.setItem("aldon-game-scale", bounded);
@@ -292,9 +297,6 @@ class AldonGame extends HTMLElement {
     this.is_setup = false;
     const style = document.createElement("style");
     style.textContent = `
-      html {
-      }
-
       canvas {
         display: block;
         z-index: 1;
@@ -419,6 +421,10 @@ class AldonGame extends HTMLElement {
     const spritesheet = this.shadowRoot.querySelector("#spritesheet");
 
     this.game = new Game(root, canvas, spritesheet);
+    const defaultScale = this.getAttribute("default-scale");
+    if (defaultScale !== null) {
+      this.game.setDefaultScale(defaultScale);
+    }
     // TODO: hack needed so dialogs have access
     window.game = this.game;
     menu.game = this.game;
@@ -427,7 +433,7 @@ class AldonGame extends HTMLElement {
     await document.fonts.ready;
     this.game.setup();
     menu.dialog = this.game.dialog;
-    window.addEventListener("resize", async () => {
+    window.addEventListener("resize", () => {
       this.resize();
     });
     this.resize();

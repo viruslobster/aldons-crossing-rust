@@ -23,17 +23,11 @@ class AldonMenu extends HTMLElement {
         background-color: white;
         z-index: 10;
         font-family: PalmOSBold;
-        font-size: 5vh; //2rem; // 5rem
+        font-size: 5vh;
         border: 2px;
         border-style: solid;
         border-radius: 5px;
         padding-left: 10px;
-      }
-
-      @media only screen and (orientation: landscape) {
-        .menu-container {
-          font-size: 10vh;
-        }
       }
 
       .menu {
@@ -149,6 +143,20 @@ class AldonMenu extends HTMLElement {
     const shadowRoot = this.attachShadow({ mode: "open" });
     shadowRoot.appendChild(style);
     shadowRoot.appendChild(root);
+  }
+
+  connectedCallback() {
+    window.addEventListener("resize", () => {
+      // In portrait we want a font-size of 5vh, in landscale 10vh
+      const style = this.shadowRoot.querySelector(".menu-container").style;
+
+      const game = this.closest("#game-container");
+      if (game.offsetWidth > game.offsetHeight) {
+        style.fontSize = "10vh";
+        return
+      }
+      style.fontSize = "5vh";
+    });
   }
 
   close() {
