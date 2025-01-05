@@ -111,7 +111,6 @@ const STAT_BOUNDS = {
   },
 };
 
-
 class AldonPicker extends HTMLElement {
   constructor() {
     super();
@@ -197,7 +196,7 @@ class AldonPicker extends HTMLElement {
     shadowRoot.appendChild(root);
   }
 
-  connectedCallback() { }
+  connectedCallback() {}
 
   /**
    * item: { name: string }
@@ -474,7 +473,7 @@ class CreateCharacterDialog extends HTMLElement {
         </div>
       </aldon-dialog>
     `;
-    const nextRaceBtn = this.querySelector(".next-race")
+    const nextRaceBtn = this.querySelector(".next-race");
     nextRaceBtn.onclick = () => this.nextRace();
 
     for (const row of this.querySelectorAll(".stat-row")) {
@@ -483,7 +482,7 @@ class CreateCharacterDialog extends HTMLElement {
       row.querySelector(".increment").onclick = () => this.incrementStat(kind);
     }
     const nameInput = this.querySelector(".player-name");
-    nameInput.oninput = () => this.playerName = nameInput.value;
+    nameInput.oninput = () => (this.playerName = nameInput.value);
 
     const prevPic = this.querySelector(".prev-pic");
     prevPic.onclick = () => this.nextPic(/*backwards*/ true);
@@ -1435,7 +1434,7 @@ for (const method of methods) {
   const origional = Dialog.prototype[method];
   if (typeof origional !== "function") continue;
 
-  Dialog.prototype[method] = function(...args) {
+  Dialog.prototype[method] = function (...args) {
     setTimeout(() => origional.apply(this, args), 50);
   };
 }

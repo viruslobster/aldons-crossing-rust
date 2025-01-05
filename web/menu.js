@@ -153,7 +153,7 @@ class AldonMenu extends HTMLElement {
       const game = this.closest("#game-container");
       if (game.offsetWidth > game.offsetHeight) {
         style.fontSize = "10vh";
-        return
+        return;
       }
       style.fontSize = "5vh";
     });

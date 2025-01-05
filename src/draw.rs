@@ -103,8 +103,10 @@ impl AldonHtmlCanvasGame {
         // TODO: big speed up, only draw if animation frame has changed or something has moved
 
         if !self.game.loaded() {
-            let scale = viewport_width.min(viewport_height) / SPRITES.frames["2200"].frame.w;
-            self.draw_scale(&ctx, 2200, 0.0, 0.0, scale);
+            let size = SPRITES.frames["2200"].frame.w;
+            let scale = viewport_width.min(viewport_height) / size;
+            let x = viewport_width / 2.0 - size * scale / 2.0;
+            self.draw_scale(&ctx, 2200, x, 0.0, scale);
             return;
         }
 
