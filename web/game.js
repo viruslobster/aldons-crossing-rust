@@ -247,6 +247,9 @@ class Game {
     // const ctx = this.canvas.getContext("2d");
     // ctx.setTransform(scale, 0, 0, scale, 0, 0);
     this.game.set_scale(bounded);
+
+    const event = new CustomEvent("aldon-rescale", { detail: { scale: bounded } });
+    window.dispatchEvent(event);
     return bounded;
   }
 
@@ -433,14 +436,10 @@ class AldonGame extends HTMLElement {
     await document.fonts.ready;
     this.game.setup();
     menu.dialog = this.game.dialog;
-    window.addEventListener("resize", () => {
-      this.resize();
-    });
+    window.addEventListener("resize", () => this.resize());
+    window.addEventListener("aldon-rescale", () => this.resize());
     this.resize();
     this.is_setup = true;
-
-    // TODO: does this actually work?
-    // new ResizeObserver(() => this.game.resize()).observe(menu);
   }
 
   resize() {
