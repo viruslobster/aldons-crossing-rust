@@ -420,6 +420,15 @@ class AldonGame extends HTMLElement {
     const shadowRoot = this.attachShadow({ mode: "open" });
     shadowRoot.appendChild(style);
     shadowRoot.appendChild(root);
+
+    let fontsURL = new URL("/css/fonts.css", import.meta.url);
+    const font = html(`<link rel="stylesheet" href="${fontsURL}">`);
+    let head = document.querySelector("head");
+    if (head === null) {
+      head = html(`<head></head>`);
+      document.appendChild(head);
+    }
+    head.appendChild(font);
   }
 
   async connectedCallback() {
