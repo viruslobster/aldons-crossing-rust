@@ -248,7 +248,9 @@ class Game {
     // ctx.setTransform(scale, 0, 0, scale, 0, 0);
     this.game.set_scale(bounded);
 
-    const event = new CustomEvent("aldon-rescale", { detail: { scale: bounded } });
+    const event = new CustomEvent("aldon-rescale", {
+      detail: { scale: bounded },
+    });
     window.dispatchEvent(event);
     return bounded;
   }
@@ -355,7 +357,13 @@ class AldonGame extends HTMLElement {
         white-space: nowrap;
       }
 
-      .button-container {
+      .left-button-container {
+        position: absolute;
+        bottom: 10px;
+        font-size: 100px;
+      }
+
+      .right-button-container {
         position: absolute;
         bottom: 10px;
         right: 10px;

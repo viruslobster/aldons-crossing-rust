@@ -467,7 +467,7 @@ class CreateCharacterDialog extends HTMLElement {
             ${this.statRow("luck")}
           </div>
           <div>Points:${this.points}</div>
-          <div class="button-container">
+          <div class="right-button-container">
             <button class="done">Done</button>
           </div>
         </div>
@@ -690,7 +690,7 @@ class Dialog {
         <div slot="body">
           <aldon-picker previewPic="true" itemInfo="true">
           </aldon-picker>
-          <div class="button-container">
+          <div class="left-button-container">
             <aldon-dialog-done-button></aldon-dialog-done-button>
             <button class="drop">Drop</button>
             <button class="action"></button>
@@ -788,7 +788,7 @@ class Dialog {
         <div slot="body">
           <aldon-picker previewPic="true" itemInfo="true">
           </aldon-picker>
-          <div class="button-container">
+          <div class="left-button-container">
             <aldon-dialog-done-button></aldon-dialog-done-button>
             <button class="pickup">Pickup</button>
           </div>
@@ -827,7 +827,7 @@ class Dialog {
         <div slot="body">
           <aldon-picker previewPic="true" itemInfo="true">
           </aldon-picker>
-          <div class="button-container">
+          <div class="left-button-container">
             <aldon-dialog-done-button></aldon-dialog-done-button>
             <button class="buysell">${kindStr}</button>
             <button class="unequip">Unequip</button>
@@ -900,7 +900,7 @@ class Dialog {
           Set Item or Ability.
           <aldon-picker previewPic="true">
           </aldon-picker>
-          <div class="button-container">
+          <div class="left-button-container">
             <button class="done">Done</button>
             <button class="set">Set</button>
           </div>
@@ -975,7 +975,7 @@ class Dialog {
           <div>Int:${playerStats.int} (${statDetail("int", playerStats.int)})</div>
           <div>Wis:${playerStats.wis} (${statDetail("wis", playerStats.wis)})</div>
           <div>Luck:${playerStats.luck} (${statDetail("luck", playerStats.luck)})</div>
-          <div class="button-container" style="${style_done_button}">
+          <div class="right-button-container" style="${style_done_button}">
             <aldon-dialog-done-button></aldon-dialog-done-button>
           </div>
         </div>
@@ -1004,7 +1004,7 @@ class Dialog {
         <div slot="body">
           <aldon-picker previewPic="true" itemInfo="true">
           </aldon-picker>
-          <div class="button-container">
+          <div class="left-button-container">
             <aldon-dialog-done-button></aldon-dialog-done-button>
             <button class="set">Set</button>
           </div>
@@ -1039,7 +1039,7 @@ class Dialog {
         <div slot="title">Report Bug</div>
         <div slot="body">
           Click <a class="download">here</a> to download crash data. Send this to me along with a screenshot.
-          <div class="button-container">
+          <div class="right-button-container">
             <button class="ok">Ok</button>
           </div>
         </div>
@@ -1071,7 +1071,7 @@ class Dialog {
             <button class="scale-up">+</button>
             Scale: <span class="scale-label">${scale}</span>
           </div>
-          <div class="button-container">
+          <div class="right-button-container">
             <button class="ok">Ok</button>
           </div>
         </div>
@@ -1104,7 +1104,7 @@ class Dialog {
         <div slot="title">Log</div>
         <div slot="body">
           <aldon-picker> </aldon-picker>
-          <div class="button-container">
+          <div class="right-button-container">
             <aldon-dialog-done-button></aldon-dialog-done-button>
           </div>
         </div>
@@ -1131,7 +1131,7 @@ class Dialog {
             style="position: absolute; left: 50%; transform: translate(-50%, 0%)" width="${size}" height="${size}" 
             class="mini-map">
           </canvas>
-          <div class="button-container">
+          <div class="right-button-container">
             <aldon-dialog-done-button></aldon-dialog-done-button>
           </div>
         </div>
@@ -1148,7 +1148,7 @@ class Dialog {
         <div slot="title">Game Menu</div>
         <div slot="body">
           <aldon-picker></aldon-picker>
-          <div class="button-container">
+          <div class="right-button-container">
             <aldon-dialog-done-button></aldon-dialog-done-button>
             <button class="download">Download</button>
           </div>
@@ -1196,7 +1196,7 @@ class Dialog {
         <div slot="title">Game Menu</div>
         <div slot="body">
           <aldon-picker></aldon-picker>
-          <div class="button-container">
+          <div class="right-button-container">
             <aldon-dialog-done-button></aldon-dialog-done-button>
             <button class="save">Save</button>
           </div>
@@ -1226,7 +1226,7 @@ class Dialog {
         <div slot="title">Game Menu</div>
         <div slot="body">
           <aldon-picker></aldon-picker>
-          <div class="button-container">
+          <div class="right-button-container">
             <aldon-dialog-done-button></aldon-dialog-done-button>
             <button class="from-file">From File</button>
             <button class="load">Load</button>
@@ -1293,7 +1293,7 @@ class Dialog {
           <div>c 1999-2002</div>
           <div>Reimplemented by <a href="https://github.com/viruslobster">@viruslobster</a></div>
           <div><img src="assets/qr.svg"></img></div>
-          <div class="button-container">
+          <div class="right-button-container">
             <button class="ok">OK</button>
           </div>
         </div>
@@ -1311,7 +1311,7 @@ class Dialog {
         <div slot="title">Game Menu</div>
         <div slot="body">
           <aldon-picker></aldon-picker>
-          <div class="button-container">
+          <div class="right-button-container">
             <aldon-dialog-done-button></aldon-dialog-done-button>
             <button class="delete">Delete</button>
           </div>
@@ -1350,7 +1350,7 @@ class Dialog {
         <div slot="title">Not Implemented</div>
         <div slot="body">
           This feature is not implemented yet.
-          <div class="button-container">
+          <div class="right-button-container">
             <button class="damn">Damn</button>
           </div>
         </div>
