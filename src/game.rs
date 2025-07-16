@@ -20,7 +20,9 @@ use std::{
     rc::Rc,
     sync::Mutex,
 };
-use thrift::protocol::{TCompactInputProtocol, TCompactOutputProtocol, TOutputProtocol};
+use thrift::protocol::{
+    TCompactInputProtocol, TCompactOutputProtocol, TOutputProtocol, TSerializable,
+};
 use thrift::transport::{TBufferChannel, TBufferedReadTransport, TBufferedWriteTransport};
 
 const MAX_INVENTORY_LEN: usize = 50;
