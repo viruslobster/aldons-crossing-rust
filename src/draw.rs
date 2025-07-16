@@ -553,12 +553,20 @@ impl MissileType {
     }
 }
 
+fn wall_or_space_or_door(stage: &Stage, x: i64, y: i64) -> bool {
+    WALL_OR_SPACE.contains(&stage.tile_at(x, y).unwrap_or(u8::MAX))
+        || PROP_DOOR.contains(&stage.prop_at(x, y).unwrap_or(u16::MAX))
+}
+
+/// Game maps don't contain exact information about the type of wall to
+/// be drawn. We must map tiles at runtime to frames based on neighboring tiles
+/// to achieve the top down, 3d effect.
 fn wall_frame_id(stage: &Stage, x: i64, y: i64) -> u16 {
-    let up = WALL_OR_SPACE.contains(&stage.tile_at(x, y - 1).unwrap_or(u8::MAX));
-    let down = WALL_OR_SPACE.contains(&stage.tile_at(x, y + 1).unwrap_or(u8::MAX));
-    let left = WALL_OR_SPACE.contains(&stage.tile_at(x - 1, y).unwrap_or(u8::MAX));
-    let right = WALL_OR_SPACE.contains(&stage.tile_at(x + 1, y).unwrap_or(u8::MAX));
-    let diag = WALL_OR_SPACE.contains(&stage.tile_at(x + 1, y + 1).unwrap_or(u8::MAX));
+    let up = wall_or_space_or_door(stage, x, y - 1);
+    let down = wall_or_space_or_door(stage, x, y + 1);
+    let left = wall_or_space_or_door(stage, x - 1, y);
+    let right = wall_or_space_or_door(stage, x + 1, y);
+    let diag = wall_or_space_or_door(stage, x + 1, y + 1);
 
     let tile_id = stage.tile_at(x, y).unwrap() as usize;
     let offset: usize = match tile_id {
