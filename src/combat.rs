@@ -125,6 +125,11 @@ pub fn make_attack(now: f64, attacker: Rc<Body>, target: Rc<Body>) -> Vec<Attack
         event,
     };
     if attacker.is_attack_ranged() {
+        // Spells that fizzle don't create a missile
+        if strike.event == BattleEventType::Fizzle {
+            return result;
+        }
+        // Other missiles are visible (even if they end up missing)
         let effect = MissileEffect::Strike(strike);
         let missile = Missile::from_combatants(now, attacker.clone(), target.clone(), vec![effect]);
         let attack = Attack::Range(missile);
