@@ -1407,7 +1407,9 @@ impl Body {
         if self.health.get() <= 0 {
             self.death_time.set(now);
         }
-        if battle_event == BattleEventType::Hit && damage > 0 {
+        if (battle_event == BattleEventType::Hit || battle_event == BattleEventType::Crit)
+            && damage > 0
+        {
             aldon_log!("-{} takes {} dmg-", self.name, damage);
         }
         if self.needs_attack_update().is_some() {
