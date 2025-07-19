@@ -62,7 +62,7 @@ fn make_spell_attack(spell_id: u16, attacker: &Body, target: &Body) -> (i32, Bat
     aldon_log!("-{} needs < {}, rolls {}-", attacker.name, chance_hit, roll);
 
     if roll > chance_hit {
-        aldon_log!("-{} fizzles", target.name);
+        aldon_log!("-{} fizzles-", attacker.name);
         return (0, BattleEventType::Fizzle);
     }
     return (
