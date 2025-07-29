@@ -1288,6 +1288,7 @@ class Dialog {
           <div>c 1999-2002</div>
           <div>Reimplemented by <a href="https://github.com/viruslobster">@viruslobster</a></div>
           <div><img src="assets/qr.svg"></img></div>
+          <div>Version: ${VERSION}</div>
           <div class="right-button-container">
             <button class="ok">OK</button>
           </div>

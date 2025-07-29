@@ -26,6 +26,7 @@ tasks:
       - mkdir ./dist/pkg
       - cp ./pkg/*.{wasm,json,js} ./dist/pkg
       - cp -r ./web/* ./dist
+      - sed -i "s/%%VERSION%%/$(git rev-parse --short HEAD)/" dist/index.html # write git commit hash as version
 
   push:
     cmds:

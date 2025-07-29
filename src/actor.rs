@@ -315,8 +315,8 @@ impl Actor {
 
         let body = self.stage.get_body(self.res.id);
         if body.is_some() {
-            js::log("create_self early return, self is already created");
-            return;
+            // TODO: before I had this returning, what else breaks?
+            self.stage.remove_body(self.res.id);
         }
         let prop = &PROPS[&prop_id.to_string()];
 
