@@ -2,7 +2,7 @@
 use crate::{
     aldon_log,
     body::{self, Body},
-    buttons::{Button, Buttons},
+    buttons::{Button, ButtonKind, Buttons},
     cast::Cast,
     condition,
     data::{PROPS, WORLD},
@@ -247,44 +247,41 @@ impl AldonGame {
             if rect_contains(body.x(), body.y(), 1.0, 1.0, x, y) {
                 let body_prop = &PROPS[&body.prop_id.to_string()];
 
-                match self.buttons.toggled_menu_button() {
-                    Some(Button::Inventory) => {
-                        if !body_prop.has_inventory() {
-                            return;
-                        }
-                        if body.inventory_len() == 0 {
-                            aldon_log!("*Nothing in inventory*");
-                        } else {
-                            js::log(&format!("actor_id: {:?}", body.actor_id));
-                            self.dialog.execute_trade(
-                                TransactionType::Inventory,
-                                body.clone(),
-                                body.inventory(),
-                            );
-                        }
-                        self.buttons.untoggle_menu_button();
+                if self.buttons.toggled(ButtonKind::Inventory) {
+                    if !body_prop.has_inventory() {
                         return;
                     }
-                    Some(Button::PickUp) => {
-                        if !body_prop.has_inventory() {
-                            return;
-                        }
-                        let items = self.stage.pick_up_at(body.x(), body.y());
-                        if items.len() == 0 {
-                            aldon_log!("*Nothing to pickup*");
-                        } else {
-                            self.dialog.pickup(body.clone(), items);
-                        }
-                        self.buttons.untoggle_menu_button();
+                    if body.inventory_len() == 0 {
+                        aldon_log!("*Nothing in inventory*");
+                    } else {
+                        js::log(&format!("actor_id: {:?}", body.actor_id));
+                        self.dialog.execute_trade(
+                            TransactionType::Inventory,
+                            body.clone(),
+                            body.inventory(),
+                        );
+                    }
+                    self.buttons.untoggle(ButtonKind::Inventory);
+                    return;
+                }
+                if self.buttons.toggled(ButtonKind::PickUp) {
+                    if !body_prop.has_inventory() {
                         return;
                     }
-                    Some(Button::Stats) => {
-                        let stats = body.stats();
-                        self.dialog.stats(&stats);
-                        self.buttons.untoggle_menu_button();
-                        return;
+                    let items = self.stage.pick_up_at(body.x(), body.y());
+                    if items.len() == 0 {
+                        aldon_log!("*Nothing to pickup*");
+                    } else {
+                        self.dialog.pickup(body.clone(), items);
                     }
-                    _ => {}
+                    self.buttons.untoggle(ButtonKind::PickUp);
+                    return;
+                }
+                if self.buttons.toggled(ButtonKind::Stats) {
+                    let stats = body.stats();
+                    self.dialog.stats(&stats);
+                    self.buttons.untoggle(ButtonKind::Stats);
+                    return;
                 }
             }
         }
@@ -484,8 +481,10 @@ impl AldonGame {
             if body.class.get() != ClassType::JOURNEYMAN {
                 return (true, false);
             }
-            self.buttons.set_tab_button(0, 6, Button::Sneak);
-            self.buttons.set_tab_button(0, 8, Button::Hide);
+            self.buttons
+                .set_tab_button(0, 6, Button::Sneak { toggled: false });
+            self.buttons
+                .set_tab_button(0, 8, Button::Hide { toggled: false });
             body.set_class(ClassType::THIEF);
             return (true, true);
         }
@@ -497,8 +496,14 @@ impl AldonGame {
             if body.class.get() != ClassType::JOURNEYMAN {
                 return (true, false);
             }
-            self.buttons
-                .set_tab_button(0, 8, Button::Spellbook { spell_id: None });
+            self.buttons.set_tab_button(
+                0,
+                8,
+                Button::Spellbook {
+                    spell_id: None,
+                    toggled: false,
+                },
+            );
 
             body.set_class(ClassType::PRIEST);
             return (true, true);
@@ -511,8 +516,14 @@ impl AldonGame {
             if body.class.get() != ClassType::JOURNEYMAN {
                 return (true, false);
             }
-            self.buttons
-                .set_tab_button(0, 8, Button::Spellbook { spell_id: None });
+            self.buttons.set_tab_button(
+                0,
+                8,
+                Button::Spellbook {
+                    spell_id: None,
+                    toggled: false,
+                },
+            );
 
             body.set_class(ClassType::SPELLCASTER);
             return (true, true);
@@ -609,10 +620,6 @@ impl AldonGame {
 
     pub fn set_button(&mut self, button_idx: usize, button: Button) {
         self.buttons.set_button(button_idx, button);
-    }
-
-    pub fn untoggle_menu_button(&mut self) {
-        self.buttons.untoggle_menu_button();
     }
 
     pub fn use_transaction_item(&mut self, body: &Body, index: usize) {

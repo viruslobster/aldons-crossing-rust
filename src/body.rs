@@ -1382,7 +1382,12 @@ impl Body {
         let len_before = conditions.len();
         conditions.retain(|c| c.kind != kind);
 
-        len_before != conditions.len()
+        let removed = len_before != conditions.len();
+        if removed && self.is_player() {
+            let cond: &str = kind.into();
+            aldon_log!("*{} has worn off.*", cond);
+        }
+        removed
     }
 
     pub(crate) fn battle_event(&self, now: f64, event: BattleEventType) {
@@ -1500,12 +1505,8 @@ impl Body {
     }
 
     pub fn reveal(&self) {
-        let removed = self.remove_condition(save::ConditionType::SNEAKING)
-            || self.remove_condition(save::ConditionType::HIDDEN);
-
-        if removed {
-            aldon_log!("*You are revealed*");
-        }
+        self.remove_condition(save::ConditionType::SNEAKING);
+        self.remove_condition(save::ConditionType::HIDDEN);
     }
 
     pub fn hide(&self) {

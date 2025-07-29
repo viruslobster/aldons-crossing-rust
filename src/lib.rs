@@ -323,11 +323,6 @@ impl AldonHtmlCanvasGame {
     }
 
     #[wasm_bindgen]
-    pub fn untoggle_menu_button(&mut self) {
-        self.game.untoggle_menu_button();
-    }
-
-    #[wasm_bindgen]
     pub fn quests(&self) -> Vec<JsValue> {
         return self
             .game
@@ -703,19 +698,19 @@ impl Button {
     #[wasm_bindgen(getter)]
     pub fn name(&self) -> String {
         match self.0 {
-            buttons::Button::Picker => "Visual: Picker".to_string(),
+            buttons::Button::Picker { .. } => "Visual: Picker".to_string(),
             buttons::Button::Empty => "Clear Button".to_string(),
-            buttons::Button::Inventory => "Visual: Inventory".to_string(),
+            buttons::Button::Inventory { .. } => "Visual: Inventory".to_string(),
             buttons::Button::Melee => "Combat: Melee".to_string(),
-            buttons::Button::PickUp => "Visual: Pickup Item".to_string(),
+            buttons::Button::PickUp { .. } => "Visual: Pickup Item".to_string(),
             buttons::Button::Ranged => "Combat: Ranged".to_string(),
-            buttons::Button::Stats => "Visual: Stats".to_string(),
+            buttons::Button::Stats { .. } => "Visual: Stats".to_string(),
             buttons::Button::Item { prop_id, quantity } => {
                 let prop = &PROPS[&prop_id.to_string()];
                 format!("Item: {} ({})", prop.name, quantity)
             }
-            buttons::Button::Sneak => "Sneaky Movement".to_string(),
-            buttons::Button::Hide => "Hide in Shadows".to_string(),
+            buttons::Button::Sneak { .. } => "Sneaky Movement".to_string(),
+            buttons::Button::Hide { .. } => "Hide in Shadows".to_string(),
             buttons::Button::Spellbook { .. } => "Spell Book".to_string(),
             buttons::Button::Spell { spell_id, .. } => {
                 let spell = &SPELLS[&spell_id.to_string()];
@@ -728,19 +723,19 @@ impl Button {
     #[wasm_bindgen(getter)]
     pub fn frame(&self) -> RectResWrapped {
         let frame_id = match self.0 {
-            buttons::Button::Picker => 2010,
-            buttons::Button::Inventory => 2006,
+            buttons::Button::Picker { .. } => 2010,
+            buttons::Button::Inventory { .. } => 2006,
             buttons::Button::Melee => 2002,
-            buttons::Button::PickUp => 2004,
+            buttons::Button::PickUp { .. } => 2004,
             buttons::Button::Ranged => 2003,
-            buttons::Button::Stats => 2008,
+            buttons::Button::Stats { .. } => 2008,
             buttons::Button::Item { prop_id, .. } => {
                 let prop = &PROPS[&prop_id.to_string()];
                 prop.frame()
             }
             buttons::Button::Empty => 2000,
-            buttons::Button::Sneak => 2118,
-            buttons::Button::Hide => 2116,
+            buttons::Button::Sneak { .. } => 2118,
+            buttons::Button::Hide { .. } => 2116,
             buttons::Button::Spellbook { .. } => 2100,
             buttons::Button::Spell { spell_id, .. } => {
                 let spell = &SPELLS[&spell_id.to_string()];

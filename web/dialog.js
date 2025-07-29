@@ -914,11 +914,7 @@ class Dialog {
     }
 
     const doneBtn = dialog.querySelector(".done");
-    doneBtn.onclick = () => {
-      this.game.untoggleMenuButton();
-      dialog.remove();
-      console.log("foo");
-    };
+    doneBtn.onclick = () => dialog.remove();
 
     const setBtn = dialog.querySelector(".set");
     setBtn.onclick = () => {
@@ -926,7 +922,6 @@ class Dialog {
       const button = buttons[idx];
       this.game.setButton(buttonIdx, button);
       dialog.remove();
-      this.game.untoggleMenuButton();
     };
     this.root.appendChild(dialog);
   }

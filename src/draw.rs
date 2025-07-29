@@ -263,36 +263,35 @@ impl AldonHtmlCanvasGame {
         // TODO: this is duplicated in lib.rs
         for (i, button) in self.game.buttons.iter().enumerate() {
             let frame_id = match button {
-                Button::Picker => Some(2010),
-                Button::Inventory => Some(2006),
+                Button::Picker { .. } => Some(2010),
+                Button::Inventory { .. } => Some(2006),
                 Button::Melee => Some(2002),
-                Button::PickUp => Some(2004),
+                Button::PickUp { .. } => Some(2004),
                 Button::Ranged => Some(2003),
-                Button::Stats => Some(2008),
+                Button::Stats { .. } => Some(2008),
                 Button::Item { prop_id, .. } => {
                     let prop = &PROPS[&prop_id.to_string()];
                     Some(prop.frame())
                 }
                 Button::Empty => None,
-                Button::Sneak => Some(2118),
-                Button::Hide => Some(2116),
+                Button::Sneak { .. } => Some(2118),
+                Button::Hide { .. } => Some(2116),
                 Button::Spellbook { .. } => Some(2100),
                 Button::Spell { spell_id, .. } => {
                     let spell = &SPELLS[&spell_id.to_string()];
                     Some(spell.frames[0])
                 }
             };
-            let toggled = if self.game.buttons.idx_toggled(i) {
-                1
-            } else {
-                0
-            };
+            let toggled: u16 = self.game.buttons.idx_toggled(i).into();
             if let Some(id) = frame_id {
                 let (x, y) = self.game.buttons.position(i);
 
                 if matches!(
                     button,
-                    Button::Sneak | Button::Hide | Button::Spellbook { .. } | Button::Spell { .. }
+                    Button::Sneak { .. }
+                        | Button::Hide { .. }
+                        | Button::Spellbook { .. }
+                        | Button::Spell { .. }
                 ) {
                     // Most button images come with the background baked in,
                     // but not these.

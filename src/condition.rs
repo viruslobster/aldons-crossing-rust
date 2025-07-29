@@ -683,6 +683,7 @@ impl Into<&str> for ConditionType {
             ConditionType::HEALTH => "Regen",
             ConditionType::POISON => "Poison",
             ConditionType::SNEAKING => "Sneaking",
+            ConditionType::HIDDEN => "Hidden",
             _ => "UNKNOWN",
         }
     }

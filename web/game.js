@@ -219,10 +219,6 @@ class Game {
     return save;
   }
 
-  untoggleMenuButton() {
-    this.game.untoggle_menu_button();
-  }
-
   setButton(button_idx, button) {
     this.game.set_button(button_idx, button);
   }
