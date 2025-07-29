@@ -872,7 +872,7 @@ impl Stage {
                                 }) => {
                                     let sneak_attack = body.sneaking();
                                     body.reveal();
-                                    if sneak_attack {
+                                    if sneak_attack && (event == BattleEventType::Hit || event == BattleEventType::Crit) {
                                         aldon_log!("*Sneak attack! x4 damage!*");
                                         damage = damage * 4;
                                     }
