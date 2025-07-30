@@ -46,10 +46,11 @@ impl Buttons {
     ) -> Result<Self, InvalidDataError> {
         let mut buttons = default_buttons();
 
+        let player = stage.get_player();
         if let Some(save_buttons) = &save.buttons {
             for (tab_idx, tab) in save_buttons.iter().enumerate() {
                 for (button_idx, save) in tab.iter().enumerate() {
-                    buttons[tab_idx][button_idx] = save.clone().into();
+                    buttons[tab_idx][button_idx] = Button::from_save(save, player.clone());
                 }
             }
         }
@@ -536,34 +537,8 @@ impl Button {
             _ => false,
         }
     }
-}
 
-impl Into<save::Button> for Button {
-    fn into(self) -> save::Button {
-        match self {
-            Button::Picker { .. } => save::Button::Picker(save::ButtonPicker {}),
-            Button::Empty { .. } => save::Button::Empty(save::ButtonEmpty {}),
-            Button::Inventory { .. } => save::Button::Inventory(save::ButtonInventory {}),
-            Button::Melee { .. } => save::Button::Melee(save::ButtonMelee {}),
-            Button::PickUp { .. } => save::Button::Pickup(save::ButtonPickUp {}),
-            Button::Ranged { .. } => save::Button::Ranged(save::ButtonRanged {}),
-            Button::Stats { .. } => save::Button::Stats(save::ButtonStats {}),
-            Button::Item { prop_id, quantity } => {
-                let item = save::ButtonItem::new(prop_id as i32, quantity as i32);
-                save::Button::Item(item)
-            }
-            Button::Sneak { .. } => save::Button::Sneak(save::ButtonSneak {}),
-            Button::Hide { .. } => save::Button::Hide(save::ButtonHide {}),
-            Button::Spellbook { .. } => save::Button::Spellbook(save::ButtonSpellbook {}),
-            Button::Spell { spell_id, .. } => {
-                save::Button::Spell(save::ButtonSpell::new(spell_id as i32))
-            }
-        }
-    }
-}
-
-impl From<save::Button> for Button {
-    fn from(button: save::Button) -> Button {
+    fn from_save(button: &save::Button, player: Rc<Body>) -> Button {
         let toggled = false;
         match button {
             save::Button::Picker(_) => Button::Picker { toggled },
@@ -587,8 +562,12 @@ impl From<save::Button> for Button {
                     quantity: quantity as u8,
                 }
             }
-            save::Button::Sneak(_) => Button::Sneak { toggled },
-            save::Button::Hide(_) => Button::Hide { toggled },
+            save::Button::Sneak(_) => Button::Sneak {
+                toggled: player.sneaking(),
+            },
+            save::Button::Hide(_) => Button::Hide {
+                toggled: player.hidden(),
+            },
             save::Button::Spellbook(_) => Button::Spellbook {
                 spell_id: None,
                 toggled,
@@ -606,6 +585,30 @@ impl From<save::Button> for Button {
                     return Button::Empty;
                 };
                 Button::Spell { spell_id, toggled }
+            }
+        }
+    }
+}
+
+impl Into<save::Button> for Button {
+    fn into(self) -> save::Button {
+        match self {
+            Button::Picker { .. } => save::Button::Picker(save::ButtonPicker {}),
+            Button::Empty { .. } => save::Button::Empty(save::ButtonEmpty {}),
+            Button::Inventory { .. } => save::Button::Inventory(save::ButtonInventory {}),
+            Button::Melee { .. } => save::Button::Melee(save::ButtonMelee {}),
+            Button::PickUp { .. } => save::Button::Pickup(save::ButtonPickUp {}),
+            Button::Ranged { .. } => save::Button::Ranged(save::ButtonRanged {}),
+            Button::Stats { .. } => save::Button::Stats(save::ButtonStats {}),
+            Button::Item { prop_id, quantity } => {
+                let item = save::ButtonItem::new(prop_id as i32, quantity as i32);
+                save::Button::Item(item)
+            }
+            Button::Sneak { .. } => save::Button::Sneak(save::ButtonSneak {}),
+            Button::Hide { .. } => save::Button::Hide(save::ButtonHide {}),
+            Button::Spellbook { .. } => save::Button::Spellbook(save::ButtonSpellbook {}),
+            Button::Spell { spell_id, .. } => {
+                save::Button::Spell(save::ButtonSpell::new(spell_id as i32))
             }
         }
     }
