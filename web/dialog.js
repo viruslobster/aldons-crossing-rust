@@ -1286,7 +1286,7 @@ class Dialog {
           <div>Aldon's Crossing</div>
           <div>A Constant Games Production.</div>
           <div>c 1999-2002</div>
-          <div>Reimplemented by <a href="https://github.com/viruslobster">@viruslobster</a></div>
+          <div>Reimplemented by <a style="text-decoration: none" href="https://github.com/viruslobster/aldons-crossing-rust">@viruslobster</a></div>
           <div><img src="assets/qr.svg"></img></div>
           <div>Version: ${VERSION}</div>
           <div class="right-button-container">
