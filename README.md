@@ -7,11 +7,11 @@ Play on [aldonscrossing.app](https://aldonscrossing.app/). Play in the browser o
 
 ## An open source re-implementation of Aldon's Crossing
 
-Aldon's Crossing is a top down RPG game originally written for Palm PDA devices, a pre-iPhone series of mobile devices. You can find more about the original game [here](https://archive.org/details/tucows_216797_Aldon_s_Crossing); this is an open source re-implementation. The goal is to stay true to the original experience while allowing it to run on any screen size and on any platform with a webview. Its been tested on desktop Chrome, Android (Chrome), and iOS (Safari).
+Aldon's Crossing is a top down RPG game originally written for Palm PDAs, a pre-iPhone series of mobile devices. You can find more about the original game [here](https://archive.org/details/tucows_216797_Aldon_s_Crossing); this is an open source re-implementation. The goal is to stay true to the original experience while allowing it to run on any screen size and on any platform with a webview. Its been tested on desktop Chrome, Android (Chrome), and iOS (Safari).
 
 ## Implementation
 
-The game is split into into a backend and a front end (although both run on the client). The backend implements the core game while the frontend renders the game and implements the various dialogs in the game.
+The game is split into into a backend and a front end (although both run on the client). The backend implements the core game while the frontend renders the game and implements the various dialogs.
 
 ### Backend
 
@@ -26,7 +26,7 @@ Written in Rust™. Ultimately it is compiled to webassembly to run in the brows
 
 ### Frontend
 
-Draws game state to an html canvas. Dialogs are implemented as html web components.
+Draws game state to an html canvas. Dialogs are implemented as web components.
 
 - **AldonHtmlCanvasGame:** Entry point for adding Aldon's Crossing to a web view. Provides an api to manage the game from js, e.g. save a game.
 - **main.js:** Setup wasm and the game. Most of the stuff in here should really live in AldonHtmlCanvasGame.
