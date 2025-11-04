@@ -365,7 +365,7 @@ class AldonGame extends HTMLElement {
         right: 10px;
         font-size: 100px;
       }
-      
+
       .responses {
         position: absolute;
         bottom: 10px;
@@ -389,12 +389,16 @@ class AldonGame extends HTMLElement {
         visibility: hidden;
         font-size: 20px;
       }
+
+      #game {
+        margin: 0 auto;
+      }
     `;
 
     let spritesheetUrl = new URL("/assets/spritesheet.png", import.meta.url);
     const root = html(`
       <div id="game-container">
-        <!-- On safari the height of a custom element can't always be measured, 
+        <!-- On safari the height of a custom element can't always be measured,
              so wrap aldon-menu in another div -->
         <div id="aldon-menu-container">
           <aldon-menu></aldon-menu>

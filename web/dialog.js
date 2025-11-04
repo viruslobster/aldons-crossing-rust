@@ -153,7 +153,7 @@ class AldonPicker extends HTMLElement {
         float: inline-end;
         display: inline-block;
       }
-      
+
     `;
     const preview = this.getAttribute("previewPic") === "true";
     const info = this.getAttribute("itemInfo") === "true";
@@ -343,7 +343,7 @@ class AldonDialog extends HTMLElement {
     const scale = (Math.min(width, height) - 10) / 860;
     const border = 3;
     const top = height / 2 - (860 * scale) / 2 - border * scale;
-    const left = width / 2 - (860 * scale) / 2 - border * scale;
+    const left = window.innerWidth / 2 - (860 * scale) / 2 - border * scale;
     const style = document.createElement("style");
 
     style.textContent = `
@@ -351,9 +351,9 @@ class AldonDialog extends HTMLElement {
         width: 860px;
         height: 860px;
         transform: scale(${scale}, ${scale});
+        transform-origin: top left;
         top: ${top}px;
         left: ${left}px;
-        transform-origin: top left;
         font-family: PalmOS;
         font-smooth: never;
         font-size: 90px;
@@ -443,12 +443,12 @@ class CreateCharacterDialog extends HTMLElement {
       <aldon-dialog width="${width}" height="${height}">
         <div slot="title">Character Creation</div>
         <div slot="body">
-          <input 
+          <input
             style="width: 45%"
-            class="player-name" 
-            maxlength="14" 
-            type="text" 
-            placehold="Enter Name" 
+            class="player-name"
+            maxlength="14"
+            type="text"
+            placehold="Enter Name"
             value="${this.playerName}"
           >
           <canvas class="picture" width="${32 * scale}" height="${32 * scale}"></canvas>
@@ -620,7 +620,7 @@ class Dialog {
       <aldon-dialog width="${this.game.width}" height="${this.game.height}">
         <div slot="title">${title}</div>
         <div slot="body">
-          <canvas 
+          <canvas
             style="${stylePicture}" class="picture" width="${32 * scale}" height="${32 * scale}">
           </canvas>
           <div class="message">
@@ -673,7 +673,7 @@ class Dialog {
 
   createCharacter() {
     const dialog = html(`
-      <aldon-create-character-dialog 
+      <aldon-create-character-dialog
         width="${this.game.width}"
         height=${this.game.height}"
       >
@@ -1122,8 +1122,8 @@ class Dialog {
       <aldon-dialog width="${this.game.width}" height="${this.game.height}">
         <div slot="title">MiniMap</div>
         <div slot="body">
-          <canvas 
-            style="position: absolute; left: 50%; transform: translate(-50%, 0%)" width="${size}" height="${size}" 
+          <canvas
+            style="position: absolute; left: 50%; transform: translate(-50%, 0%)" width="${size}" height="${size}"
             class="mini-map">
           </canvas>
           <div class="right-button-container">
@@ -1170,7 +1170,7 @@ class Dialog {
       const save = saves[slot];
       const encoded = encodeURIComponent(save.data);
       const link = html(`
-      <a 
+      <a
         style="display: none"
         download="${save.name}"
         href="data:text/plain;charset=utf-8,${encoded}"
